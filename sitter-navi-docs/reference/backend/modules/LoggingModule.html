@@ -1,0 +1,448 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content module">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Modules</li>
+    <li class="breadcrumb-item" >LoggingModule</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>libs/infrastructure/logging/logging.module.ts</code>
+</div>
+
+<div class="text-center module-graph-container">
+    <div id="module-graph-svg">
+        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.47.0 (20210316.0004)
+ -->
+<!-- Title: dependencies Pages: 1 -->
+<svg width="615pt" height="284pt"
+ viewBox="0.00 0.00 615.00 284.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 280)">
+<title>dependencies</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-280 611,-280 611,4 -4,4"/>
+<text text-anchor="start" x="282.51" y="-42.4" font-family="Times-12" font-weight="bold" font-size="14.00">Legend</text>
+<polygon fill="#ffffb3" stroke="transparent" points="69.5,-10 69.5,-30 89.5,-30 89.5,-10 69.5,-10"/>
+<text text-anchor="start" x="93.13" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Declarations</text>
+<polygon fill="#8dd3c7" stroke="transparent" points="182.5,-10 182.5,-30 202.5,-30 202.5,-10 182.5,-10"/>
+<text text-anchor="start" x="206.23" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Module</text>
+<polygon fill="#80b1d3" stroke="transparent" points="268.5,-10 268.5,-30 288.5,-30 288.5,-10 268.5,-10"/>
+<text text-anchor="start" x="292.28" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Bootstrap</text>
+<polygon fill="#fdb462" stroke="transparent" points="365.5,-10 365.5,-30 385.5,-30 385.5,-10 365.5,-10"/>
+<text text-anchor="start" x="389.17" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Providers</text>
+<polygon fill="#fb8072" stroke="transparent" points="461.5,-10 461.5,-30 481.5,-30 481.5,-10 461.5,-10"/>
+<text text-anchor="start" x="485.23" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
+<g id="clust1" class="cluster">
+<title>cluster_LoggingModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 599,-268 599,-70 8,-70"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_LoggingModule_providers</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 591,-130 591,-78 16,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_LoggingModule_exports</title>
+<polygon fill="none" stroke="black" points="190,-208 190,-260 463,-260 463,-208 190,-208"/>
+</g>
+<!-- LoggingService  -->
+<g id="node1" class="node"><a xlink:href="../injectables/LoggingService.html" href="../injectables/LoggingService.html" target="_top">
+<title>LoggingService </title>
+<polygon fill="#fb8072" stroke="black" points="455.42,-252 346.58,-252 346.58,-216 455.42,-216 455.42,-252"/>
+<text text-anchor="middle" x="401" y="-229.8" font-family="Times,serif" font-size="14.00">LoggingService </text>
+</a></g>
+<!-- NestLoggerAdapter  -->
+<g id="node2" class="node"><a xlink:href="../injectables/NestLoggerAdapter.html" href="../injectables/NestLoggerAdapter.html" target="_top">
+<title>NestLoggerAdapter </title>
+<polygon fill="#fb8072" stroke="black" points="328.17,-252 197.83,-252 197.83,-216 328.17,-216 328.17,-252"/>
+<text text-anchor="middle" x="263" y="-229.8" font-family="Times,serif" font-size="14.00">NestLoggerAdapter </text>
+</a></g>
+<!-- LoggingModule -->
+<g id="node3" class="node"><a xlink:href="../modules/LoggingModule.html" href="../modules/LoggingModule.html" target="_top">
+<title>LoggingModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="385.49,-187 382.49,-191 361.49,-191 358.49,-187 278.51,-187 278.51,-151 385.49,-151 385.49,-187"/>
+<text text-anchor="middle" x="332" y="-164.8" font-family="Times,serif" font-size="14.00">LoggingModule</text>
+</a></g>
+<!-- LoggingModule&#45;&gt;LoggingService  -->
+<g id="edge1" class="edge">
+<title>LoggingModule&#45;&gt;LoggingService </title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M366.02,-187.11C366.02,-187.11 366.02,-205.99 366.02,-205.99"/>
+<polygon fill="black" stroke="black" points="362.52,-205.99 366.02,-215.99 369.52,-205.99 362.52,-205.99"/>
+</g>
+<!-- LoggingModule&#45;&gt;NestLoggerAdapter  -->
+<g id="edge2" class="edge">
+<title>LoggingModule&#45;&gt;NestLoggerAdapter </title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M303.42,-187.11C303.42,-187.11 303.42,-205.99 303.42,-205.99"/>
+<polygon fill="black" stroke="black" points="299.92,-205.99 303.42,-215.99 306.92,-205.99 299.92,-205.99"/>
+</g>
+<!-- LoggingService -->
+<g id="node4" class="node"><a xlink:href="../injectables/LoggingService.html" href="../injectables/LoggingService.html" target="_top">
+<title>LoggingService</title>
+<ellipse fill="#fdb462" stroke="black" cx="510" cy="-104" rx="72.94" ry="18"/>
+<text text-anchor="middle" x="510" y="-99.8" font-family="Times,serif" font-size="14.00">LoggingService</text>
+</a></g>
+<!-- LoggingService&#45;&gt;LoggingModule -->
+<g id="edge3" class="edge">
+<title>LoggingService&#45;&gt;LoggingModule</title>
+<path fill="none" stroke="black" d="M446.37,-112.77C446.37,-130.51 446.37,-169 446.37,-169 446.37,-169 395.5,-169 395.5,-169"/>
+<polygon fill="black" stroke="black" points="395.5,-165.5 385.5,-169 395.5,-172.5 395.5,-165.5"/>
+</g>
+<!-- NestLoggerAdapter -->
+<g id="node5" class="node"><a xlink:href="../injectables/NestLoggerAdapter.html" href="../injectables/NestLoggerAdapter.html" target="_top">
+<title>NestLoggerAdapter</title>
+<ellipse fill="#fdb462" stroke="black" cx="332" cy="-104" rx="87.94" ry="18"/>
+<text text-anchor="middle" x="332" y="-99.8" font-family="Times,serif" font-size="14.00">NestLoggerAdapter</text>
+</a></g>
+<!-- NestLoggerAdapter&#45;&gt;LoggingModule -->
+<g id="edge4" class="edge">
+<title>NestLoggerAdapter&#45;&gt;LoggingModule</title>
+<path fill="none" stroke="black" d="M332,-122.11C332,-122.11 332,-140.99 332,-140.99"/>
+<polygon fill="black" stroke="black" points="328.5,-140.99 332,-150.99 335.5,-140.99 328.5,-140.99"/>
+</g>
+<!-- SensitiveFieldRedactor -->
+<g id="node6" class="node"><a xlink:href="../injectables/SensitiveFieldRedactor.html" href="../injectables/SensitiveFieldRedactor.html" target="_top">
+<title>SensitiveFieldRedactor</title>
+<ellipse fill="#fdb462" stroke="black" cx="125" cy="-104" rx="101.3" ry="18"/>
+<text text-anchor="middle" x="125" y="-99.8" font-family="Times,serif" font-size="14.00">SensitiveFieldRedactor</text>
+</a></g>
+<!-- SensitiveFieldRedactor&#45;&gt;LoggingModule -->
+<g id="edge5" class="edge">
+<title>SensitiveFieldRedactor&#45;&gt;LoggingModule</title>
+<path fill="none" stroke="black" d="M211.91,-113.31C211.91,-131.29 211.91,-169 211.91,-169 211.91,-169 268.28,-169 268.28,-169"/>
+<polygon fill="black" stroke="black" points="268.28,-172.5 278.28,-169 268.28,-165.5 268.28,-172.5"/>
+</g>
+</g>
+</svg>
+
+    </div>
+    <i id="fullscreen" class="icon ion-ios-resize module-graph-fullscreen-btn" aria-hidden="true"></i>
+    <div class="btn-group size-buttons">
+        <button id="zoom-in" class="btn btn-default btn-sm">Zoom in</button>
+        <button id="reset" class="btn btn-default btn-sm">Reset</button>
+        <button id="zoom-out" class="btn btn-default btn-sm">Zoom out</button>
+    </div>
+</div>
+<script src="../js/libs/svg-pan-zoom.min.js"></script>
+<script src="../js/svg-pan-zoom.controls.js"></script>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a href="#info" 
+            class="nav-link"
+            class="nav-link active"
+            role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+    </li>
+    <li class="nav-item">
+        <a href="#source" 
+            class="nav-link"
+            
+            role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+
+
+        <div class="container-fluid module">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Providers<a href="https://angular.io/api/core/NgModule#providers" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module providers"><span class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../injectables/LoggingService.html">LoggingService</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/NestLoggerAdapter.html">NestLoggerAdapter</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/SensitiveFieldRedactor.html">SensitiveFieldRedactor</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Exports<a href="https://angular.io/api/core/NgModule#exports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module exports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../injectables/LoggingService.html">LoggingService</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../s/NestLoggerAdapter.html">NestLoggerAdapter</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+                <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../modules/AppModule.html" target="_self" >AppModule</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../injectables/LoggingService.html" target="_self" >LoggingService</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/NestLoggerAdapter.html" target="_self" >NestLoggerAdapter</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/SensitiveFieldRedactor.html" target="_self" >SensitiveFieldRedactor</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Global, Module } from &#x27;@nestjs/common&#x27;;
+import { ConfigModule } from &#x27;@nestjs/config&#x27;;
+import { LoggingService } from &#x27;./logging.service&#x27;;
+import { NestLoggerAdapter } from &#x27;./nest-logger.adapter&#x27;;
+import { SensitiveFieldRedactor } from &#x27;./sensitive-field-redactor&#x27;;
+
+@Global()
+@Module({
+  imports: [ConfigModule],
+  providers: [LoggingService, NestLoggerAdapter, SensitiveFieldRedactor],
+  exports: [LoggingService, NestLoggerAdapter],
+})
+export class LoggingModule {}</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
+            var COMPODOC_CURRENT_PAGE_URL = 'LoggingModule.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

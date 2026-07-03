@@ -1,0 +1,662 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >RedisCacheConfigurationMapper</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>libs/infrastructure/cache/cache.service.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api">
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#map" >map</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="map"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>map</b></span>
+                        <a href="#map"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>map()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">libs/infrastructure/cache/cache.service.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>IoRedis.RedisOptions</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger, OnModuleInit } from &#x27;@nestjs/common&#x27;;
+import { useAdapter } from &#x27;./adapter&#x27;;
+import { InMemoryCacheAdapter } from &#x27;./in-memory-cache.adapter&#x27;;
+import cacheManager from &#x27;@type-cacheable/core&#x27;;
+import * as dotenv from &#x27;dotenv&#x27;;
+import IORedis, * as IoRedis from &#x27;ioredis&#x27;;
+import { getRolePermissionCacheKey } from &#x27;@constants/role.constant&#x27;;
+import { getRedisKeyPrefix } from &#x27;@infrastructure/redis&#x27;;
+
+dotenv.config();
+/*
+This enum just makes it easy to set cache ttls. Type cacheable uses
+seconds.
+*/
+export enum CacheTtlSeconds {
+  TEN_SECONDS &#x3D; 10,
+  ONE_MINUTE &#x3D; 60,
+  FIVE_MINUTES &#x3D; 5 * 60,
+  ONE_HOUR &#x3D; 60 * 60,
+  ONE_DAY &#x3D; 60 * 60 * 24,
+  ONE_WEEK &#x3D; 7 * 24 * 60 * 60,
+}
+/*
+  This is just a generic exception we can throw and easily detect later in our app,
+   in logs or other systems.
+  */
+export class NotCacheableException extends Error {
+  public constructor(message: string) {
+    super(message);
+  }
+}
+/*
+  This class maps env variables to a redis io config object
+  */
+@Injectable()
+export class RedisCacheConfigurationMapper {
+  public static map(): IoRedis.RedisOptions {
+    return {
+      host: process.env.REDIS_HOST,
+      port: parseInt(process.env.REDIS_PORT || &#x27;6379&#x27;, 10),
+      password: process.env.REDIS_PASSWORD,
+      connectTimeout: 10000,
+      enableOfflineQueue: true,
+      keyPrefix: getRedisKeyPrefix(),
+      tls: process.env.REDIS_USETLS &#x3D;&#x3D;&#x3D; &#x27;true&#x27; ? {} : undefined,
+    };
+  }
+}
+
+/*
+  This is where we setup the typecacheable store. We use Nest&#x27;s OnModuleInit
+  interface to have the setup run immediately.
+  This allows us to stop application start if there is a problem
+  configuring our redis instance.
+  */
+@Injectable()
+export class RedisCacheService implements OnModuleInit {
+  private redisInstance: IoRedis.Redis | undefined;
+  private hasLoggedError &#x3D; false;
+  private inMemoryAdapter: InMemoryCacheAdapter | undefined;
+  private readonly logger &#x3D; new Logger(&#x27;RedisCacheService&#x27;);
+
+  /** Whether Redis is currently the active cache backend */
+  get isRedisActive(): boolean {
+    return this.isConnectReady();
+  }
+
+  /** Which backend is currently serving cache */
+  get activeBackend(): &#x27;redis&#x27; | &#x27;in-memory&#x27; {
+    return this.isConnectReady() ? &#x27;redis&#x27; : &#x27;in-memory&#x27;;
+  }
+
+  public async onModuleInit(): Promise&lt;void&gt; {
+    // Always set up in-memory fallback first
+    this.inMemoryAdapter &#x3D; new InMemoryCacheAdapter({ maxEntries: 10000 });
+    cacheManager.setFallbackClient(this.inMemoryAdapter);
+
+    try {
+      if (this.isAlreadyConfigured()) {
+        return;
+      }
+
+      this.redisInstance &#x3D; new IORedis({
+        ...RedisCacheConfigurationMapper.map(),
+        retryStrategy: (times) &#x3D;&gt; {
+          // Retry with backoff, max 10s between retries
+          return Math.min(times * 500, 10000);
+        },
+      });
+
+      // Suppress repeated error logs — only log the first occurrence
+      this.redisInstance.on(&#x27;error&#x27;, (e: Error) &#x3D;&gt; {
+        if (!this.hasLoggedError) {
+          this.hasLoggedError &#x3D; true;
+          this.logger.warn(
+            &#x60;Redis connection error (using in-memory fallback, subsequent errors suppressed): ${e.message}&#x60;,
+          );
+        }
+      });
+
+      // Reset error flag when reconnected so next disconnect is logged
+      this.redisInstance.on(&#x27;ready&#x27;, () &#x3D;&gt; {
+        if (this.hasLoggedError) {
+          this.logger.log(&#x27;Redis reconnected, resuming as primary cache&#x27;);
+          this.hasLoggedError &#x3D; false;
+        }
+      });
+
+      useAdapter(this.redisInstance);
+    } catch (e) {
+      this.logger.warn(
+        &#x60;Failed to initialize Redis cache, using in-memory fallback: ${(e as Error).message}&#x60;,
+      );
+    }
+  }
+
+  private isAlreadyConfigured(): boolean {
+    return this.redisInstance !&#x3D;&#x3D; undefined;
+  }
+
+  private isConnectReady(): boolean {
+    return &#x27;ready&#x27; &#x3D;&#x3D;&#x3D; this?.redisInstance?.status;
+  }
+
+  public clearCacheByPattern(pattern) {
+    return new Promise((resolve) &#x3D;&gt; {
+      if (!this.redisInstance) {
+        throw new Error(&#x27;Redis instance is not initialized&#x27;);
+      }
+      const stream &#x3D; this.redisInstance.scanStream({
+        match: pattern,
+      });
+      stream.on(&#x27;data&#x27;, (keys) &#x3D;&gt; {
+        if (keys.length) {
+          const pipeline &#x3D; this.redisInstance?.pipeline();
+          if (!pipeline) {
+            throw new Error(&#x27;Redis instance is not initialized&#x27;);
+          }
+          keys.forEach(function (key) {
+            pipeline.del(key);
+          });
+          pipeline.exec();
+        }
+      });
+      stream.on(&#x27;end&#x27;, function () {
+        resolve(null);
+      });
+    });
+  }
+
+  public async clearCacheByTopic(key: string) {
+    if (!this.redisInstance) {
+      throw new Error(&#x27;Redis instance is not initialized&#x27;);
+    }
+    if (key &#x3D;&#x3D;&#x3D; &#x27;config&#x27;) {
+      return this.redisInstance?.del(&#x27;config&#x27;);
+    }
+    if (key &#x3D;&#x3D;&#x3D; &#x27;product&#x27;) {
+      return this.clearCacheByPattern(&#x27;product-list:*&#x27;);
+    }
+    if (key &#x3D;&#x3D;&#x3D; &#x27;cms&#x27;) {
+      return this.clearCacheByPattern(&#x27;cms:*&#x27;);
+    }
+    if (key &#x3D;&#x3D;&#x3D; &#x27;address&#x27;) {
+      return this.redisInstance?.del(&#x27;address&#x27;);
+    }
+    if (key &#x3D;&#x3D;&#x3D; &#x27;productDetail&#x27;) {
+      return this.clearCacheByPattern(&#x27;product-detail:*&#x27;);
+    }
+    if (key &#x3D;&#x3D;&#x3D; &#x27;userRole&#x27;) {
+      return this.clearCacheByPattern(getRolePermissionCacheKey(&#x27;*&#x27;));
+    }
+    if (key &#x3D;&#x3D;&#x3D; &#x27;all&#x27;) {
+      try {
+        if (this.redisInstance) {
+          this.redisInstance.flushall();
+        }
+      } catch {
+        this.clearCacheByPattern(&#x27;*&#x27;);
+      }
+      return true;
+    } else {
+      return this.redisInstance.del(key);
+    }
+  }
+
+  @CheckRedisReady
+  public async clearCacheByKey(key: string) {
+    if (!this.redisInstance) {
+      throw new Error(&#x27;Redis instance is not initialized&#x27;);
+    }
+    return this.redisInstance.del(key);
+  }
+
+  @CheckRedisReady
+  public async getValue(key: string) {
+    if (!this.redisInstance) {
+      throw new Error(&#x27;Redis instance is not initialized&#x27;);
+    }
+    return this.redisInstance.get(key);
+  }
+
+  @CheckRedisReady
+  public async setValue(key: string, value: string | number | Buffer) {
+    if (!this.redisInstance) {
+      throw new Error(&#x27;Redis instance is not initialized&#x27;);
+    }
+    return this.redisInstance.set(key, value);
+  }
+
+  @CheckRedisReady
+  public async setValueWithTTL(key: string, value: string | number | Buffer, ttlSeconds: number) {
+    if (!this.redisInstance) {
+      throw new Error(&#x27;Redis instance is not initialized&#x27;);
+    }
+    return this.redisInstance.set(key, value, &#x27;EX&#x27;, ttlSeconds);
+  }
+
+  @CheckRedisReady
+  public async incrBy(key: string, increment: number &#x3D; 1): Promise&lt;number&gt; {
+    if (!this.redisInstance) {
+      throw new Error(&#x27;Redis instance is not initialized&#x27;);
+    }
+    return this.redisInstance.incrby(key, increment);
+  }
+
+  @CheckRedisReady
+  public async expire(key: string, ttlSeconds: number): Promise&lt;number&gt; {
+    if (!this.redisInstance) {
+      throw new Error(&#x27;Redis instance is not initialized&#x27;);
+    }
+    return this.redisInstance.expire(key, ttlSeconds);
+  }
+
+  @CheckRedisReady
+  public async mget(keys: string[]): Promise&lt;(string | null)[]&gt; {
+    if (!this.redisInstance) {
+      throw new Error(&#x27;Redis instance is not initialized&#x27;);
+    }
+    return this.redisInstance.mget(...keys);
+  }
+
+  /**
+   * Create a Redis pipeline for batching multiple commands into one round-trip.
+   * Returns an object with chainable command methods and an exec() method.
+   *
+   * Usage:
+   *   const pipe &#x3D; cacheService.pipeline();
+   *   pipe.incrby(&#x27;key1&#x27;, 1);
+   *   pipe.incrby(&#x27;key2&#x27;, 1);
+   *   pipe.expire(&#x27;key1&#x27;, 3600);
+   *   await pipe.exec();
+   */
+  public pipeline(): RedisPipeline {
+    if (!this.redisInstance) {
+      // Fallback: return a no-op pipeline that silently fails each command
+      return new NoopPipeline();
+    }
+    return new IoredisPipeline(this.redisInstance.pipeline());
+  }
+}
+
+/**
+ * Interface for chainable Redis pipeline operations.
+ */
+export interface RedisPipeline {
+  incrby(key: string, increment: number): this;
+  expire(key: string, seconds: number): this;
+  exec(): Promise&lt;void&gt;;
+}
+
+/**
+ * Real ioredis pipeline wrapper.
+ */
+class IoredisPipeline implements RedisPipeline {
+  constructor(private readonly pipe: any) {}
+
+  incrby(key: string, increment: number): this {
+    this.pipe.incrby(key, increment);
+    return this;
+  }
+
+  expire(key: string, seconds: number): this {
+    this.pipe.expire(key, seconds);
+    return this;
+  }
+
+  async exec(): Promise&lt;void&gt; {
+    await this.pipe.exec();
+  }
+}
+
+/**
+ * No-op pipeline for when Redis is unavailable.
+ */
+class NoopPipeline implements RedisPipeline {
+  incrby(_key: string, _increment: number): this {
+    return this;
+  }
+  expire(_key: string, _seconds: number): this {
+    return this;
+  }
+  async exec(): Promise&lt;void&gt; {}
+}
+
+function CheckRedisReady(
+  target,
+  propertyKey: string,
+  descriptor: PropertyDescriptor,
+): PropertyDescriptor {
+  const originalValue &#x3D; descriptor.value;
+  descriptor.value &#x3D; function (...args: []) {
+    // &quot;this&quot; here will refer to the class instance
+    if (!this.isConnectReady()) {
+      throw Error(&#x27;Redis Not Ready&#x27;);
+    }
+    return originalValue.apply(this, args);
+  };
+  return descriptor;
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'RedisCacheConfigurationMapper.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

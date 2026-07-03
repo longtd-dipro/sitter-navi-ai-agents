@@ -1,0 +1,698 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  LogMetadata</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>libs/infrastructure/logging/logging.service.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api">
+
+    <section data-compodoc="block-indexables">
+    <h3 id="inputs">Indexable</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <code>[key: string]:    <code>unknown</code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">libs/infrastructure/logging/logging.service.ts:15</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Injectable,
+  OnModuleInit,
+  OnApplicationShutdown,
+} from &#x27;@nestjs/common&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
+import * as winston from &#x27;winston&#x27;;
+import &#x27;winston-daily-rotate-file&#x27;;
+import { AsyncLocalStorage } from &#x27;async_hooks&#x27;;
+import * as fs from &#x27;fs&#x27;;
+import * as path from &#x27;path&#x27;;
+import { SensitiveFieldRedactor } from &#x27;./sensitive-field-redactor&#x27;;
+import { LoggingConfigType } from &#x27;./logging.config&#x27;;
+
+export interface LogMetadata {
+  [key: string]: unknown;
+}
+
+export interface CorrelationStore {
+  correlationId: string;
+}
+
+// Standard fields that metadata must NOT override
+const STANDARD_FIELDS &#x3D; new Set([
+  &#x27;timestamp&#x27;,
+  &#x27;level&#x27;,
+  &#x27;context&#x27;,
+  &#x27;message&#x27;,
+  &#x27;service&#x27;,
+  &#x27;env&#x27;,
+]);
+
+const MAX_MESSAGE_LENGTH &#x3D; 10000;
+const TRUNCATION_SUFFIX &#x3D; &#x27;...[truncated]&#x27;;
+
+// Custom log levels (lower number &#x3D; higher priority)
+const CUSTOM_LEVELS: winston.config.AbstractConfigSetLevels &#x3D; {
+  error: 0,
+  warn: 1,
+  info: 2,
+  http: 3,
+  debug: 4,
+  verbose: 5,
+};
+
+const CUSTOM_COLORS: Record&lt;string, string&gt; &#x3D; {
+  error: &#x27;red&#x27;,
+  warn: &#x27;yellow&#x27;,
+  info: &#x27;green&#x27;,
+  http: &#x27;magenta&#x27;,
+  debug: &#x27;blue&#x27;,
+  verbose: &#x27;cyan&#x27;,
+};
+
+/**
+ * Safe JSON replacer that handles circular references.
+ */
+function safeReplacer() {
+  const seen &#x3D; new WeakSet();
+  return (_key: string, value: unknown): unknown &#x3D;&gt; {
+    if (typeof value &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; value !&#x3D;&#x3D; null) {
+      if (seen.has(value)) {
+        return &#x27;[Circular]&#x27;;
+      }
+      seen.add(value);
+    }
+    return value;
+  };
+}
+
+@Injectable()
+export class LoggingService implements OnModuleInit, OnApplicationShutdown {
+  private logger: winston.Logger;
+  private context: string &#x3D; &#x27;Application&#x27;;
+
+  /** Shared AsyncLocalStorage for correlation ID propagation across the request lifecycle. */
+  private static als &#x3D; new AsyncLocalStorage&lt;CorrelationStore&gt;();
+
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly redactor: SensitiveFieldRedactor,
+  ) {
+    this.initLogger();
+  }
+
+  // ---------------------------------------------------------------------------
+  // Static helpers
+  // ---------------------------------------------------------------------------
+
+  static getAsyncLocalStorage(): AsyncLocalStorage&lt;CorrelationStore&gt; {
+    return LoggingService.als;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Lifecycle hooks
+  // ---------------------------------------------------------------------------
+
+  onModuleInit(): void {
+    // Register global process-level error handlers so unhandled errors are
+    // captured and logged before the process potentially exits.
+    process.on(&#x27;uncaughtException&#x27;, (err: Error) &#x3D;&gt; {
+      this.error(&#x27;Uncaught exception&#x27;, {
+        name: err.name,
+        message: err.message,
+        stack: err.stack,
+      });
+    });
+
+    process.on(&#x27;unhandledRejection&#x27;, (reason: unknown) &#x3D;&gt; {
+      const err &#x3D; reason instanceof Error ? reason : new Error(String(reason));
+      this.error(&#x27;Unhandled promise rejection&#x27;, {
+        name: err.name,
+        message: err.message,
+        stack: err.stack,
+      });
+    });
+  }
+
+  async onApplicationShutdown(): Promise&lt;void&gt; {
+    await this.flush();
+  }
+
+  // ---------------------------------------------------------------------------
+  // Public log methods
+  // ---------------------------------------------------------------------------
+
+  error(message: string, metadata?: LogMetadata): void {
+    this.log(&#x27;error&#x27;, message, metadata);
+  }
+
+  warn(message: string, metadata?: LogMetadata): void {
+    this.log(&#x27;warn&#x27;, message, metadata);
+  }
+
+  info(message: string, metadata?: LogMetadata): void {
+    this.log(&#x27;info&#x27;, message, metadata);
+  }
+
+  http(message: string, metadata?: LogMetadata): void {
+    this.log(&#x27;http&#x27;, message, metadata);
+  }
+
+  debug(message: string, metadata?: LogMetadata): void {
+    this.log(&#x27;debug&#x27;, message, metadata);
+  }
+
+  verbose(message: string, metadata?: LogMetadata): void {
+    this.log(&#x27;verbose&#x27;, message, metadata);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Context management
+  // ---------------------------------------------------------------------------
+
+  /**
+   * Sets the context label for this LoggingService instance.
+   * Mutates the current instance.
+   */
+  setContext(context: string): void {
+    this.context &#x3D; context;
+  }
+
+  /**
+   * Returns a NEW LoggingService instance with the given context.
+   * The new instance shares the same underlying Winston logger — it does NOT
+   * create a new Winston logger or mutate the parent instance.
+   */
+  child(context: string): LoggingService {
+    const childService &#x3D; new LoggingService(
+      this.configService,
+      this.redactor,
+    );
+    // Replace the child&#x27;s freshly-created logger with the parent&#x27;s shared one
+    childService.logger &#x3D; this.logger;
+    childService.context &#x3D; context;
+    return childService;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Flush
+  // ---------------------------------------------------------------------------
+
+  /**
+   * Flushes all transports that support it.
+   * Resolves once all transports have finished writing buffered records.
+   */
+  flush(): Promise&lt;void&gt; {
+    return new Promise&lt;void&gt;((resolve) &#x3D;&gt; {
+      let resolved &#x3D; false;
+      const done &#x3D; () &#x3D;&gt; {
+        if (!resolved) {
+          resolved &#x3D; true;
+          resolve();
+        }
+      };
+
+      // If there are no transports, resolve immediately
+      if (!this.logger.transports || this.logger.transports.length &#x3D;&#x3D;&#x3D; 0) {
+        return resolve();
+      }
+
+      // Give transports up to 3 seconds to flush, then resolve anyway
+      const timeout &#x3D; setTimeout(done, 3000);
+
+      this.logger.once(&#x27;finish&#x27;, () &#x3D;&gt; {
+        clearTimeout(timeout);
+        done();
+      });
+
+      // Trigger drain by ending the logger stream
+      this.logger.end();
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Private helpers
+  // ---------------------------------------------------------------------------
+
+  private log(level: string, message: string, metadata?: LogMetadata): void {
+    // 1. Truncate message if too long
+    const truncatedMessage &#x3D;
+      message.length &gt; MAX_MESSAGE_LENGTH
+        ? message.slice(0, MAX_MESSAGE_LENGTH) + TRUNCATION_SUFFIX
+        : message;
+
+    // 2. Redact sensitive fields from metadata
+    const redactedMetadata &#x3D; metadata
+      ? (this.redactor.redact(metadata) as LogMetadata)
+      : undefined;
+
+    // 3. Build the extra fields to merge into the log record.
+    //    Standard fields must NOT be overridden by metadata.
+    const safeExtra: Record&lt;string, unknown&gt; &#x3D; {};
+    if (redactedMetadata) {
+      for (const [key, value] of Object.entries(redactedMetadata)) {
+        if (!STANDARD_FIELDS.has(key)) {
+          safeExtra[key] &#x3D; value;
+        }
+      }
+    }
+
+    // 4. Attach correlationId from AsyncLocalStorage if available
+    const store &#x3D; LoggingService.als.getStore();
+    if (store?.correlationId) {
+      safeExtra[&#x27;correlationId&#x27;] &#x3D; store.correlationId;
+    }
+
+    // 5. Serialize any circular references in safeExtra
+    const serializedExtra &#x3D; this.serializeSafe(safeExtra);
+
+    // 6. Emit to Winston
+    this.logger.log(level, truncatedMessage, {
+      context: this.context,
+      ...serializedExtra,
+    });
+  }
+
+  /**
+   * Serializes an object safely, replacing circular references with &#x27;[Circular]&#x27;.
+   * Returns a plain object (parsed back from JSON) so Winston can handle it.
+   */
+  private serializeSafe(obj: Record&lt;string, unknown&gt;): Record&lt;string, unknown&gt; {
+    try {
+      return JSON.parse(JSON.stringify(obj, safeReplacer()));
+    } catch {
+      // Fallback: return empty object if serialization fails entirely
+      return {};
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Winston initialization
+  // ---------------------------------------------------------------------------
+
+  private initLogger(): void {
+    const config &#x3D; this.configService.get&lt;LoggingConfigType&gt;(&#x27;logging&#x27;);
+
+    const level &#x3D; config?.level ?? &#x27;info&#x27;;
+    const appEnv &#x3D; config?.appEnv ?? &#x27;development&#x27;;
+    const consoleEnabled &#x3D; config?.consoleEnabled ?? true;
+    const fileEnabled &#x3D; config?.fileEnabled ?? false;
+    const fileDir &#x3D; config?.fileDir ?? &#x27;./logs&#x27;;
+    const fileMaxSize &#x3D; config?.fileMaxSize ?? &#x27;20m&#x27;;
+    const fileMaxFiles &#x3D; config?.fileMaxDays ?? &#x27;14d&#x27;;
+    const serviceName &#x3D; config?.serviceName ?? &#x27;nestjs-base-v2&#x27;;
+
+    // Register custom colors with Winston
+    winston.addColors(CUSTOM_COLORS);
+
+    // Determine if we should use JSON format (production/staging) or colorized text (development)
+    const isJsonFormat &#x3D; appEnv !&#x3D;&#x3D; &#x27;development&#x27;;
+
+    // Base format: always include timestamp and standard fields
+    const baseFormat &#x3D; winston.format.combine(
+      winston.format.timestamp({ format: () &#x3D;&gt; new Date().toISOString() }),
+      winston.format((info) &#x3D;&gt; {
+        // Inject service and env into every record
+        info[&#x27;service&#x27;] &#x3D; serviceName;
+        info[&#x27;env&#x27;] &#x3D; appEnv;
+        return info;
+      })(),
+    );
+
+    // Production/staging: JSON one-liner
+    const jsonFormat &#x3D; winston.format.combine(
+      baseFormat,
+      winston.format.json(),
+    );
+
+    // Development: colorized, human-readable text
+    const devFormat &#x3D; winston.format.combine(
+      baseFormat,
+      winston.format.colorize({ all: true }),
+      winston.format.printf((info) &#x3D;&gt; {
+        const { timestamp, level, context, message, ...rest } &#x3D; info;
+        const contextStr &#x3D; context ? &#x60;[${context}]&#x60; : &#x27;&#x27;;
+        const extras &#x3D; Object.keys(rest).length
+          ? &#x27; &#x27; + JSON.stringify(rest, safeReplacer())
+          : &#x27;&#x27;;
+        return &#x60;${timestamp} ${level} ${contextStr} ${message}${extras}&#x60;;
+      }),
+    );
+
+    const transports: winston.transport[] &#x3D; [];
+
+    // Console transport
+    if (consoleEnabled) {
+      const consoleTransport &#x3D; new winston.transports.Console({
+        format: isJsonFormat ? jsonFormat : devFormat,
+      });
+      consoleTransport.on(&#x27;error&#x27;, (err: Error) &#x3D;&gt; {
+        process.stderr.write(
+          &#x60;[LoggingService] Console transport error: ${err.message}\n&#x60;,
+        );
+      });
+      transports.push(consoleTransport);
+    }
+
+    // File transports
+    if (fileEnabled) {
+      const dirCreated &#x3D; this.ensureLogDir(fileDir);
+      if (dirCreated) {
+        // All-levels rotating file transport
+        const allLevelsTransport &#x3D; new winston.transports.DailyRotateFile({
+          dirname: fileDir,
+          filename: &#x27;app-%DATE%.log&#x27;,
+          datePattern: &#x27;YYYY-MM-DD&#x27;,
+          maxSize: fileMaxSize,
+          maxFiles: fileMaxFiles,
+          format: jsonFormat,
+          level: level,
+        });
+        allLevelsTransport.on(&#x27;error&#x27;, (err: Error) &#x3D;&gt; {
+          process.stderr.write(
+            &#x60;[LoggingService] File transport error: ${err.message}\n&#x60;,
+          );
+        });
+        transports.push(allLevelsTransport);
+
+        // Error-only rotating file transport
+        const errorTransport &#x3D; new winston.transports.DailyRotateFile({
+          dirname: fileDir,
+          filename: &#x27;app-error-%DATE%.log&#x27;,
+          datePattern: &#x27;YYYY-MM-DD&#x27;,
+          maxSize: fileMaxSize,
+          maxFiles: fileMaxFiles,
+          format: jsonFormat,
+          level: &#x27;error&#x27;,
+        });
+        errorTransport.on(&#x27;error&#x27;, (err: Error) &#x3D;&gt; {
+          process.stderr.write(
+            &#x60;[LoggingService] Error file transport error: ${err.message}\n&#x60;,
+          );
+        });
+        transports.push(errorTransport);
+      }
+    }
+
+    this.logger &#x3D; winston.createLogger({
+      level,
+      levels: CUSTOM_LEVELS,
+      transports,
+      exitOnError: false,
+    });
+
+    // Global transport error handler on the logger itself
+    this.logger.on(&#x27;error&#x27;, (err: Error) &#x3D;&gt; {
+      process.stderr.write(
+        &#x60;[LoggingService] Transport error: ${err.message}\n&#x60;,
+      );
+    });
+  }
+
+  /**
+   * Ensures the log directory exists, creating it recursively if needed.
+   * Returns true if the directory is ready to use, false if creation failed.
+   */
+  private ensureLogDir(dirPath: string): boolean {
+    const resolvedDir &#x3D; path.resolve(dirPath);
+    try {
+      if (!fs.existsSync(resolvedDir)) {
+        fs.mkdirSync(resolvedDir, { recursive: true });
+      }
+      return true;
+    } catch (err) {
+      const message &#x3D; err instanceof Error ? err.message : String(err);
+      process.stderr.write(
+        &#x60;[LoggingService] Failed to create log directory &quot;${resolvedDir}&quot;: ${message}. File transport disabled.\n&#x60;,
+      );
+      return false;
+    }
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'LogMetadata.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

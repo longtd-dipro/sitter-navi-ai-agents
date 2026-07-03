@@ -1,0 +1,1847 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content entity">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Entities</li>
+  <li class="breadcrumb-item" >Child</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/modules/children/children.entity.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api">
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#congenitalDiseaseDetails" >congenitalDiseaseDetails</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#convulsionsDetails" >convulsionsDetails</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#dateOfBirth" >dateOfBirth</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#disabilityHandbookLevel" >disabilityHandbookLevel</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#favoritePlay" >favoritePlay</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#firstName" >firstName</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#firstNameFurigana" >firstNameFurigana</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#gender" >gender</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#hasAllergy" >hasAllergy</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#hasCongenitalDisease" >hasCongenitalDisease</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#hasConvulsions" >hasConvulsions</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#hasDisabilityHandbook" >hasDisabilityHandbook</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#hasHospitalizationHistory" >hasHospitalizationHistory</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#hospitalizationHistoryDetails" >hospitalizationHistoryDetails</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#isAttendingRehabilitation" >isAttendingRehabilitation</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#lastName" >lastName</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#lastNameFurigana" >lastNameFurigana</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#normalBodyTemperature" >normalBodyTemperature</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#otherNotes" >otherNotes</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#pediatricianDetails" >pediatricianDetails</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#personality" >personality</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#rehabilitationDetails" >rehabilitationDetails</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#status" >status</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#user" >user</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#userId" >userId</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#weaknesses" >weaknesses</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="congenitalDiseaseDetails"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>congenitalDiseaseDetails</b></span>
+                        <a href="#congenitalDiseaseDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Chi tiết bệnh bẩm sinh (詳細入力)&#x27;})<br />@IsString({always: true})<br />@IsOptional({always: true})<br />@Column({type: &#x27;text&#x27;, nullable: true, comment: &#x27;Chi tiết bệnh bẩm sinh (詳細入力)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/modules/children/children.entity.ts:159</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convulsionsDetails"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>convulsionsDetails</b></span>
+                        <a href="#convulsionsDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Chi tiết tiền sử co giật (詳細入力)&#x27;})<br />@IsString({always: true})<br />@IsOptional({always: true})<br />@Column({type: &#x27;text&#x27;, nullable: true, comment: &#x27;Chi tiết tiền sử co giật (詳細入力)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/modules/children/children.entity.ts:193</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dateOfBirth"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>dateOfBirth</b></span>
+                        <a href="#dateOfBirth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Ngày sinh (生年月日) — bắt buộc khi hoàn tất&#x27;, example: &#x27;2020-01-01&#x27;})<br />@IsDateString(undefined, {always: true})<br />@IsDefined({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@Column({type: &#x27;date&#x27;, nullable: true, comment: &#x27;Ngày sinh (生年月日)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/modules/children/children.entity.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disabilityHandbookLevel"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>disabilityHandbookLevel</b></span>
+                        <a href="#disabilityHandbookLevel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Cấp độ/Hạng của sổ tay (等級)&#x27;, maxLength: 50})<br />@IsString({always: true})<br />@IsOptional({always: true})<br />@MaxLength(50, {always: true})<br />@Column({type: &#x27;varchar&#x27;, length: 50, nullable: true, comment: &#x27;Cấp độ/Hạng của sổ tay (等級)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="234" class="link-to-prism">src/modules/children/children.entity.ts:234</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="favoritePlay"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>favoritePlay</b></span>
+                        <a href="#favoritePlay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Trò chơi/Hoạt động yêu thích (好きな遊び) — bắt buộc khi hoàn tất&#x27;})<br />@IsString({always: true})<br />@IsNotEmpty({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@Column({type: &#x27;text&#x27;, nullable: true, comment: &#x27;Trò chơi/Hoạt động yêu thích (好きな遊び)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/modules/children/children.entity.ts:269</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstName"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>firstName</b></span>
+                        <a href="#firstName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Tên (名) — bắt buộc khi hoàn tất&#x27;, maxLength: 50})<br />@IsString({always: true})<br />@IsNotEmpty({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@MaxLength(50, {always: true})<br />@Column({type: &#x27;varchar&#x27;, length: 50, nullable: true, comment: &#x27;Tên (名)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/modules/children/children.entity.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstNameFurigana"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>firstNameFurigana</b></span>
+                        <a href="#firstNameFurigana"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Tên Furigana (めい) — bắt buộc khi hoàn tất&#x27;, maxLength: 100})<br />@IsString({always: true})<br />@IsNotEmpty({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@MaxLength(100, {always: true})<br />@Column({type: &#x27;varchar&#x27;, length: 100, nullable: true, comment: &#x27;Tên Furigana (めい)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/modules/children/children.entity.ts:98</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gender"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>gender</b></span>
+                        <a href="#gender"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#Gender" target="_self" >Gender</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Giới tính (性別) — bắt buộc khi hoàn tất&#x27;, enum: Gender})<br />@IsEnum(Gender, {always: true})<br />@IsDefined({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@Column({type: &#x27;enum&#x27;, enum: Gender, nullable: true, comment: &#x27;Giới tính (性別)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/modules/children/children.entity.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasAllergy"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>hasAllergy</b></span>
+                        <a href="#hasAllergy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Có dị ứng hay không (アレルギーの有無) — bắt buộc khi hoàn tất&#x27;})<br />@IsBoolean({always: true})<br />@IsDefined({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@Column({type: &#x27;boolean&#x27;, nullable: true, comment: &#x27;Có dị ứng hay không (アレルギーの有無)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/modules/children/children.entity.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasCongenitalDisease"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>hasCongenitalDisease</b></span>
+                        <a href="#hasCongenitalDisease"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Có bệnh bẩm sinh/tiền sử bệnh không (先天性疾患や既往歴など) — bắt buộc khi hoàn tất&#x27;})<br />@IsBoolean({always: true})<br />@IsDefined({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@Column({type: &#x27;boolean&#x27;, nullable: true, comment: &#x27;Có bệnh bẩm sinh/tiền sử bệnh không (先天性疾患や既往歴など)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/modules/children/children.entity.ts:153</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasConvulsions"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>hasConvulsions</b></span>
+                        <a href="#hasConvulsions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Có tiền sử co giật do sốt không (ひきつけ 熱性けいれん) — bắt buộc khi hoàn tất&#x27;})<br />@IsBoolean({always: true})<br />@IsDefined({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@Column({type: &#x27;boolean&#x27;, nullable: true, comment: &#x27;Có tiền sử co giật do sốt không (ひきつけ 熱性けいれん)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/modules/children/children.entity.ts:187</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasDisabilityHandbook"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>hasDisabilityHandbook</b></span>
+                        <a href="#hasDisabilityHandbook"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Có sổ tay khuyết tật/hỗ trợ không (手帳の有無) — bắt buộc khi hoàn tất&#x27;})<br />@IsBoolean({always: true})<br />@IsDefined({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@Column({type: &#x27;boolean&#x27;, nullable: true, comment: &#x27;Có sổ tay khuyết tật/hỗ trợ không (手帳の有無)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/modules/children/children.entity.ts:227</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasHospitalizationHistory"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>hasHospitalizationHistory</b></span>
+                        <a href="#hasHospitalizationHistory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Có lịch sử nhập viện không (入院歴) — bắt buộc khi hoàn tất&#x27;})<br />@IsBoolean({always: true})<br />@IsDefined({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@Column({type: &#x27;boolean&#x27;, nullable: true, comment: &#x27;Có lịch sử nhập viện không (入院歴)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/modules/children/children.entity.ts:168</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hospitalizationHistoryDetails"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>hospitalizationHistoryDetails</b></span>
+                        <a href="#hospitalizationHistoryDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Chi tiết lịch sử nhập viện (詳細入力)&#x27;})<br />@IsString({always: true})<br />@IsOptional({always: true})<br />@Column({type: &#x27;text&#x27;, nullable: true, comment: &#x27;Chi tiết lịch sử nhập viện (詳細入力)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/modules/children/children.entity.ts:174</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isAttendingRehabilitation"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>isAttendingRehabilitation</b></span>
+                        <a href="#isAttendingRehabilitation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Có đang đi học tại cơ sở giáo dục đặc biệt/phục hồi chức năng không (療育施設への通所) — bắt buộc khi hoàn tất&#x27;})<br />@IsBoolean({always: true})<br />@IsDefined({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@Column({type: &#x27;boolean&#x27;, nullable: true, comment: &#x27;Có đang đi học tại cơ sở giáo dục đặc biệt/phục hồi chức năng không (療育施設への通所)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="208" class="link-to-prism">src/modules/children/children.entity.ts:208</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lastName"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>lastName</b></span>
+                        <a href="#lastName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Họ (性) — bắt buộc khi hoàn tất&#x27;, maxLength: 50})<br />@IsString({always: true})<br />@IsNotEmpty({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@MaxLength(50, {always: true})<br />@Column({type: &#x27;varchar&#x27;, length: 50, nullable: true, comment: &#x27;Họ (性)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/modules/children/children.entity.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lastNameFurigana"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>lastNameFurigana</b></span>
+                        <a href="#lastNameFurigana"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Họ Furigana (せい) — bắt buộc khi hoàn tất&#x27;, maxLength: 100})<br />@IsString({always: true})<br />@IsNotEmpty({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@MaxLength(100, {always: true})<br />@Column({type: &#x27;varchar&#x27;, length: 100, nullable: true, comment: &#x27;Họ Furigana (せい)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/modules/children/children.entity.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="normalBodyTemperature"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>normalBodyTemperature</b></span>
+                        <a href="#normalBodyTemperature"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Nhiệt độ cơ thể bình thường (平熱 °C) — bắt buộc khi hoàn tất&#x27;, example: 36.5})<br />@IsNumber({maxDecimalPlaces: 1}, {always: true})<br />@IsDefined({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@Column({type: &#x27;decimal&#x27;, precision: 3, scale: 1, nullable: true, transformer: decimalToNumber, comment: &#x27;Nhiệt độ cơ thể bình thường (平熱 °C)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="253" class="link-to-prism">src/modules/children/children.entity.ts:253</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="otherNotes"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>otherNotes</b></span>
+                        <a href="#otherNotes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Những điều khác cần lưu ý trước (その他、事前に伝えておきたいこと)&#x27;})<br />@IsString({always: true})<br />@IsOptional({always: true})<br />@Column({type: &#x27;text&#x27;, nullable: true, comment: &#x27;Những điều khác cần lưu ý trước (その他、事前に伝えておきたいこと)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/modules/children/children.entity.ts:290</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pediatricianDetails"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>pediatricianDetails</b></span>
+                        <a href="#pediatricianDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Phòng khám nhi thường trực (かかりつけの小児科) — bắt buộc khi hoàn tất&#x27;})<br />@IsString({always: true})<br />@IsNotEmpty({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@Column({type: &#x27;text&#x27;, nullable: true, comment: &#x27;Phòng khám nhi thường trực (かかりつけの小児科)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/modules/children/children.entity.ts:139</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="personality"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>personality</b></span>
+                        <a href="#personality"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Tính cách (性格) — bắt buộc khi hoàn tất&#x27;})<br />@IsString({always: true})<br />@IsNotEmpty({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@Column({type: &#x27;text&#x27;, nullable: true, comment: &#x27;Tính cách (性格)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="260" class="link-to-prism">src/modules/children/children.entity.ts:260</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rehabilitationDetails"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>rehabilitationDetails</b></span>
+                        <a href="#rehabilitationDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Chi tiết cơ sở rehabilitation (詳細入力)&#x27;})<br />@IsString({always: true})<br />@IsOptional({always: true})<br />@Column({type: &#x27;text&#x27;, nullable: true, comment: &#x27;Chi tiết cơ sở rehabilitation (詳細入力)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/modules/children/children.entity.ts:214</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="status"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>status</b></span>
+                        <a href="#status"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#ChildStatus" target="_self" >ChildStatus</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({enum: ChildStatus, default: undefined})<br />@IsEnum(ChildStatus)<br />@IsOptional({always: true})<br />@Column({type: &#x27;enum&#x27;, enum: ChildStatus, default: undefined, comment: &#x27;Trạng thái hồ sơ&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/modules/children/children.entity.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="user"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>user</b></span>
+                        <a href="#user"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/UserEntity.html" target="_self" >UserEntity</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({type: () &#x3D;&gt; UserEntity, description: &#x27;Phụ huynh sở hữu&#x27;})<br />@ManyToOne(undefined, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/modules/children/children.entity.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userId"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>userId</b></span>
+                        <a href="#userId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;ID phụ huynh sở hữu — tự gán từ JWT khi tạo&#x27;})<br />@IsOptional({always: true})<br />@Column({type: &#x27;bigint&#x27;, comment: &#x27;ID phụ huynh sở hữu (users.id)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/modules/children/children.entity.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="weaknesses"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>weaknesses</b></span>
+                        <a href="#weaknesses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Điều không thích / Điểm yếu (苦手なこと) — bắt buộc khi hoàn tất&#x27;})<br />@IsString({always: true})<br />@IsNotEmpty({groups: undefined})<br />@IsOptional({groups: DRAFT_GROUPS})<br />@Column({type: &#x27;text&#x27;, nullable: true, comment: &#x27;Điều không thích / Điểm yếu (苦手なこと)&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="278" class="link-to-prism">src/modules/children/children.entity.ts:278</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Column, Entity, JoinColumn, ManyToOne } from &#x27;typeorm&#x27;;
+import { CrudValidationGroups } from &#x27;@dataui/crud&#x27;;
+import { ApiProperty, ApiPropertyOptional } from &#x27;@nestjs/swagger&#x27;;
+import {
+  IsBoolean,
+  IsDateString,
+  IsDefined,
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  MaxLength,
+} from &#x27;class-validator&#x27;;
+
+import { WithIdAndTimestamp } from &#x27;@entities/base.entity&#x27;;
+import { UserEntity } from &#x27;@modules/user/user.entity&#x27;;
+import { decimalToNumber } from &#x27;@utils/typeorm.transformer&#x27;;
+
+export enum Gender {
+  MALE &#x3D; &#x27;male&#x27;,
+  FEMALE &#x3D; &#x27;female&#x27;,
+}
+
+export enum ChildStatus {
+  DRAFT &#x3D; &#x27;draft&#x27;,
+  COMPLETE &#x3D; &#x27;complete&#x27;,
+}
+
+export const COMPLETE &#x3D; &#x27;CHILD-COMPLETE&#x27;;
+
+const { CREATE, UPDATE } &#x3D; CrudValidationGroups;
+const DRAFT_GROUPS &#x3D; [CREATE, UPDATE];
+
+@Entity(&#x27;children&#x27;)
+export class Child extends WithIdAndTimestamp {
+  @ApiPropertyOptional({ description: &#x27;ID phụ huynh sở hữu — tự gán từ JWT khi tạo&#x27; })
+  @IsOptional({ always: true })
+  @Column({ type: &#x27;bigint&#x27;, comment: &#x27;ID phụ huynh sở hữu (users.id)&#x27; })
+  userId: string;
+
+  @ApiPropertyOptional({ type: () &#x3D;&gt; UserEntity, description: &#x27;Phụ huynh sở hữu&#x27; })
+  @ManyToOne(() &#x3D;&gt; UserEntity, { onDelete: &#x27;CASCADE&#x27; })
+  @JoinColumn()
+  user?: UserEntity;
+
+  @ApiProperty({ enum: ChildStatus, default: ChildStatus.DRAFT })
+  @IsEnum(ChildStatus)
+  @IsOptional({ always: true })
+  @Column({
+    type: &#x27;enum&#x27;,
+    enum: ChildStatus,
+    default: ChildStatus.DRAFT,
+    comment: &#x27;Trạng thái hồ sơ&#x27;,
+  })
+  status: ChildStatus;
+
+  // --- THÔNG TIN CƠ BẢN ---
+  // Mọi cột data đều nullable để lưu được bản nháp thiếu; field bắt buộc chỉ
+  // được enforce ở group COMPLETE (lúc submit).
+
+  @ApiPropertyOptional({ description: &#x27;Họ (性) — bắt buộc khi hoàn tất&#x27;, maxLength: 50 })
+  @IsString({ always: true })
+  @IsNotEmpty({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @MaxLength(50, { always: true })
+  @Column({ type: &#x27;varchar&#x27;, length: 50, nullable: true, comment: &#x27;Họ (性)&#x27; })
+  lastName: string;
+
+  @ApiPropertyOptional({ description: &#x27;Tên (名) — bắt buộc khi hoàn tất&#x27;, maxLength: 50 })
+  @IsString({ always: true })
+  @IsNotEmpty({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @MaxLength(50, { always: true })
+  @Column({ type: &#x27;varchar&#x27;, length: 50, nullable: true, comment: &#x27;Tên (名)&#x27; })
+  firstName: string;
+
+  @ApiPropertyOptional({
+    description: &#x27;Họ Furigana (せい) — bắt buộc khi hoàn tất&#x27;,
+    maxLength: 100,
+  })
+  @IsString({ always: true })
+  @IsNotEmpty({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @MaxLength(100, { always: true })
+  @Column({ type: &#x27;varchar&#x27;, length: 100, nullable: true, comment: &#x27;Họ Furigana (せい)&#x27; })
+  lastNameFurigana: string;
+
+  @ApiPropertyOptional({
+    description: &#x27;Tên Furigana (めい) — bắt buộc khi hoàn tất&#x27;,
+    maxLength: 100,
+  })
+  @IsString({ always: true })
+  @IsNotEmpty({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @MaxLength(100, { always: true })
+  @Column({ type: &#x27;varchar&#x27;, length: 100, nullable: true, comment: &#x27;Tên Furigana (めい)&#x27; })
+  firstNameFurigana: string;
+
+  @ApiPropertyOptional({
+    description: &#x27;Ngày sinh (生年月日) — bắt buộc khi hoàn tất&#x27;,
+    example: &#x27;2020-01-01&#x27;,
+  })
+  @IsDateString(undefined, { always: true })
+  @IsDefined({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @Column({ type: &#x27;date&#x27;, nullable: true, comment: &#x27;Ngày sinh (生年月日)&#x27; })
+  dateOfBirth: Date;
+
+  @ApiPropertyOptional({ description: &#x27;Giới tính (性別) — bắt buộc khi hoàn tất&#x27;, enum: Gender })
+  @IsEnum(Gender, { always: true })
+  @IsDefined({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @Column({ type: &#x27;enum&#x27;, enum: Gender, nullable: true, comment: &#x27;Giới tính (性別)&#x27; })
+  gender: Gender;
+
+  @ApiPropertyOptional({
+    description: &#x27;Có dị ứng hay không (アレルギーの有無) — bắt buộc khi hoàn tất&#x27;,
+  })
+  @IsBoolean({ always: true })
+  @IsDefined({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @Column({ type: &#x27;boolean&#x27;, nullable: true, comment: &#x27;Có dị ứng hay không (アレルギーの有無)&#x27; })
+  hasAllergy: boolean;
+
+  // --- THÔNG TIN CHI TIẾT / Y TẾ ---
+
+  @ApiPropertyOptional({
+    description: &#x27;Phòng khám nhi thường trực (かかりつけの小児科) — bắt buộc khi hoàn tất&#x27;,
+  })
+  @IsString({ always: true })
+  @IsNotEmpty({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @Column({
+    type: &#x27;text&#x27;,
+    nullable: true,
+    comment: &#x27;Phòng khám nhi thường trực (かかりつけの小児科)&#x27;,
+  })
+  pediatricianDetails: string;
+
+  @ApiPropertyOptional({
+    description:
+      &#x27;Có bệnh bẩm sinh/tiền sử bệnh không (先天性疾患や既往歴など) — bắt buộc khi hoàn tất&#x27;,
+  })
+  @IsBoolean({ always: true })
+  @IsDefined({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @Column({
+    type: &#x27;boolean&#x27;,
+    nullable: true,
+    comment: &#x27;Có bệnh bẩm sinh/tiền sử bệnh không (先天性疾患や既往歴など)&#x27;,
+  })
+  hasCongenitalDisease: boolean;
+
+  @ApiPropertyOptional({ description: &#x27;Chi tiết bệnh bẩm sinh (詳細入力)&#x27; })
+  @IsString({ always: true })
+  @IsOptional({ always: true })
+  @Column({ type: &#x27;text&#x27;, nullable: true, comment: &#x27;Chi tiết bệnh bẩm sinh (詳細入力)&#x27; })
+  congenitalDiseaseDetails: string;
+
+  @ApiPropertyOptional({
+    description: &#x27;Có lịch sử nhập viện không (入院歴) — bắt buộc khi hoàn tất&#x27;,
+  })
+  @IsBoolean({ always: true })
+  @IsDefined({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @Column({ type: &#x27;boolean&#x27;, nullable: true, comment: &#x27;Có lịch sử nhập viện không (入院歴)&#x27; })
+  hasHospitalizationHistory: boolean;
+
+  @ApiPropertyOptional({ description: &#x27;Chi tiết lịch sử nhập viện (詳細入力)&#x27; })
+  @IsString({ always: true })
+  @IsOptional({ always: true })
+  @Column({ type: &#x27;text&#x27;, nullable: true, comment: &#x27;Chi tiết lịch sử nhập viện (詳細入力)&#x27; })
+  hospitalizationHistoryDetails: string;
+
+  @ApiPropertyOptional({
+    description: &#x27;Có tiền sử co giật do sốt không (ひきつけ 熱性けいれん) — bắt buộc khi hoàn tất&#x27;,
+  })
+  @IsBoolean({ always: true })
+  @IsDefined({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @Column({
+    type: &#x27;boolean&#x27;,
+    nullable: true,
+    comment: &#x27;Có tiền sử co giật do sốt không (ひきつけ 熱性けいれん)&#x27;,
+  })
+  hasConvulsions: boolean;
+
+  @ApiPropertyOptional({ description: &#x27;Chi tiết tiền sử co giật (詳細入力)&#x27; })
+  @IsString({ always: true })
+  @IsOptional({ always: true })
+  @Column({ type: &#x27;text&#x27;, nullable: true, comment: &#x27;Chi tiết tiền sử co giật (詳細入力)&#x27; })
+  convulsionsDetails: string;
+
+  @ApiPropertyOptional({
+    description:
+      &#x27;Có đang đi học tại cơ sở giáo dục đặc biệt/phục hồi chức năng không (療育施設への通所) — bắt buộc khi hoàn tất&#x27;,
+  })
+  @IsBoolean({ always: true })
+  @IsDefined({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @Column({
+    type: &#x27;boolean&#x27;,
+    nullable: true,
+    comment:
+      &#x27;Có đang đi học tại cơ sở giáo dục đặc biệt/phục hồi chức năng không (療育施設への通所)&#x27;,
+  })
+  isAttendingRehabilitation: boolean;
+
+  @ApiPropertyOptional({ description: &#x27;Chi tiết cơ sở rehabilitation (詳細入力)&#x27; })
+  @IsString({ always: true })
+  @IsOptional({ always: true })
+  @Column({ type: &#x27;text&#x27;, nullable: true, comment: &#x27;Chi tiết cơ sở rehabilitation (詳細入力)&#x27; })
+  rehabilitationDetails: string;
+
+  @ApiPropertyOptional({
+    description: &#x27;Có sổ tay khuyết tật/hỗ trợ không (手帳の有無) — bắt buộc khi hoàn tất&#x27;,
+  })
+  @IsBoolean({ always: true })
+  @IsDefined({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @Column({
+    type: &#x27;boolean&#x27;,
+    nullable: true,
+    comment: &#x27;Có sổ tay khuyết tật/hỗ trợ không (手帳の有無)&#x27;,
+  })
+  hasDisabilityHandbook: boolean;
+
+  @ApiPropertyOptional({ description: &#x27;Cấp độ/Hạng của sổ tay (等級)&#x27;, maxLength: 50 })
+  @IsString({ always: true })
+  @IsOptional({ always: true })
+  @MaxLength(50, { always: true })
+  @Column({ type: &#x27;varchar&#x27;, length: 50, nullable: true, comment: &#x27;Cấp độ/Hạng của sổ tay (等級)&#x27; })
+  disabilityHandbookLevel: string;
+
+  // --- ĐẶC ĐIỂM CÁ NHÂN ---
+
+  @ApiPropertyOptional({
+    description: &#x27;Nhiệt độ cơ thể bình thường (平熱 °C) — bắt buộc khi hoàn tất&#x27;,
+    example: 36.5,
+  })
+  @IsNumber({ maxDecimalPlaces: 1 }, { always: true })
+  @IsDefined({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @Column({
+    type: &#x27;decimal&#x27;,
+    precision: 3,
+    scale: 1,
+    nullable: true,
+    transformer: decimalToNumber,
+    comment: &#x27;Nhiệt độ cơ thể bình thường (平熱 °C)&#x27;,
+  })
+  normalBodyTemperature: number;
+
+  @ApiPropertyOptional({ description: &#x27;Tính cách (性格) — bắt buộc khi hoàn tất&#x27; })
+  @IsString({ always: true })
+  @IsNotEmpty({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @Column({ type: &#x27;text&#x27;, nullable: true, comment: &#x27;Tính cách (性格)&#x27; })
+  personality: string;
+
+  @ApiPropertyOptional({
+    description: &#x27;Trò chơi/Hoạt động yêu thích (好きな遊び) — bắt buộc khi hoàn tất&#x27;,
+  })
+  @IsString({ always: true })
+  @IsNotEmpty({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @Column({ type: &#x27;text&#x27;, nullable: true, comment: &#x27;Trò chơi/Hoạt động yêu thích (好きな遊び)&#x27; })
+  favoritePlay: string;
+
+  @ApiPropertyOptional({
+    description: &#x27;Điều không thích / Điểm yếu (苦手なこと) — bắt buộc khi hoàn tất&#x27;,
+  })
+  @IsString({ always: true })
+  @IsNotEmpty({ groups: [COMPLETE] })
+  @IsOptional({ groups: DRAFT_GROUPS })
+  @Column({ type: &#x27;text&#x27;, nullable: true, comment: &#x27;Điều không thích / Điểm yếu (苦手なこと)&#x27; })
+  weaknesses: string;
+
+  @ApiPropertyOptional({
+    description: &#x27;Những điều khác cần lưu ý trước (その他、事前に伝えておきたいこと)&#x27;,
+  })
+  @IsString({ always: true })
+  @IsOptional({ always: true })
+  @Column({
+    type: &#x27;text&#x27;,
+    nullable: true,
+    comment: &#x27;Những điều khác cần lưu ý trước (その他、事前に伝えておきたいこと)&#x27;,
+  })
+  otherNotes: string;
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'entity';
+            var COMPODOC_CURRENT_PAGE_URL = 'Child.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

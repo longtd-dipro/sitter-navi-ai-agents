@@ -1,0 +1,1366 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content module">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Modules</li>
+    <li class="breadcrumb-item" >AppModule</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app.module.ts</code>
+</div>
+
+<div class="text-center module-graph-container">
+    <div id="module-graph-svg">
+        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.47.0 (20210316.0004)
+ -->
+<!-- Title: dependencies Pages: 1 -->
+<svg width="5696pt" height="211pt"
+ viewBox="0.00 0.00 5696.00 211.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 207)">
+<title>dependencies</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-207 5692,-207 5692,4 -4,4"/>
+<text text-anchor="start" x="2823.01" y="-42.4" font-family="Times-12" font-weight="bold" font-size="14.00">Legend</text>
+<polygon fill="#ffffb3" stroke="transparent" points="2610,-10 2610,-30 2630,-30 2630,-10 2610,-10"/>
+<text text-anchor="start" x="2633.63" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Declarations</text>
+<polygon fill="#8dd3c7" stroke="transparent" points="2723,-10 2723,-30 2743,-30 2743,-10 2723,-10"/>
+<text text-anchor="start" x="2746.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Module</text>
+<polygon fill="#80b1d3" stroke="transparent" points="2809,-10 2809,-30 2829,-30 2829,-10 2809,-10"/>
+<text text-anchor="start" x="2832.78" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Bootstrap</text>
+<polygon fill="#fdb462" stroke="transparent" points="2906,-10 2906,-30 2926,-30 2926,-10 2906,-10"/>
+<text text-anchor="start" x="2929.67" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Providers</text>
+<polygon fill="#fb8072" stroke="transparent" points="3002,-10 3002,-30 3022,-30 3022,-10 3002,-10"/>
+<text text-anchor="start" x="3025.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
+<g id="clust1" class="cluster">
+<title>cluster_AppModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-195 5680,-195 5680,-70 8,-70"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_AppModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 5672,-130 5672,-78 16,-78"/>
+</g>
+<!-- ApiKeyModule -->
+<g id="node1" class="node"><a xlink:href="../modules/ApiKeyModule.html" href="../modules/ApiKeyModule.html" target="_top">
+<title>ApiKeyModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="5663.87,-122 5660.87,-126 5639.87,-126 5636.87,-122 5560.13,-122 5560.13,-86 5663.87,-86 5663.87,-122"/>
+<text text-anchor="middle" x="5612" y="-99.8" font-family="Times,serif" font-size="14.00">ApiKeyModule</text>
+</a></g>
+<!-- AppModule -->
+<g id="node41" class="node"><a xlink:href="../modules/AppModule.html" href="../modules/AppModule.html" target="_top">
+<title>AppModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="2974.66,-187 2971.66,-191 2950.66,-191 2947.66,-187 2891.34,-187 2891.34,-151 2974.66,-151 2974.66,-187"/>
+<text text-anchor="middle" x="2933" y="-164.8" font-family="Times,serif" font-size="14.00">AppModule</text>
+</a></g>
+<!-- ApiKeyModule&#45;&gt;AppModule -->
+<g id="edge1" class="edge">
+<title>ApiKeyModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M5612,-122.2C5612,-146.36 5612,-186 5612,-186 5612,-186 2984.81,-186 2984.81,-186"/>
+<polygon fill="black" stroke="black" points="2984.81,-182.5 2974.81,-186 2984.81,-189.5 2984.81,-182.5"/>
+</g>
+<!-- AttendanceLogModule -->
+<g id="node2" class="node"><a xlink:href="../modules/AttendanceLogModule.html" href="../modules/AttendanceLogModule.html" target="_top">
+<title>AttendanceLogModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="5541.85,-122 5538.85,-126 5517.85,-126 5514.85,-122 5396.15,-122 5396.15,-86 5541.85,-86 5541.85,-122"/>
+<text text-anchor="middle" x="5469" y="-99.8" font-family="Times,serif" font-size="14.00">AttendanceLogModule</text>
+</a></g>
+<!-- AttendanceLogModule&#45;&gt;AppModule -->
+<g id="edge2" class="edge">
+<title>AttendanceLogModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M5469,-122.15C5469,-145.76 5469,-184 5469,-184 5469,-184 2984.9,-184 2984.9,-184"/>
+<polygon fill="black" stroke="black" points="2984.9,-180.5 2974.9,-184 2984.9,-187.5 2984.9,-180.5"/>
+</g>
+<!-- AuthModule -->
+<g id="node3" class="node"><a xlink:href="../modules/AuthModule.html" href="../modules/AuthModule.html" target="_top">
+<title>AuthModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="5377.55,-122 5374.55,-126 5353.55,-126 5350.55,-122 5290.45,-122 5290.45,-86 5377.55,-86 5377.55,-122"/>
+<text text-anchor="middle" x="5334" y="-99.8" font-family="Times,serif" font-size="14.00">AuthModule</text>
+</a></g>
+<!-- AuthModule&#45;&gt;AppModule -->
+<g id="edge3" class="edge">
+<title>AuthModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M5334,-122.09C5334,-145.13 5334,-182 5334,-182 5334,-182 2984.67,-182 2984.67,-182"/>
+<polygon fill="black" stroke="black" points="2984.67,-178.5 2974.67,-182 2984.67,-185.5 2984.67,-178.5"/>
+</g>
+<!-- BookingModule -->
+<g id="node4" class="node"><a xlink:href="../modules/BookingModule.html" href="../modules/BookingModule.html" target="_top">
+<title>BookingModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="5271.78,-122 5268.78,-126 5247.78,-126 5244.78,-122 5164.22,-122 5164.22,-86 5271.78,-86 5271.78,-122"/>
+<text text-anchor="middle" x="5218" y="-99.8" font-family="Times,serif" font-size="14.00">BookingModule</text>
+</a></g>
+<!-- BookingModule&#45;&gt;AppModule -->
+<g id="edge4" class="edge">
+<title>BookingModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M5218,-122.01C5218,-144.49 5218,-180 5218,-180 5218,-180 2985.11,-180 2985.11,-180"/>
+<polygon fill="black" stroke="black" points="2985.11,-176.5 2975.11,-180 2985.11,-183.5 2985.11,-176.5"/>
+</g>
+<!-- CacheModule -->
+<g id="node5" class="node"><a xlink:href="../modules/CacheModule.html" href="../modules/CacheModule.html" target="_top">
+<title>CacheModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="5146.03,-122 5143.03,-126 5122.03,-126 5119.03,-122 5051.97,-122 5051.97,-86 5146.03,-86 5146.03,-122"/>
+<text text-anchor="middle" x="5099" y="-99.8" font-family="Times,serif" font-size="14.00">CacheModule</text>
+</a></g>
+<!-- CacheModule&#45;&gt;AppModule -->
+<g id="edge5" class="edge">
+<title>CacheModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M5099,-122.29C5099,-144.21 5099,-178 5099,-178 5099,-178 2984.81,-178 2984.81,-178"/>
+<polygon fill="black" stroke="black" points="2984.81,-174.5 2974.81,-178 2984.81,-181.5 2984.81,-174.5"/>
+</g>
+<!-- CareServiceModule -->
+<g id="node6" class="node"><a xlink:href="../modules/CareServiceModule.html" href="../modules/CareServiceModule.html" target="_top">
+<title>CareServiceModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="5033.95,-122 5030.95,-126 5009.95,-126 5006.95,-122 4906.05,-122 4906.05,-86 5033.95,-86 5033.95,-122"/>
+<text text-anchor="middle" x="4970" y="-99.8" font-family="Times,serif" font-size="14.00">CareServiceModule</text>
+</a></g>
+<!-- CareServiceModule&#45;&gt;AppModule -->
+<g id="edge6" class="edge">
+<title>CareServiceModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M4970,-122.04C4970,-143.66 4970,-177 4970,-177 4970,-177 2985.08,-177 2985.08,-177"/>
+<polygon fill="black" stroke="black" points="2985.08,-173.5 2975.08,-177 2985.08,-180.5 2985.08,-173.5"/>
+</g>
+<!-- CategoryModule -->
+<g id="node7" class="node"><a xlink:href="../modules/CategoryModule.html" href="../modules/CategoryModule.html" target="_top">
+<title>CategoryModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="4888.37,-122 4885.37,-126 4864.37,-126 4861.37,-122 4777.63,-122 4777.63,-86 4888.37,-86 4888.37,-122"/>
+<text text-anchor="middle" x="4833" y="-99.8" font-family="Times,serif" font-size="14.00">CategoryModule</text>
+</a></g>
+<!-- CategoryModule&#45;&gt;AppModule -->
+<g id="edge7" class="edge">
+<title>CategoryModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M4833,-122.28C4833,-143.32 4833,-175 4833,-175 4833,-175 2984.9,-175 2984.9,-175"/>
+<polygon fill="black" stroke="black" points="2984.9,-171.5 2974.9,-175 2984.9,-178.5 2984.9,-171.5"/>
+</g>
+<!-- ChildrenModule -->
+<g id="node8" class="node"><a xlink:href="../modules/ChildrenModule.html" href="../modules/ChildrenModule.html" target="_top">
+<title>ChildrenModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="4759.04,-122 4756.04,-126 4735.04,-126 4732.04,-122 4650.96,-122 4650.96,-86 4759.04,-86 4759.04,-122"/>
+<text text-anchor="middle" x="4705" y="-99.8" font-family="Times,serif" font-size="14.00">ChildrenModule</text>
+</a></g>
+<!-- ChildrenModule&#45;&gt;AppModule -->
+<g id="edge8" class="edge">
+<title>ChildrenModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M4705,-122.13C4705,-142.57 4705,-173 4705,-173 4705,-173 2985.05,-173 2985.05,-173"/>
+<polygon fill="black" stroke="black" points="2985.05,-169.5 2975.05,-173 2985.05,-176.5 2985.05,-169.5"/>
+</g>
+<!-- ConversationModule -->
+<g id="node9" class="node"><a xlink:href="../modules/ConversationModule.html" href="../modules/ConversationModule.html" target="_top">
+<title>ConversationModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="4633.2,-122 4630.2,-126 4609.2,-126 4606.2,-122 4498.8,-122 4498.8,-86 4633.2,-86 4633.2,-122"/>
+<text text-anchor="middle" x="4566" y="-99.8" font-family="Times,serif" font-size="14.00">ConversationModule</text>
+</a></g>
+<!-- ConversationModule&#45;&gt;AppModule -->
+<g id="edge9" class="edge">
+<title>ConversationModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M4566,-122.31C4566,-142.15 4566,-171 4566,-171 4566,-171 2985.01,-171 2985.01,-171"/>
+<polygon fill="black" stroke="black" points="2985.01,-167.5 2975.01,-171 2985.01,-174.5 2985.01,-167.5"/>
+</g>
+<!-- EmailModule -->
+<g id="node10" class="node"><a xlink:href="../modules/EmailModule.html" href="../modules/EmailModule.html" target="_top">
+<title>EmailModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="4480.49,-122 4477.49,-126 4456.49,-126 4453.49,-122 4387.51,-122 4387.51,-86 4480.49,-86 4480.49,-122"/>
+<text text-anchor="middle" x="4434" y="-99.8" font-family="Times,serif" font-size="14.00">EmailModule</text>
+</a></g>
+<!-- EmailModule&#45;&gt;AppModule -->
+<g id="edge10" class="edge">
+<title>EmailModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M4434,-122.11C4434,-141.34 4434,-169 4434,-169 4434,-169 2984.71,-169 2984.71,-169"/>
+<polygon fill="black" stroke="black" points="2984.71,-165.5 2974.71,-169 2984.71,-172.5 2984.71,-165.5"/>
+</g>
+<!-- EmergencyContactModule -->
+<g id="node11" class="node"><a xlink:href="../modules/EmergencyContactModule.html" href="../modules/EmergencyContactModule.html" target="_top">
+<title>EmergencyContactModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="4369.34,-122 4366.34,-126 4345.34,-126 4342.34,-122 4202.66,-122 4202.66,-86 4369.34,-86 4369.34,-122"/>
+<text text-anchor="middle" x="4286" y="-99.8" font-family="Times,serif" font-size="14.00">EmergencyContactModule</text>
+</a></g>
+<!-- EmergencyContactModule&#45;&gt;AppModule -->
+<g id="edge11" class="edge">
+<title>EmergencyContactModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M4286,-122.17C4286,-141.09 4286,-168 4286,-168 4286,-168 2984.98,-168 2984.98,-168"/>
+<polygon fill="black" stroke="black" points="2984.98,-164.5 2974.98,-168 2984.98,-171.5 2984.98,-164.5"/>
+</g>
+<!-- FaqCategoryModule -->
+<g id="node12" class="node"><a xlink:href="../modules/FaqCategoryModule.html" href="../modules/FaqCategoryModule.html" target="_top">
+<title>FaqCategoryModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="4184.86,-122 4181.86,-126 4160.86,-126 4157.86,-122 4053.14,-122 4053.14,-86 4184.86,-86 4184.86,-122"/>
+<text text-anchor="middle" x="4119" y="-99.8" font-family="Times,serif" font-size="14.00">FaqCategoryModule</text>
+</a></g>
+<!-- FaqCategoryModule&#45;&gt;AppModule -->
+<g id="edge12" class="edge">
+<title>FaqCategoryModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M4119,-122.27C4119,-140.56 4119,-166 4119,-166 4119,-166 2984.86,-166 2984.86,-166"/>
+<polygon fill="black" stroke="black" points="2984.86,-162.5 2974.86,-166 2984.86,-169.5 2984.86,-162.5"/>
+</g>
+<!-- FaqItemModule -->
+<g id="node13" class="node"><a xlink:href="../modules/FaqItemModule.html" href="../modules/FaqItemModule.html" target="_top">
+<title>FaqItemModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="4035.2,-122 4032.2,-126 4011.2,-126 4008.2,-122 3928.8,-122 3928.8,-86 4035.2,-86 4035.2,-122"/>
+<text text-anchor="middle" x="3982" y="-99.8" font-family="Times,serif" font-size="14.00">FaqItemModule</text>
+</a></g>
+<!-- FaqItemModule&#45;&gt;AppModule -->
+<g id="edge13" class="edge">
+<title>FaqItemModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M3982,-122C3982,-139.68 3982,-164 3982,-164 3982,-164 2984.77,-164 2984.77,-164"/>
+<polygon fill="black" stroke="black" points="2984.77,-160.5 2974.77,-164 2984.77,-167.5 2984.77,-160.5"/>
+</g>
+<!-- FaqSubCategoryModule -->
+<g id="node14" class="node"><a xlink:href="../modules/FaqSubCategoryModule.html" href="../modules/FaqSubCategoryModule.html" target="_top">
+<title>FaqSubCategoryModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="3910.65,-122 3907.65,-126 3886.65,-126 3883.65,-122 3757.35,-122 3757.35,-86 3910.65,-86 3910.65,-122"/>
+<text text-anchor="middle" x="3834" y="-99.8" font-family="Times,serif" font-size="14.00">FaqSubCategoryModule</text>
+</a></g>
+<!-- FaqSubCategoryModule&#45;&gt;AppModule -->
+<g id="edge14" class="edge">
+<title>FaqSubCategoryModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M3834,-122.03C3834,-139.06 3834,-162 3834,-162 3834,-162 2984.95,-162 2984.95,-162"/>
+<polygon fill="black" stroke="black" points="2984.95,-158.5 2974.95,-162 2984.95,-165.5 2984.95,-158.5"/>
+</g>
+<!-- HealthModule -->
+<g id="node15" class="node"><a xlink:href="../modules/HealthModule.html" href="../modules/HealthModule.html" target="_top">
+<title>HealthModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="3739.37,-122 3736.37,-126 3715.37,-126 3712.37,-122 3642.63,-122 3642.63,-86 3739.37,-86 3739.37,-122"/>
+<text text-anchor="middle" x="3691" y="-99.8" font-family="Times,serif" font-size="14.00">HealthModule</text>
+</a></g>
+<!-- HealthModule&#45;&gt;AppModule -->
+<g id="edge15" class="edge">
+<title>HealthModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M3691,-122.03C3691,-138.4 3691,-160 3691,-160 3691,-160 2984.83,-160 2984.83,-160"/>
+<polygon fill="black" stroke="black" points="2984.83,-156.5 2974.83,-160 2984.83,-163.5 2984.83,-156.5"/>
+</g>
+<!-- HttpClientModule -->
+<g id="node16" class="node"><a xlink:href="../modules/HttpClientModule.html" href="../modules/HttpClientModule.html" target="_top">
+<title>HttpClientModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="3624.16,-122 3621.16,-126 3600.16,-126 3597.16,-122 3505.84,-122 3505.84,-86 3624.16,-86 3624.16,-122"/>
+<text text-anchor="middle" x="3565" y="-99.8" font-family="Times,serif" font-size="14.00">HttpClientModule</text>
+</a></g>
+<!-- HttpClientModule&#45;&gt;AppModule -->
+<g id="edge16" class="edge">
+<title>HttpClientModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M3565,-122.01C3565,-138.05 3565,-159 3565,-159 3565,-159 2984.96,-159 2984.96,-159"/>
+<polygon fill="black" stroke="black" points="2984.96,-155.5 2974.96,-159 2984.96,-162.5 2984.96,-155.5"/>
+</g>
+<!-- JapanAddressModule -->
+<g id="node17" class="node"><a xlink:href="../modules/JapanAddressModule.html" href="../modules/JapanAddressModule.html" target="_top">
+<title>JapanAddressModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="3487.79,-122 3484.79,-126 3463.79,-126 3460.79,-122 3350.21,-122 3350.21,-86 3487.79,-86 3487.79,-122"/>
+<text text-anchor="middle" x="3419" y="-99.8" font-family="Times,serif" font-size="14.00">JapanAddressModule</text>
+</a></g>
+<!-- JapanAddressModule&#45;&gt;AppModule -->
+<g id="edge17" class="edge">
+<title>JapanAddressModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M3419,-122.24C3419,-137.57 3419,-157 3419,-157 3419,-157 2984.86,-157 2984.86,-157"/>
+<polygon fill="black" stroke="black" points="2984.86,-153.5 2974.86,-157 2984.86,-160.5 2984.86,-153.5"/>
+</g>
+<!-- LockModule -->
+<g id="node18" class="node"><a xlink:href="../modules/LockModule.html" href="../modules/LockModule.html" target="_top">
+<title>LockModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="3332.32,-122 3329.32,-126 3308.32,-126 3305.32,-122 3243.68,-122 3243.68,-86 3332.32,-86 3332.32,-122"/>
+<text text-anchor="middle" x="3288" y="-99.8" font-family="Times,serif" font-size="14.00">LockModule</text>
+</a></g>
+<!-- LockModule&#45;&gt;AppModule -->
+<g id="edge18" class="edge">
+<title>LockModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M3288,-122.12C3288,-136.78 3288,-155 3288,-155 3288,-155 2984.77,-155 2984.77,-155"/>
+<polygon fill="black" stroke="black" points="2984.77,-151.5 2974.77,-155 2984.77,-158.5 2984.77,-151.5"/>
+</g>
+<!-- LoggingModule -->
+<g id="node19" class="node"><a xlink:href="../modules/LoggingModule.html" href="../modules/LoggingModule.html" target="_top">
+<title>LoggingModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="3225.49,-122 3222.49,-126 3201.49,-126 3198.49,-122 3118.51,-122 3118.51,-86 3225.49,-86 3225.49,-122"/>
+<text text-anchor="middle" x="3172" y="-99.8" font-family="Times,serif" font-size="14.00">LoggingModule</text>
+</a></g>
+<!-- LoggingModule&#45;&gt;AppModule -->
+<g id="edge19" class="edge">
+<title>LoggingModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M3172,-122.25C3172,-136.18 3172,-153 3172,-153 3172,-153 2984.9,-153 2984.9,-153"/>
+<polygon fill="black" stroke="black" points="2984.9,-149.5 2974.9,-153 2984.9,-156.5 2984.9,-149.5"/>
+</g>
+<!-- MembershipPlanModule -->
+<g id="node20" class="node"><a xlink:href="../modules/MembershipPlanModule.html" href="../modules/MembershipPlanModule.html" target="_top">
+<title>MembershipPlanModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="3100.7,-122 3097.7,-126 3076.7,-126 3073.7,-122 2945.3,-122 2945.3,-86 3100.7,-86 3100.7,-122"/>
+<text text-anchor="middle" x="3023" y="-99.8" font-family="Times,serif" font-size="14.00">MembershipPlanModule</text>
+</a></g>
+<!-- MembershipPlanModule&#45;&gt;AppModule -->
+<g id="edge20" class="edge">
+<title>MembershipPlanModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M2960.11,-122.11C2960.11,-122.11 2960.11,-140.99 2960.11,-140.99"/>
+<polygon fill="black" stroke="black" points="2956.61,-140.99 2960.11,-150.99 2963.61,-140.99 2956.61,-140.99"/>
+</g>
+<!-- ParentMembershipModule -->
+<g id="node21" class="node"><a xlink:href="../modules/ParentMembershipModule.html" href="../modules/ParentMembershipModule.html" target="_top">
+<title>ParentMembershipModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="2927.07,-122 2924.07,-126 2903.07,-126 2900.07,-122 2760.93,-122 2760.93,-86 2927.07,-86 2927.07,-122"/>
+<text text-anchor="middle" x="2844" y="-99.8" font-family="Times,serif" font-size="14.00">ParentMembershipModule</text>
+</a></g>
+<!-- ParentMembershipModule&#45;&gt;AppModule -->
+<g id="edge21" class="edge">
+<title>ParentMembershipModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M2909.1,-122.11C2909.1,-122.11 2909.1,-140.99 2909.1,-140.99"/>
+<polygon fill="black" stroke="black" points="2905.6,-140.99 2909.1,-150.99 2912.6,-140.99 2905.6,-140.99"/>
+</g>
+<!-- ParentProfileModule -->
+<g id="node22" class="node"><a xlink:href="../modules/ParentProfileModule.html" href="../modules/ParentProfileModule.html" target="_top">
+<title>ParentProfileModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="2742.91,-122 2739.91,-126 2718.91,-126 2715.91,-122 2609.09,-122 2609.09,-86 2742.91,-86 2742.91,-122"/>
+<text text-anchor="middle" x="2676" y="-99.8" font-family="Times,serif" font-size="14.00">ParentProfileModule</text>
+</a></g>
+<!-- ParentProfileModule&#45;&gt;AppModule -->
+<g id="edge22" class="edge">
+<title>ParentProfileModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M2676,-122.25C2676,-136.18 2676,-153 2676,-153 2676,-153 2881.14,-153 2881.14,-153"/>
+<polygon fill="black" stroke="black" points="2881.14,-156.5 2891.14,-153 2881.14,-149.5 2881.14,-156.5"/>
+</g>
+<!-- PaymentModule -->
+<g id="node23" class="node"><a xlink:href="../modules/PaymentModule.html" href="../modules/PaymentModule.html" target="_top">
+<title>PaymentModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="2591.04,-122 2588.04,-126 2567.04,-126 2564.04,-122 2482.96,-122 2482.96,-86 2591.04,-86 2591.04,-122"/>
+<text text-anchor="middle" x="2537" y="-99.8" font-family="Times,serif" font-size="14.00">PaymentModule</text>
+</a></g>
+<!-- PaymentModule&#45;&gt;AppModule -->
+<g id="edge23" class="edge">
+<title>PaymentModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M2537,-122.12C2537,-136.78 2537,-155 2537,-155 2537,-155 2881,-155 2881,-155"/>
+<polygon fill="black" stroke="black" points="2881,-158.5 2891,-155 2881,-151.5 2881,-158.5"/>
+</g>
+<!-- PayoutModule -->
+<g id="node24" class="node"><a xlink:href="../modules/PayoutModule.html" href="../modules/PayoutModule.html" target="_top">
+<title>PayoutModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="2465.44,-122 2462.44,-126 2441.44,-126 2438.44,-122 2366.56,-122 2366.56,-86 2465.44,-86 2465.44,-122"/>
+<text text-anchor="middle" x="2416" y="-99.8" font-family="Times,serif" font-size="14.00">PayoutModule</text>
+</a></g>
+<!-- PayoutModule&#45;&gt;AppModule -->
+<g id="edge24" class="edge">
+<title>PayoutModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M2416,-122.24C2416,-137.57 2416,-157 2416,-157 2416,-157 2881.13,-157 2881.13,-157"/>
+<polygon fill="black" stroke="black" points="2881.13,-160.5 2891.13,-157 2881.13,-153.5 2881.13,-160.5"/>
+</g>
+<!-- PermissionModule -->
+<g id="node25" class="node"><a xlink:href="../modules/PermissionModule.html" href="../modules/PermissionModule.html" target="_top">
+<title>PermissionModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="2348.77,-122 2345.77,-126 2324.77,-126 2321.77,-122 2227.23,-122 2227.23,-86 2348.77,-86 2348.77,-122"/>
+<text text-anchor="middle" x="2288" y="-99.8" font-family="Times,serif" font-size="14.00">PermissionModule</text>
+</a></g>
+<!-- PermissionModule&#45;&gt;AppModule -->
+<g id="edge25" class="edge">
+<title>PermissionModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M2288,-122.01C2288,-138.05 2288,-159 2288,-159 2288,-159 2881.18,-159 2881.18,-159"/>
+<polygon fill="black" stroke="black" points="2881.18,-162.5 2891.18,-159 2881.18,-155.5 2881.18,-162.5"/>
+</g>
+<!-- ProductModule -->
+<g id="node26" class="node"><a xlink:href="../modules/ProductModule.html" href="../modules/ProductModule.html" target="_top">
+<title>ProductModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="2209.6,-122 2206.6,-126 2185.6,-126 2182.6,-122 2106.4,-122 2106.4,-86 2209.6,-86 2209.6,-122"/>
+<text text-anchor="middle" x="2158" y="-99.8" font-family="Times,serif" font-size="14.00">ProductModule</text>
+</a></g>
+<!-- ProductModule&#45;&gt;AppModule -->
+<g id="edge26" class="edge">
+<title>ProductModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M2158,-122.03C2158,-138.4 2158,-160 2158,-160 2158,-160 2881.33,-160 2881.33,-160"/>
+<polygon fill="black" stroke="black" points="2881.33,-163.5 2891.33,-160 2881.33,-156.5 2881.33,-163.5"/>
+</g>
+<!-- PushNotificationModule -->
+<g id="node27" class="node"><a xlink:href="../modules/PushNotificationModule.html" href="../modules/PushNotificationModule.html" target="_top">
+<title>PushNotificationModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="2088.43,-122 2085.43,-126 2064.43,-126 2061.43,-122 1933.57,-122 1933.57,-86 2088.43,-86 2088.43,-122"/>
+<text text-anchor="middle" x="2011" y="-99.8" font-family="Times,serif" font-size="14.00">PushNotificationModule</text>
+</a></g>
+<!-- PushNotificationModule&#45;&gt;AppModule -->
+<g id="edge27" class="edge">
+<title>PushNotificationModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M2011,-122.03C2011,-139.06 2011,-162 2011,-162 2011,-162 2881.29,-162 2881.29,-162"/>
+<polygon fill="black" stroke="black" points="2881.29,-165.5 2891.29,-162 2881.29,-158.5 2881.29,-165.5"/>
+</g>
+<!-- ReviewModule -->
+<g id="node28" class="node"><a xlink:href="../modules/ReviewModule.html" href="../modules/ReviewModule.html" target="_top">
+<title>ReviewModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="1916.31,-122 1913.31,-126 1892.31,-126 1889.31,-122 1813.69,-122 1813.69,-86 1916.31,-86 1916.31,-122"/>
+<text text-anchor="middle" x="1865" y="-99.8" font-family="Times,serif" font-size="14.00">ReviewModule</text>
+</a></g>
+<!-- ReviewModule&#45;&gt;AppModule -->
+<g id="edge28" class="edge">
+<title>ReviewModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M1865,-122C1865,-139.68 1865,-164 1865,-164 1865,-164 2881.13,-164 2881.13,-164"/>
+<polygon fill="black" stroke="black" points="2881.13,-167.5 2891.13,-164 2881.13,-160.5 2881.13,-167.5"/>
+</g>
+<!-- ServicePriceModule -->
+<g id="node29" class="node"><a xlink:href="../modules/ServicePriceModule.html" href="../modules/ServicePriceModule.html" target="_top">
+<title>ServicePriceModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="1796.29,-122 1793.29,-126 1772.29,-126 1769.29,-122 1665.71,-122 1665.71,-86 1796.29,-86 1796.29,-122"/>
+<text text-anchor="middle" x="1731" y="-99.8" font-family="Times,serif" font-size="14.00">ServicePriceModule</text>
+</a></g>
+<!-- ServicePriceModule&#45;&gt;AppModule -->
+<g id="edge29" class="edge">
+<title>ServicePriceModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M1731,-122.27C1731,-140.56 1731,-166 1731,-166 1731,-166 2881.28,-166 2881.28,-166"/>
+<polygon fill="black" stroke="black" points="2881.28,-169.5 2891.28,-166 2881.28,-162.5 2881.28,-169.5"/>
+</g>
+<!-- SharedModule -->
+<g id="node30" class="node"><a xlink:href="../modules/SharedModule.html" href="../modules/SharedModule.html" target="_top">
+<title>SharedModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="1648.42,-122 1645.42,-126 1624.42,-126 1621.42,-122 1549.58,-122 1549.58,-86 1648.42,-86 1648.42,-122"/>
+<text text-anchor="middle" x="1599" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
+</a></g>
+<!-- SharedModule&#45;&gt;AppModule -->
+<g id="edge30" class="edge">
+<title>SharedModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M1599,-122.17C1599,-141.09 1599,-168 1599,-168 1599,-168 2881.24,-168 2881.24,-168"/>
+<polygon fill="black" stroke="black" points="2881.24,-171.5 2891.24,-168 2881.24,-164.5 2881.24,-171.5"/>
+</g>
+<!-- SitterAvailabilityModule -->
+<g id="node31" class="node"><a xlink:href="../modules/SitterAvailabilityModule.html" href="../modules/SitterAvailabilityModule.html" target="_top">
+<title>SitterAvailabilityModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="1531.26,-122 1528.26,-126 1507.26,-126 1504.26,-122 1374.74,-122 1374.74,-86 1531.26,-86 1531.26,-122"/>
+<text text-anchor="middle" x="1453" y="-99.8" font-family="Times,serif" font-size="14.00">SitterAvailabilityModule</text>
+</a></g>
+<!-- SitterAvailabilityModule&#45;&gt;AppModule -->
+<g id="edge31" class="edge">
+<title>SitterAvailabilityModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M1453,-122.11C1453,-141.34 1453,-169 1453,-169 1453,-169 2881.09,-169 2881.09,-169"/>
+<polygon fill="black" stroke="black" points="2881.09,-172.5 2891.09,-169 2881.09,-165.5 2881.09,-172.5"/>
+</g>
+<!-- SitterCertificationModule -->
+<g id="node32" class="node"><a xlink:href="../modules/SitterCertificationModule.html" href="../modules/SitterCertificationModule.html" target="_top">
+<title>SitterCertificationModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="1356.13,-122 1353.13,-126 1332.13,-126 1329.13,-122 1195.87,-122 1195.87,-86 1356.13,-86 1356.13,-122"/>
+<text text-anchor="middle" x="1276" y="-99.8" font-family="Times,serif" font-size="14.00">SitterCertificationModule</text>
+</a></g>
+<!-- SitterCertificationModule&#45;&gt;AppModule -->
+<g id="edge32" class="edge">
+<title>SitterCertificationModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M1276,-122.31C1276,-142.15 1276,-171 1276,-171 1276,-171 2881.21,-171 2881.21,-171"/>
+<polygon fill="black" stroke="black" points="2881.21,-174.5 2891.21,-171 2881.21,-167.5 2881.21,-174.5"/>
+</g>
+<!-- SitterProfileModule -->
+<g id="node33" class="node"><a xlink:href="../modules/SitterProfileModule.html" href="../modules/SitterProfileModule.html" target="_top">
+<title>SitterProfileModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="1177.98,-122 1174.98,-126 1153.98,-126 1150.98,-122 1050.02,-122 1050.02,-86 1177.98,-86 1177.98,-122"/>
+<text text-anchor="middle" x="1114" y="-99.8" font-family="Times,serif" font-size="14.00">SitterProfileModule</text>
+</a></g>
+<!-- SitterProfileModule&#45;&gt;AppModule -->
+<g id="edge33" class="edge">
+<title>SitterProfileModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M1114,-122.13C1114,-142.57 1114,-173 1114,-173 1114,-173 2881.15,-173 2881.15,-173"/>
+<polygon fill="black" stroke="black" points="2881.15,-176.5 2891.15,-173 2881.15,-169.5 2881.15,-176.5"/>
+</g>
+<!-- SitterServiceModule -->
+<g id="node34" class="node"><a xlink:href="../modules/SitterServiceModule.html" href="../modules/SitterServiceModule.html" target="_top">
+<title>SitterServiceModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="1031.86,-122 1028.86,-126 1007.86,-126 1004.86,-122 900.14,-122 900.14,-86 1031.86,-86 1031.86,-122"/>
+<text text-anchor="middle" x="966" y="-99.8" font-family="Times,serif" font-size="14.00">SitterServiceModule</text>
+</a></g>
+<!-- SitterServiceModule&#45;&gt;AppModule -->
+<g id="edge34" class="edge">
+<title>SitterServiceModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M966,-122.28C966,-143.32 966,-175 966,-175 966,-175 2881.01,-175 2881.01,-175"/>
+<polygon fill="black" stroke="black" points="2881.01,-178.5 2891.01,-175 2881.01,-171.5 2881.01,-178.5"/>
+</g>
+<!-- SitterTrainingSessionModule -->
+<g id="node35" class="node"><a xlink:href="../modules/SitterTrainingSessionModule.html" href="../modules/SitterTrainingSessionModule.html" target="_top">
+<title>SitterTrainingSessionModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="882.37,-122 879.37,-126 858.37,-126 855.37,-122 701.63,-122 701.63,-86 882.37,-86 882.37,-122"/>
+<text text-anchor="middle" x="792" y="-99.8" font-family="Times,serif" font-size="14.00">SitterTrainingSessionModule</text>
+</a></g>
+<!-- SitterTrainingSessionModule&#45;&gt;AppModule -->
+<g id="edge35" class="edge">
+<title>SitterTrainingSessionModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M792,-122.04C792,-143.66 792,-177 792,-177 792,-177 2881.19,-177 2881.19,-177"/>
+<polygon fill="black" stroke="black" points="2881.19,-180.5 2891.19,-177 2881.19,-173.5 2881.19,-180.5"/>
+</g>
+<!-- StorageModule -->
+<g id="node36" class="node"><a xlink:href="../modules/StorageModule.html" href="../modules/StorageModule.html" target="_top">
+<title>StorageModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="683.31,-122 680.31,-126 659.31,-126 656.31,-122 580.69,-122 580.69,-86 683.31,-86 683.31,-122"/>
+<text text-anchor="middle" x="632" y="-99.8" font-family="Times,serif" font-size="14.00">StorageModule</text>
+</a></g>
+<!-- StorageModule&#45;&gt;AppModule -->
+<g id="edge36" class="edge">
+<title>StorageModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M632,-122.29C632,-144.21 632,-178 632,-178 632,-178 2881.1,-178 2881.1,-178"/>
+<polygon fill="black" stroke="black" points="2881.1,-181.5 2891.1,-178 2881.1,-174.5 2881.1,-181.5"/>
+</g>
+<!-- TrainingCourseModule -->
+<g id="node37" class="node"><a xlink:href="../modules/TrainingCourseModule.html" href="../modules/TrainingCourseModule.html" target="_top">
+<title>TrainingCourseModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="562.92,-122 559.92,-126 538.92,-126 535.92,-122 415.08,-122 415.08,-86 562.92,-86 562.92,-122"/>
+<text text-anchor="middle" x="489" y="-99.8" font-family="Times,serif" font-size="14.00">TrainingCourseModule</text>
+</a></g>
+<!-- TrainingCourseModule&#45;&gt;AppModule -->
+<g id="edge37" class="edge">
+<title>TrainingCourseModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M489,-122.01C489,-144.49 489,-180 489,-180 489,-180 2881.09,-180 2881.09,-180"/>
+<polygon fill="black" stroke="black" points="2881.09,-183.5 2891.09,-180 2881.09,-176.5 2881.09,-183.5"/>
+</g>
+<!-- TrainingSessionModule -->
+<g id="node38" class="node"><a xlink:href="../modules/TrainingSessionModule.html" href="../modules/TrainingSessionModule.html" target="_top">
+<title>TrainingSessionModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="397.04,-122 394.04,-126 373.04,-126 370.04,-122 246.96,-122 246.96,-86 397.04,-86 397.04,-122"/>
+<text text-anchor="middle" x="322" y="-99.8" font-family="Times,serif" font-size="14.00">TrainingSessionModule</text>
+</a></g>
+<!-- TrainingSessionModule&#45;&gt;AppModule -->
+<g id="edge38" class="edge">
+<title>TrainingSessionModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M322,-122.09C322,-145.13 322,-182 322,-182 322,-182 2881.2,-182 2881.2,-182"/>
+<polygon fill="black" stroke="black" points="2881.2,-185.5 2891.2,-182 2881.2,-178.5 2881.2,-185.5"/>
+</g>
+<!-- UploadModule -->
+<g id="node39" class="node"><a xlink:href="../modules/UploadModule.html" href="../modules/UploadModule.html" target="_top">
+<title>UploadModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="228.26,-122 225.26,-126 204.26,-126 201.26,-122 127.74,-122 127.74,-86 228.26,-86 228.26,-122"/>
+<text text-anchor="middle" x="178" y="-99.8" font-family="Times,serif" font-size="14.00">UploadModule</text>
+</a></g>
+<!-- UploadModule&#45;&gt;AppModule -->
+<g id="edge39" class="edge">
+<title>UploadModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M178,-122.15C178,-145.76 178,-184 178,-184 178,-184 2881.1,-184 2881.1,-184"/>
+<polygon fill="black" stroke="black" points="2881.1,-187.5 2891.1,-184 2881.1,-180.5 2881.1,-187.5"/>
+</g>
+<!-- UserModule -->
+<g id="node40" class="node"><a xlink:href="../modules/UserModule.html" href="../modules/UserModule.html" target="_top">
+<title>UserModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="109.98,-122 106.98,-126 85.98,-126 82.98,-122 24.02,-122 24.02,-86 109.98,-86 109.98,-122"/>
+<text text-anchor="middle" x="67" y="-99.8" font-family="Times,serif" font-size="14.00">UserModule</text>
+</a></g>
+<!-- UserModule&#45;&gt;AppModule -->
+<g id="edge40" class="edge">
+<title>UserModule&#45;&gt;AppModule</title>
+<path fill="none" stroke="black" d="M67,-122.2C67,-146.36 67,-186 67,-186 67,-186 2881.1,-186 2881.1,-186"/>
+<polygon fill="black" stroke="black" points="2881.1,-189.5 2891.1,-186 2881.1,-182.5 2881.1,-189.5"/>
+</g>
+</g>
+</svg>
+
+    </div>
+    <i id="fullscreen" class="icon ion-ios-resize module-graph-fullscreen-btn" aria-hidden="true"></i>
+    <div class="btn-group size-buttons">
+        <button id="zoom-in" class="btn btn-default btn-sm">Zoom in</button>
+        <button id="reset" class="btn btn-default btn-sm">Reset</button>
+        <button id="zoom-out" class="btn btn-default btn-sm">Zoom out</button>
+    </div>
+</div>
+<script src="../js/libs/svg-pan-zoom.min.js"></script>
+<script src="../js/svg-pan-zoom.controls.js"></script>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a href="#info" 
+            class="nav-link"
+            class="nav-link active"
+            role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+    </li>
+    <li class="nav-item">
+        <a href="#source" 
+            class="nav-link"
+            
+            role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+
+
+        <div class="container-fluid module">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Controllers<a href="https://docs.nestjs.com/controllers" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module controllers"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../controllers/AppController.html">AppController</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module imports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../modules/ApiKeyModule.html">ApiKeyModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/AttendanceLogModule.html">AttendanceLogModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/AuthModule.html">AuthModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/BookingModule.html">BookingModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/CacheModule.html">CacheModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/CareServiceModule.html">CareServiceModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/CategoryModule.html">CategoryModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/ChildrenModule.html">ChildrenModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/ConversationModule.html">ConversationModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/EmailModule.html">EmailModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/EmergencyContactModule.html">EmergencyContactModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/FaqCategoryModule.html">FaqCategoryModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/FaqItemModule.html">FaqItemModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/FaqSubCategoryModule.html">FaqSubCategoryModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/HealthModule.html">HealthModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/HttpClientModule.html">HttpClientModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/JapanAddressModule.html">JapanAddressModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/LockModule.html">LockModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/LoggingModule.html">LoggingModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/MembershipPlanModule.html">MembershipPlanModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/ParentMembershipModule.html">ParentMembershipModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/ParentProfileModule.html">ParentProfileModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/PaymentModule.html">PaymentModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/PayoutModule.html">PayoutModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/PermissionModule.html">PermissionModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/ProductModule.html">ProductModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/PushNotificationModule.html">PushNotificationModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/ReviewModule.html">ReviewModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/ServicePriceModule.html">ServicePriceModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/SharedModule.html">SharedModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/SitterAvailabilityModule.html">SitterAvailabilityModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/SitterCertificationModule.html">SitterCertificationModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/SitterProfileModule.html">SitterProfileModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/SitterServiceModule.html">SitterServiceModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/SitterTrainingSessionModule.html">SitterTrainingSessionModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/StorageModule.html">StorageModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/TrainingCourseModule.html">TrainingCourseModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/TrainingSessionModule.html">TrainingSessionModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/UploadModule.html">UploadModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/UserModule.html">UserModule</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+                <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../modules/ApiKeyModule.html" target="_self" >ApiKeyModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/AttendanceLogModule.html" target="_self" >AttendanceLogModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/AuthModule.html" target="_self" >AuthModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/BookingModule.html" target="_self" >BookingModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/CacheModule.html" target="_self" >CacheModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/CareServiceModule.html" target="_self" >CareServiceModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/CategoryModule.html" target="_self" >CategoryModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/ChildrenModule.html" target="_self" >ChildrenModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/ConversationModule.html" target="_self" >ConversationModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/EmailModule.html" target="_self" >EmailModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/EmergencyContactModule.html" target="_self" >EmergencyContactModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/FaqCategoryModule.html" target="_self" >FaqCategoryModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/FaqItemModule.html" target="_self" >FaqItemModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/FaqSubCategoryModule.html" target="_self" >FaqSubCategoryModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/HealthModule.html" target="_self" >HealthModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/HttpClientModule.html" target="_self" >HttpClientModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/JapanAddressModule.html" target="_self" >JapanAddressModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/LockModule.html" target="_self" >LockModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/LoggingModule.html" target="_self" >LoggingModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/MembershipPlanModule.html" target="_self" >MembershipPlanModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/ParentMembershipModule.html" target="_self" >ParentMembershipModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/ParentProfileModule.html" target="_self" >ParentProfileModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/PaymentModule.html" target="_self" >PaymentModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/PayoutModule.html" target="_self" >PayoutModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/PermissionModule.html" target="_self" >PermissionModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/ProductModule.html" target="_self" >ProductModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/PushNotificationModule.html" target="_self" >PushNotificationModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/ReviewModule.html" target="_self" >ReviewModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/ServicePriceModule.html" target="_self" >ServicePriceModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/SitterAvailabilityModule.html" target="_self" >SitterAvailabilityModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/SitterCertificationModule.html" target="_self" >SitterCertificationModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/SitterProfileModule.html" target="_self" >SitterProfileModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/SitterServiceModule.html" target="_self" >SitterServiceModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/SitterTrainingSessionModule.html" target="_self" >SitterTrainingSessionModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/StorageModule.html" target="_self" >StorageModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/TrainingCourseModule.html" target="_self" >TrainingCourseModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/TrainingSessionModule.html" target="_self" >TrainingSessionModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/UploadModule.html" target="_self" >UploadModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../modules/UserModule.html" target="_self" >UserModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../controllers/AppController.html" target="_self" >AppController</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+
+        <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="configure"></a>
+                    <span class="name">
+                        <span ><b>configure</b></span>
+                        <a href="#configure"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>configure(consumer: <a href="../miscellaneous/functions.html#sum" target="_self">MiddlewareConsumer</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="182"
+                                    class="link-to-prism">src/app.module.ts:182</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>consumer</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/functions.html#sum" target="_self" >MiddlewareConsumer</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onModuleInit"></a>
+                    <span class="name">
+                        <span ><b>onModuleInit</b></span>
+                        <a href="#onModuleInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onModuleInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="178"
+                                    class="link-to-prism">src/app.module.ts:178</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import configuration from &#x27;@configs&#x27;;
+import configurationRedis from &#x27;@infrastructure/redis/redis.config&#x27;;
+import { loggingConfig } from &#x27;@infrastructure/logging/logging.config&#x27;;
+import { MiddlewareConsumer, Module, NestModule, OnModuleInit } from &#x27;@nestjs/common&#x27;;
+import { ConfigModule, ConfigService } from &#x27;@nestjs/config&#x27;;
+import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
+import {
+  AcceptLanguageResolver,
+  CookieResolver,
+  HeaderResolver,
+  I18nModule,
+  QueryResolver,
+} from &#x27;nestjs-i18n&#x27;;
+import { join } from &#x27;path&#x27;;
+import { SnakeNamingStrategy } from &#x27;typeorm-naming-strategies&#x27;;
+import { AppController } from &#x27;./app.controller&#x27;;
+
+import { AuthModule } from &#x27;./modules/auth/auth.module&#x27;;
+import { SharedModule } from &#x27;./modules/shared/shared.module&#x27;;
+import { UploadModule } from &#x27;./modules/upload/upload.module&#x27;;
+
+import { ProductModule } from &#x27;./modules/product/product.module&#x27;;
+import { EventEmitterModule } from &#x27;@nestjs/event-emitter&#x27;;
+import { ScheduleModule } from &#x27;@nestjs/schedule&#x27;;
+import { DataSource } from &#x27;typeorm&#x27;;
+import { DataSourceHolder, LockModule } from &#x27;@infrastructure/lock&#x27;;
+import { CacheModule } from &#x27;@infrastructure/cache&#x27;;
+import { HttpClientModule } from &#x27;@infrastructure/http-client&#x27;;
+import { CategoryModule } from &#x27;./modules/category/category.module&#x27;;
+import { EmailModule } from &#x27;./modules/email/email.module&#x27;;
+import { PushNotificationModule } from &#x27;./modules/push-notification/push-notification.module&#x27;;
+import { FaqCategoryModule } from &#x27;./modules/faq-category/faq-category.module&#x27;;
+import { FaqSubCategoryModule } from &#x27;./modules/faq-sub-category/faq-sub-category.module&#x27;;
+import { FaqItemModule } from &#x27;./modules/faq-item/faq-item.module&#x27;;
+import { JapanAddressModule } from &#x27;./modules/japan-address/japan-address.module&#x27;;
+import { EmergencyContactModule } from &#x27;./modules/emergency-contact/emergency-contact.module&#x27;;
+import { StorageModule } from &#x27;./modules/storage/storage.module&#x27;;
+import { UserModule } from &#x27;./modules/user/user.module&#x27;;
+import { businessHoursConfig } from &#x27;@configs/business-hours.config&#x27;;
+import {
+  CorrelationIdMiddleware,
+  LoggingModule,
+  LoggingService,
+  TypeOrmLoggerService,
+} from &#x27;@logging&#x27;;
+import { LoggingConfigType } from &#x27;@infrastructure/logging/logging.config&#x27;;
+import { PermissionModule } from &#x27;./modules/permission/permission.module&#x27;;
+import { ApiKeyModule } from &#x27;./modules/api-key/api-key.module&#x27;;
+import { ConversationModule } from &#x27;./modules/conversation/conversation.module&#x27;;
+import { HealthModule } from &#x27;./modules/health/health.module&#x27;;
+import { ChildrenModule } from &#x27;./modules/children/children.module&#x27;;
+import { ParentProfileModule } from &#x27;./modules/parent-profile/parent-profile.module&#x27;;
+import { SitterProfileModule } from &#x27;./modules/sitter-profile/sitter-profile.module&#x27;;
+import { MembershipPlanModule } from &#x27;./modules/membership-plan/membership-plan.module&#x27;;
+import { ParentMembershipModule } from &#x27;./modules/parent-membership/parent-membership.module&#x27;;
+import { CareServiceModule } from &#x27;./modules/care-service/care-service.module&#x27;;
+import { ServicePriceModule } from &#x27;./modules/service-price/service-price.module&#x27;;
+import { SitterServiceModule } from &#x27;./modules/sitter-service/sitter-service.module&#x27;;
+import { SitterAvailabilityModule } from &#x27;./modules/sitter-availability/sitter-availability.module&#x27;;
+import { BookingModule } from &#x27;./modules/booking/booking.module&#x27;;
+import { TrainingCourseModule } from &#x27;./modules/training-course/training-course.module&#x27;;
+import { TrainingSessionModule } from &#x27;./modules/training-session/training-session.module&#x27;;
+import { SitterTrainingSessionModule } from &#x27;./modules/sitter-training-session/sitter-training-session.module&#x27;;
+import { SitterCertificationModule } from &#x27;./modules/sitter-certification/sitter-certification.module&#x27;;
+import { AttendanceLogModule } from &#x27;./modules/attendance-log/attendance-log.module&#x27;;
+import { ReviewModule } from &#x27;./modules/review/review.module&#x27;;
+import { PaymentModule } from &#x27;./modules/payment/payment.module&#x27;;
+import { PayoutModule } from &#x27;./modules/payout/payout.module&#x27;;
+
+@Module({
+  imports: [
+    // ScheduleModule.forRoot(),
+    EventEmitterModule.forRoot({
+      wildcard: true,
+      delimiter: &#x27;.&#x27;,
+      verboseMemoryLeak: true,
+    }),
+    ConfigModule.forRoot({
+      load: [configuration, configurationRedis, businessHoursConfig, loggingConfig],
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService, loggingService: LoggingService) &#x3D;&gt; {
+        const logConfig &#x3D; configService.get&lt;LoggingConfigType&gt;(&#x27;logging&#x27;);
+        const typeOrmLogger &#x3D; new TypeOrmLoggerService(loggingService, {
+          sqlFileEnabled: logConfig?.sqlLogEnabled ?? false,
+          sqlFileDir: logConfig?.sqlLogDir ?? &#x27;./logs&#x27;,
+          sqlFileMaxSize: logConfig?.fileMaxSize ?? &#x27;20m&#x27;,
+          sqlFileMaxDays: logConfig?.fileMaxDays ?? &#x27;14d&#x27;,
+        });
+        return {
+          type: &#x27;postgres&#x27;,
+          url: configService.get&lt;string&gt;(&#x27;database.url&#x27;),
+          entities: [
+            join(__dirname, &#x27;/entities/**/*.entity.{ts,js}&#x27;),
+            join(__dirname, &#x27;/modules/**/*.entity.{ts,js}&#x27;),
+          ],
+          logger: typeOrmLogger,
+          synchronize: configService.get&lt;boolean&gt;(&#x27;database.synDB&#x27;),
+          namingStrategy: new SnakeNamingStrategy(),
+          ssl:
+            configService.get&lt;string&gt;(&#x27;database.ssl&#x27;) &#x3D;&#x3D;&#x3D; &#x27;true&#x27;
+              ? { rejectUnauthorized: false }
+              : false,
+          maxQueryExecutionTime: 1000,
+          applicationName: &#x60;nestjs-base-v2-${configService.get&lt;string&gt;(&#x27;appEnv&#x27;) || &#x27;development&#x27;}&#x60;,
+          extra: {
+            max: 50, // Pool max connections for high-concurrency chat workloads
+          },
+        };
+      },
+      inject: [ConfigService, LoggingService],
+    }),
+    I18nModule.forRootAsync({
+      useFactory: () &#x3D;&gt; ({
+        fallbackLanguage: &#x27;jp&#x27;,
+        loaderOptions: {
+          path: join(__dirname, &#x27;i18n&#x27;),
+          watch: false,
+        },
+      }),
+      inject: [ConfigService],
+      resolvers: [
+        { use: QueryResolver, options: [&#x27;lang&#x27;, &#x27;locale&#x27;, &#x27;l&#x27;] },
+        new HeaderResolver([&#x27;x-lang&#x27;]),
+        AcceptLanguageResolver,
+        new CookieResolver([&#x27;lang&#x27;, &#x27;locale&#x27;, &#x27;l&#x27;]),
+      ],
+    }),
+    AuthModule,
+    SharedModule,
+    UploadModule,
+    LoggingModule,
+    CacheModule,
+    HttpClientModule.register(),
+    LockModule.forRoot(),
+    PermissionModule,
+    ApiKeyModule,
+    ProductModule,
+    EmailModule,
+    PushNotificationModule,
+    CategoryModule,
+    EmergencyContactModule,
+    FaqCategoryModule,
+    FaqSubCategoryModule,
+    FaqItemModule,
+    JapanAddressModule,
+    UserModule,
+    StorageModule,
+    ConversationModule,
+    HealthModule,
+    ChildrenModule,
+    ParentProfileModule,
+    SitterProfileModule,
+    MembershipPlanModule,
+    ParentMembershipModule,
+    CareServiceModule,
+    ServicePriceModule,
+    SitterServiceModule,
+    SitterAvailabilityModule,
+    BookingModule,
+    TrainingCourseModule,
+    TrainingSessionModule,
+    SitterTrainingSessionModule,
+    SitterCertificationModule,
+    AttendanceLogModule,
+    ReviewModule,
+    PaymentModule,
+    PayoutModule,
+  ],
+  controllers: [AppController],
+  providers: [],
+})
+export class AppModule implements OnModuleInit, NestModule {
+  constructor(private dataSource: DataSource) {}
+
+  onModuleInit() {
+    DataSourceHolder.set(this.dataSource);
+  }
+
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(CorrelationIdMiddleware).forRoutes(&#x27;*&#x27;);
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppModule.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

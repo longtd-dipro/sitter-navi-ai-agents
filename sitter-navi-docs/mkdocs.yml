@@ -1,0 +1,38 @@
+site_name: Sitter Navi — Docs
+site_description: BMAD feature docs (SPEC → DESIGN → PLAN → tasks) + repo overview cho Sitter Navi
+
+docs_dir: docs
+
+theme:
+  name: material
+  language: ja
+  palette:
+    - scheme: default
+      primary: indigo
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - content.code.copy
+
+plugins:
+  - search
+  - awesome-pages   # auto nav từ cấu trúc thư mục docs/ — không cần sửa nav mỗi khi thêm feature mới
+
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+# Không khai báo `nav:` thủ công — awesome-pages tự build nav từ docs_dir.
+# Muốn đặt thứ tự/tên hiển thị riêng cho 1 folder → thêm file `.pages` trong folder đó.

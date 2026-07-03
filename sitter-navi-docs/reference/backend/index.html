@@ -1,0 +1,480 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content readme">
+                   <div class="content-data">
+
+
+<h1>Sister Navi</h1>
+<p>Backend boilerplate xây dựng trên <strong>NestJS 11</strong> + <strong>TypeScript 5.8</strong>, cung cấp sẵn các module phổ biến: authentication, user management, real-time chat, file storage, email, FAQ.</p>
+<hr>
+<h2>🚀 Quick Start (Lần đầu)</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># 1. Cài dependencies
+yarn install
+
+# 2. Tạo file .env
+cp .env.example .env
+# Chỉnh sửa DB_URL, JWT_SECRET_KEY trong .env
+
+# 3. Khởi động PostgreSQL + Redis
+cd devops/local &amp;&amp; docker compose up -d &amp;&amp; cd ../..
+
+# 4. Chạy migration
+yarn migration:run-dev
+
+# 5. Chạy dev server
+yarn dev</code></pre></div><blockquote>
+<p>Ứng dụng chạy tại <code>http://localhost:3210</code> | Swagger UI: <code>http://localhost:3210/swagger</code></p>
+</blockquote>
+<hr>
+<h2>📂 Cấu trúc dự án</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">├── libs/
+│   ├── common/              # 🔧 &#64;foundation — Tiện ích nền tảng (date, string, array, encryption, id, pagination, result...)
+│   └── infrastructure/      # 🏗️ &#64;infrastructure — Logging, Cache, Lock, Redis, HTTP Client, Messaging, TokenBucket
+├── src/
+│   ├── main.ts              # Bootstrap &amp; Swagger setup
+│   ├── app.module.ts        # Root module
+│   ├── common/              # &#64;common — Constants, DTOs, enums, events, helpers, utils (app-specific)
+│   │   ├── constants/       # Role keys, cache key generators
+│   │   ├── dtos/            # Shared DTOs (IdsDto, ImportResultDto...)
+│   │   ├── enums/           # RoleType, etc.
+│   │   ├── events/          # Domain events (user, contract, report...)
+│   │   ├── helpers/         # Business hours, etc.
+│   │   ├── interfaces/      # Shared interfaces
+│   │   ├── repositories/    # Base repository pattern
+│   │   ├── services/        # Base business service
+│   │   └── utils/           # Encryption, Common utilities, Snowflake
+│   ├── configs/             # Configuration loaders (business-hours, etc.)
+│   ├── decorators/          # &#64;Auth, &#64;ApiKey, validators
+│   ├── entities/            # TypeORM base entities + shared entities
+│   ├── guards/              # AuthGuard, RolesGuard, ApiKeyGuard
+│   ├── interceptors/        # NullLastInterceptor
+│   ├── modules/             # Feature modules (domain-driven)
+│   │   ├── auth/            # Login, OTP, JWT, register
+│   │   ├── user/            # User CRUD + role management
+│   │   ├── email/           # 🆕 Email templates + sending (rebuild: dispatcher + outbox + renderer)
+│   │   ├── push-notification/ # 🆕 Push notification via FCM (Firebase)
+│   │   ├── conversation/    # Group chat (WebSocket + REST)
+│   │   ├── children/        # Children records CRUD + status management
+│   │   ├── product/         # Product catalog
+│   │   ├── category/        # Category hierarchy
+│   │   ├── permission/      # RBAC permission system
+│   │   ├── health/          # Health check + memory monitor + indicators
+│   │   ├── upload/          # File upload
+│   │   ├── storage/         # S3 / local storage
+│   │   ├── api-key/         # API key management
+│   │   ├── emergency-contact/
+│   │   ├── faq-category/ / faq-item/ / faq-sub-category/
+│   │   └── shared/          # Shared services (Snowflake allocator, generator)
+│   ├── workers/             # 🆕 Standalone BullMQ workers
+│   │   ├── all.worker.ts    # Tất cả queue trong 1 process (dev)
+│   │   ├── base/            # worker-bootstrap (shared bootstrap)
+│   │   ├── email/           # Email queue consumer
+│   │   └── push/            # Push notification queue consumer
+│   ├── migrations/          # TypeORM migration files
+│   ├── pipes/               # Custom pipes
+│   ├── swagger.ts           # Swagger setup
+│   ├── typeorm-cli.config.ts # TypeORM CLI datasource
+│   └── i18n/                # en/ + jp/ translation files
+├── _base/
+│   ├── plop-templates/      # Code generation templates
+│   └── setup_environment/   # Dev environment setup script
+├── devops/
+│   ├── local/docker-compose.yml
+│   └── pm2/                 # PM2 process configs
+└── docs/                    # Tài liệu chi tiết</code></pre></div><hr>
+<h2>🗺️ Path Aliases</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Alias</th><th>Trỏ đến</th><th>Dùng cho</th></tr>
+</thead>
+<tbody>
+<tr><td><code>@foundation</code></td><td><code>libs/common</code></td><td><strong>Tiện ích nền tảng</strong> — date, string, array, encryption, id, pagination, result, validation...</td></tr>
+<tr><td><code>@infrastructure</code></td><td><code>libs/infrastructure</code></td><td>Logging, Cache, Lock, Redis, HTTP Client, Messaging, TokenBucket</td></tr>
+<tr><td><code>@messaging</code></td><td><code>libs/infrastructure/messaging</code></td><td>🆕 Shared contracts: IMessageDispatcher, IMessageRenderer, BaseOutboxService</td></tr>
+<tr><td><code>@logging</code></td><td><code>libs/infrastructure/logging</code></td><td>LoggingService, CorrelationStore</td></tr>
+<tr><td><code>@entities</code></td><td><code>src/entities</code></td><td>Base entities, shared entities</td></tr>
+<tr><td><code>@modules</code></td><td><code>src/modules</code></td><td>Feature modules</td></tr>
+<tr><td><code>@common</code></td><td><code>src/common</code></td><td>App-specific shared code</td></tr>
+<tr><td><code>@utils</code></td><td><code>src/common/utils</code></td><td>EncryptionUtil, CommonUtil, Snowflake</td></tr>
+<tr><td><code>@enums</code></td><td><code>src/common/enums</code></td><td>RoleType, etc.</td></tr>
+<tr><td><code>@constants</code></td><td><code>src/common/constants</code></td><td>Role keys, cache keys</td></tr>
+<tr><td><code>@events</code></td><td><code>src/common/events</code></td><td>Domain events</td></tr>
+<tr><td><code>@interfaces</code></td><td><code>src/common/interfaces</code></td><td>Shared interfaces</td></tr>
+<tr><td><code>@decorators</code></td><td><code>src/decorators</code></td><td>@Auth, @ApiKey, validators</td></tr>
+<tr><td><code>@configs</code></td><td><code>src/configs</code></td><td>Configuration loaders</td></tr>
+<tr><td><code>@services</code></td><td><code>src/modules/shared/services</code></td><td>Shared services</td></tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>Rule of thumb</strong>: Dùng <code>@foundation</code> cho mọi tiện ích thuần túy (pure functions), <code>@utils</code> cho app-specific helpers (bcrypt, OTP, Snowflake).</p>
+</blockquote>
+<hr>
+<h2>🧰 Foundation Utilities (<code>@foundation</code>)</h2>
+<p>Thư viện <code>libs/common</code> cung cấp <strong>18 modules</strong> tiện ích thuần túy, không phụ thuộc NestJS:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Module</th><th>Highlights</th></tr>
+</thead>
+<tbody>
+<tr><td><code>date</code></td><td><code>addMinutes</code>, <code>addDays</code>, <code>addHours</code>, <code>isAfter</code>, <code>isBefore</code>, <code>isPast</code>, <code>startOfDay</code>, <code>endOfDay</code>, <code>formatDateISO</code>, <code>formatDateJP</code>, <code>toJST</code>, <code>diffInDays</code>, <code>diffInHours</code>...</td></tr>
+<tr><td><code>string</code></td><td><code>slugify</code>, <code>truncate</code>, <code>capitalize</code>, <code>toCamelCase</code>, <code>toSnakeCase</code>, <code>maskEmail</code>, <code>randomString</code>...</td></tr>
+<tr><td><code>id</code></td><td><code>generateUUID</code>, <code>shortId</code>, <code>nanoid</code>, <code>prefixedId</code>, <code>sortableId</code>, <code>isValidUUID</code></td></tr>
+<tr><td><code>array</code></td><td><code>chunk</code>, <code>unique</code>, <code>groupBy</code>, <code>sortBy</code>, <code>shuffle</code>, <code>flatten</code>, <code>difference</code>, <code>intersection</code>...</td></tr>
+<tr><td><code>object</code></td><td><code>pick</code>, <code>omit</code>, <code>deepClone</code>, <code>deepMerge</code>, <code>compact</code>, <code>safeJsonParse</code>...</td></tr>
+<tr><td><code>pagination</code></td><td><code>paginate</code>, <code>PaginatedResult&lt;T&gt;</code>, <code>PaginationMeta</code>, <code>buildPaginationMeta</code></td></tr>
+<tr><td><code>result</code></td><td><code>Ok</code>, <code>Err</code>, <code>tryCatch</code> — Rust-like Result pattern</td></tr>
+<tr><td><code>encryption</code></td><td><code>aesEncrypt</code>, <code>aesDecrypt</code>, <code>generateKey</code> (AES-256-GCM)</td></tr>
+<tr><td><code>hash</code></td><td><code>md5</code>, <code>sha256</code>, <code>sha512</code>, <code>hmac</code>, <code>base64Encode</code>, <code>base64Decode</code></td></tr>
+<tr><td><code>validation</code></td><td><code>isEmail</code>, <code>isJapanesePhone</code>, <code>isUUID</code>, <code>isUrl</code>, <code>isStrongPassword</code>...</td></tr>
+<tr><td><code>error</code></td><td><code>AppError</code>, <code>NotFoundError</code>, <code>ConflictError</code>, <code>ValidationError</code>...</td></tr>
+<tr><td><code>retry</code></td><td><code>retry</code> (exponential backoff), <code>retryFixed</code></td></tr>
+<tr><td><code>delay</code></td><td><code>delay</code>, <code>debounce</code>, <code>throttle</code></td></tr>
+<tr><td><code>async</code></td><td><code>promisePool</code>, <code>withTimeout</code>, <code>settleAll</code>, <code>sequential</code>, <code>deferred</code></td></tr>
+<tr><td><code>guard</code></td><td><code>isDefined</code>, <code>isString</code>, <code>isNumber</code>, <code>isNil</code>, <code>isNonEmptyString</code>...</td></tr>
+<tr><td><code>number</code></td><td><code>clamp</code>, <code>roundTo</code>, <code>randomInt</code>, <code>formatNumber</code>, <code>formatYen</code>, <code>bytesToSize</code>...</td></tr>
+<tr><td><code>file</code></td><td><code>getExtension</code>, <code>getMimeType</code>, <code>isImage</code>, <code>isDocument</code>, <code>isVideo</code>...</td></tr>
+<tr><td><code>transform</code></td><td><code>keysToCamel</code>, <code>keysToSnake</code>, <code>toBoolean</code>, <code>toNumber</code>...</td></tr>
+</tbody>
+</table>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { generateUUID, addMinutes, isAfter, paginate } from &#39;&#64;foundation&#39;;</code></pre></div><blockquote>
+<p>Xem chi tiết: <a href="./docs/foundation.md"><code>docs/foundation.md</code></a></p>
+</blockquote>
+<hr>
+<h2>🧪 Scripts</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Script</th><th>Mô tả</th></tr>
+</thead>
+<tbody>
+<tr><td><code>yarn dev</code></td><td>Dev server với hot reload</td></tr>
+<tr><td><code>yarn build</code></td><td>Production build</td></tr>
+<tr><td><code>yarn lint</code></td><td>ESLint + fix</td></tr>
+<tr><td><code>yarn format</code></td><td>Prettier</td></tr>
+<tr><td><code>yarn test</code></td><td>Unit tests</td></tr>
+<tr><td><code>yarn test:e2e</code></td><td>E2E tests</td></tr>
+<tr><td><code>yarn generate</code></td><td>Scaffold module mới bằng Plop</td></tr>
+<tr><td><code>yarn migration:generate</code></td><td>Generate migration từ entity diff</td></tr>
+<tr><td><code>yarn migration:run-dev</code></td><td>Chạy migration (dev)</td></tr>
+<tr><td><code>yarn migration:revert-dev</code></td><td>Revert migration (dev)</td></tr>
+</tbody>
+</table>
+<hr>
+<h2>📚 Tài liệu chi tiết</h2>
+<h3>🎓 Cho Người mới (mới vào dự án)</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Tài liệu</th><th>Nội dung</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="./docs/onboarding/00-start-here.md">Bắt đầu từ đây</a></td><td>Entry point, glossary, cách đọc tài liệu</td></tr>
+<tr><td><a href="./docs/onboarding/01-project-anatomy.md">Giải phẫu dự án</a></td><td>Thư mục nào chứa gì, file quan trọng, flow request</td></tr>
+<tr><td><a href="./docs/onboarding/02-nestjs-basics.md">NestJS trong project</a></td><td>Module/Controller/Service/Guard/DI giải thích đơn giản</td></tr>
+<tr><td><a href="./docs/onboarding/03-database-entities.md">Database &amp; Entity</a></td><td>TypeORM, entity, migration, relation, Snowflake ID</td></tr>
+<tr><td><a href="./docs/onboarding/04-common-patterns.md">Patterns thường dùng</a></td><td>Import, xử lý lỗi, pagination, transaction, logging</td></tr>
+<tr><td><a href="./docs/onboarding/05-debugging.md">Debug &amp; Troubleshooting</a></td><td>Lỗi phổ biến &amp; cách fix, công cụ, checklist</td></tr>
+<tr><td><a href="./docs/onboarding/06-logging.md">Logging cho người mới</a></td><td>Cách dùng logger, log level, correlation ID</td></tr>
+</tbody>
+</table>
+<h3>🆕 Modules (Email &amp; Push Notification)</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Tài liệu</th><th>Nội dung</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="./docs/email-module.md">Email Module</a></td><td>Kiến trúc dispatcher + outbox + renderer, BullMQ-ready, render offloading</td></tr>
+<tr><td><a href="./docs/push-notification-module.md">Push Notification Module</a></td><td>FCM dispatcher, UserDevice management, token auto-cleanup</td></tr>
+</tbody>
+</table>
+<h3>🆕 Cho AI Agent (Copilot, Cursor, Claude)</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Tài liệu</th><th>Dùng khi</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="./AGENTS.md">AGENTS.md</a></td><td>Entry point — index tất cả skill files</td></tr>
+<tr><td><a href="./docs/skills/code-quality.skill.md">code-quality.skill.md</a></td><td>Luôn luôn — naming, magic number, enum, early return</td></tr>
+<tr><td><a href="./docs/skills/error-handling.skill.md">error-handling.skill.md</a></td><td>Luôn luôn — try-catch, log, sanitize, fire-and-forget</td></tr>
+<tr><td><a href="./docs/skills/entity.skill.md">entity.skill.md</a></td><td>Tạo entity — @Column type, extends, implements</td></tr>
+<tr><td><a href="./docs/skills/cache.skill.md">cache.skill.md</a></td><td>Dùng cache — cacheGet/Set/Del, TTL, fallback</td></tr>
+<tr><td><a href="./docs/skills/messaging.skill.md">messaging.skill.md</a></td><td>Email/Push — dispatcher, outbox, renderer pattern</td></tr>
+<tr><td><a href="./docs/skills/event-handler.skill.md">event-handler.skill.md</a></td><td>Event — registry, EventEmitter2.on(), fire-and-forget</td></tr>
+<tr><td><a href="./docs/skills/scheduler.skill.md">scheduler.skill.md</a></td><td>Cron — @DistributedLock, concurrent batch, recovery</td></tr>
+<tr><td><a href="./docs/skills/module-structure.skill.md">module-structure.skill.md</a></td><td>Module mới — naming, aliases, barrel exports</td></tr>
+<tr><td><a href="./docs/skills/database.skill.md">database.skill.md</a></td><td>Migration, query, partitioning</td></tr>
+<tr><td><a href="./docs/skills/logging.skill.md">logging.skill.md</a></td><td>Logger, level, correlation ID, sanitize</td></tr>
+<tr><td><a href="./docs/skills/dto-validation.skill.md">dto-validation.skill.md</a></td><td>@IsNotEmpty, @IsOptional, custom validator</td></tr>
+<tr><td><a href="./docs/skills/testing.skill.md">testing.skill.md</a></td><td>Unit test, mock, e2e pattern</td></tr>
+</tbody>
+</table>
+<h3>📖 Cho Developer</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Tài liệu</th><th>Nội dung</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="./docs/foundation.md">Foundation Utilities</a></td><td>🆕 Hướng dẫn sử dụng <code>@foundation</code> (libs/common)</td></tr>
+<tr><td><a href="./docs/architecture.md">Kiến trúc</a></td><td>Tổng quan kiến trúc, layers, domain events</td></tr>
+<tr><td><a href="./docs/conventions.md">Conventions</a></td><td>Coding style, naming, path aliases</td></tr>
+<tr><td><a href="./docs/environment.md">Environment</a></td><td>Biến môi trường &amp; cấu hình</td></tr>
+<tr><td><a href="./docs/authentication.md">Authentication</a></td><td>JWT, OTP, role-based auth</td></tr>
+<tr><td><a href="./docs/permissions.md">Permissions</a></td><td>Hệ thống phân quyền RBAC</td></tr>
+<tr><td><a href="./docs/database.md">Database</a></td><td>TypeORM, migrations, Snowflake ID</td></tr>
+<tr><td><a href="./docs/logging.md">Logging</a></td><td>Winston, correlation ID, SQL logging</td></tr>
+<tr><td><a href="./docs/caching.md">Caching</a></td><td>Redis cache + in-memory fallback</td></tr>
+<tr><td><a href="./docs/distributed-lock.md">Distributed Lock</a></td><td>Redis/PG advisory lock</td></tr>
+<tr><td><a href="./docs/code-generation.md">Code Generation</a></td><td>Plop + AST-based scaffolding</td></tr>
+<tr><td><a href="./docs/validation-groups.md">Validation Groups</a></td><td>Validate theo group + <code>always: true</code></td></tr>
+<tr><td><a href="./docs/health-check.md">Health Check</a></td><td>Health endpoint, memory monitor, indicators</td></tr>
+<tr><td><a href="./docs/deployment.md">Deployment</a></td><td>Build, PM2, Docker, worker process</td></tr>
+</tbody>
+</table>
+<h3>💬 Conversation (Group Chat)</h3>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Tài liệu</th><th>Nội dung</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="./docs/conversation.md">Conversation</a></td><td>Tổng quan module group chat (WebSocket + REST)</td></tr>
+<tr><td><a href="./docs/conversation-api-reference.md">API Reference</a></td><td>Danh sách REST + WebSocket event</td></tr>
+<tr><td><a href="./docs/conversation-fe-integration.md">FE Integration</a></td><td>Hướng dẫn tích hợp phía frontend</td></tr>
+<tr><td><a href="./docs/conversation-internals.md">Internals</a></td><td>Cơ chế nội bộ, Redis adapter, scaling</td></tr>
+</tbody>
+</table>
+<hr>
+<h2>🏷️ Tech Stack</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr><th>Layer</th><th>Công nghệ</th></tr>
+</thead>
+<tbody>
+<tr><td>Framework</td><td>NestJS 11, TypeScript 5.8</td></tr>
+<tr><td>Database</td><td>PostgreSQL 17 + TypeORM 0.3</td></tr>
+<tr><td>Cache</td><td>Redis (ioredis) + in-memory fallback</td></tr>
+<tr><td>WebSocket</td><td>Socket.IO 4.8 + Redis adapter</td></tr>
+<tr><td>Auth</td><td>Passport + JWT, bcrypt</td></tr>
+<tr><td>File Storage</td><td>AWS S3 + local fallback</td></tr>
+<tr><td>Email</td><td>AWS SES/SESv2 + Nodemailer + TokenBucket</td></tr>
+<tr><td>Push</td><td>🆕 Firebase Cloud Messaging + TokenBucket</td></tr>
+<tr><td>Job Queue</td><td>🆕 BullMQ (pure, standalone workers)</td></tr>
+<tr><td>Scheduler</td><td>@nestjs/schedule (cron) + Distributed Lock</td></tr>
+<tr><td>Logging</td><td>Winston + daily rotate file</td></tr>
+<tr><td>Validation</td><td>class-validator + class-transformer</td></tr>
+<tr><td>Scaffolding</td><td>Plop + ts-morph (AST-based)</td></tr>
+<tr><td>AI Agent</td><td>🆕 12 skill files + AGENTS.md index</td></tr>
+</tbody>
+</table>
+<hr>
+<h2>📄 License</h2>
+<p>UNLICENSED — Private project.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'readme';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

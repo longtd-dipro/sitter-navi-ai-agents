@@ -1,0 +1,1157 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >RefreshTokenService</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/modules/auth/service/refresh-token.service.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>RefreshTokenService — owns the lifecycle of opaque (non-JWT) refresh
+tokens: issuance, rotation and revocation.</p>
+<p>Design:</p>
+<ul>
+<li>The token is an opaque high-entropy random string. The server keeps
+no decodable claims in it — validity is determined purely by the DB
+row keyed on the token&#39;s SHA-256 hash.</li>
+<li><strong>Rotation:</strong> every successful refresh consumes (revokes) the
+presented token and issues a fresh one. A refresh token is therefore
+single-use — replaying a rotated token fails, which also surfaces
+token theft (the legitimate client and the attacker can&#39;t both hold
+a valid token).</li>
+</ul>
+<p>This service deliberately does NOT mint access tokens — that stays with
+<a href="import(&#39;./auth.service&#39;).AuthService">import(&#39;./auth.service&#39;).AuthService</a>. Keeping the dependency
+one-directional (AuthService → RefreshTokenService for issuance) avoids
+a circular module dependency; the refresh endpoint composes the two.</p>
+
+            </p>
+
+
+
+
+                <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../modules/AuthModule.html" target="_self" >AuthModule</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="tab-pane fade " id="api">
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#generateRawToken" >generateRawToken</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#getTtlMs" >getTtlMs</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#hashToken" >hashToken</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#issueForUser" >issueForUser</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#resolveActive" >resolveActive</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#revoke" >revoke</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#revokeAllForUser" >revokeAllForUser</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#rotate" >rotate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(refreshTokenRepository: <a href="../injectables/RefreshTokenRepository.html" target="_self">RefreshTokenRepository</a>, config: ConfigService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/modules/auth/service/refresh-token.service.ts:51</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>refreshTokenRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RefreshTokenRepository.html" target="_self" >RefreshTokenRepository</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>config</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateRawToken"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>generateRawToken</b></span>
+                        <a href="#generateRawToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>generateRawToken()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/modules/auth/service/refresh-token.service.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Opaque, URL-safe random token. The <code>rt_</code> prefix aids log/debug triage.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTtlMs"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>getTtlMs</b></span>
+                        <a href="#getTtlMs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getTtlMs()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">src/modules/auth/service/refresh-token.service.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Refresh-token TTL in ms, parsed from <code>jwt.rfExpireTime</code> (e.g. &quot;360000s&quot;).</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hashToken"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>hashToken</b></span>
+                        <a href="#hashToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>hashToken(rawToken: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/modules/auth/service/refresh-token.service.ts:146</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Deterministic SHA-256 hash used as the DB lookup key.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>rawToken</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="issueForUser"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>issueForUser</b></span>
+                        <a href="#issueForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>issueForUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, meta: <a href="../interfaces/RefreshTokenMeta.html" target="_self">RefreshTokenMeta</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/modules/auth/service/refresh-token.service.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Issue a brand-new refresh token for a user and persist its hash.
+Returns the raw token (shown once) plus its expiry.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>meta</td>
+                                            <td>
+                                                            <code><a href="../interfaces/RefreshTokenMeta.html" target="_self" >RefreshTokenMeta</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{}</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/IssuedRefreshToken.html" target="_self" >Promise&lt;IssuedRefreshToken&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resolveActive"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>resolveActive</b></span>
+                        <a href="#resolveActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resolveActive(rawToken: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/modules/auth/service/refresh-token.service.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Resolve a raw token to its active, unexpired row. An expired (but not
+yet revoked) row is revoked on the spot before rejecting, so it can&#39;t
+be retried.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>rawToken</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../entitys/RefreshTokenEntity.html" target="_self" >Promise&lt;RefreshTokenEntity&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="revoke"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>revoke</b></span>
+                        <a href="#revoke"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>revoke(rawToken: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="108"
+                                    class="link-to-prism">src/modules/auth/service/refresh-token.service.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Revoke a single refresh token (logout on the current device). Unknown
+or already-revoked tokens are treated as a no-op — logout is
+idempotent and must not leak whether a token existed.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>rawToken</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="revokeAllForUser"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>revokeAllForUser</b></span>
+                        <a href="#revokeAllForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>revokeAllForUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/modules/auth/service/refresh-token.service.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Revoke every active refresh token for a user (logout everywhere).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rotate"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>rotate</b></span>
+                        <a href="#rotate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>rotate(rawToken: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, meta: <a href="../interfaces/RefreshTokenMeta.html" target="_self">RefreshTokenMeta</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/modules/auth/service/refresh-token.service.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Rotate a refresh token: validate the presented one, revoke it, and
+issue a replacement bound to the same user. Throws
+<a href="UnauthorizedException">UnauthorizedException</a> when the token is unknown, already
+rotated/revoked, or expired.</p>
+<p>Policy: when <code>jwt.rotateRefreshToken</code> is <code>false</code>, rotation is disabled
+— the presented token is validated and returned as-is (only the access
+token is refreshed). This trades away single-use theft detection for a
+longer-lived, reusable refresh token.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>rawToken</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>meta</td>
+                                            <td>
+                                                            <code><a href="../interfaces/RefreshTokenMeta.html" target="_self" >RefreshTokenMeta</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{}</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/IssuedRefreshToken.html" target="_self" >Promise&lt;IssuedRefreshToken&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, UnauthorizedException } from &#x27;@nestjs/common&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
+import { createHash, randomBytes } from &#x27;crypto&#x27;;
+import ms from &#x27;ms&#x27;;
+
+import { RefreshTokenEntity } from &#x27;../refresh-token.entity&#x27;;
+import { RefreshTokenRepository } from &#x27;../refresh-token.repository&#x27;;
+
+/** Bytes of entropy in a raw refresh token (384 bits → 64 base64url chars). */
+const TOKEN_ENTROPY_BYTES &#x3D; 48;
+
+/** Fallback TTL if &#x60;jwt.rfExpireTime&#x60; is unset/unparseable (30 days). */
+const DEFAULT_TTL_MS &#x3D; 30 * 24 * 60 * 60 * 1000;
+
+/** Lightweight client fingerprint stored alongside a token (audit only). */
+export interface RefreshTokenMeta {
+  userAgent?: string;
+  ip?: string;
+}
+
+/** Result of issuing/rotating a refresh token — the raw value is shown once. */
+export interface IssuedRefreshToken {
+  /** Owning user id. */
+  userId: string;
+  /** Raw opaque token — returned to the client, never persisted. */
+  refreshToken: string;
+  /** Absolute expiry of the raw token. */
+  refreshTokenExpiresAt: Date;
+}
+
+/**
+ * RefreshTokenService — owns the lifecycle of opaque (non-JWT) refresh
+ * tokens: issuance, rotation and revocation.
+ *
+ * Design:
+ *  - The token is an opaque high-entropy random string. The server keeps
+ *    no decodable claims in it — validity is determined purely by the DB
+ *    row keyed on the token&#x27;s SHA-256 hash.
+ *  - **Rotation:** every successful refresh consumes (revokes) the
+ *    presented token and issues a fresh one. A refresh token is therefore
+ *    single-use — replaying a rotated token fails, which also surfaces
+ *    token theft (the legitimate client and the attacker can&#x27;t both hold
+ *    a valid token).
+ *
+ * This service deliberately does NOT mint access tokens — that stays with
+ * {@link import(&#x27;./auth.service&#x27;).AuthService}. Keeping the dependency
+ * one-directional (AuthService → RefreshTokenService for issuance) avoids
+ * a circular module dependency; the refresh endpoint composes the two.
+ */
+@Injectable()
+export class RefreshTokenService {
+  constructor(
+    private readonly refreshTokenRepository: RefreshTokenRepository,
+    private readonly config: ConfigService,
+  ) {}
+
+  /**
+   * Issue a brand-new refresh token for a user and persist its hash.
+   * Returns the raw token (shown once) plus its expiry.
+   */
+  async issueForUser(userId: string, meta: RefreshTokenMeta &#x3D; {}): Promise&lt;IssuedRefreshToken&gt; {
+    const refreshToken &#x3D; this.generateRawToken();
+    const refreshTokenExpiresAt &#x3D; new Date(Date.now() + this.getTtlMs());
+
+    await this.refreshTokenRepository.save({
+      userId,
+      tokenHash: this.hashToken(refreshToken),
+      expiresAt: refreshTokenExpiresAt,
+      revokedAt: null,
+      meta,
+    });
+
+    return { userId, refreshToken, refreshTokenExpiresAt };
+  }
+
+  /**
+   * Rotate a refresh token: validate the presented one, revoke it, and
+   * issue a replacement bound to the same user. Throws
+   * {@link UnauthorizedException} when the token is unknown, already
+   * rotated/revoked, or expired.
+   *
+   * Policy: when &#x60;jwt.rotateRefreshToken&#x60; is &#x60;false&#x60;, rotation is disabled
+   * — the presented token is validated and returned as-is (only the access
+   * token is refreshed). This trades away single-use theft detection for a
+   * longer-lived, reusable refresh token.
+   */
+  async rotate(rawToken: string, meta: RefreshTokenMeta &#x3D; {}): Promise&lt;IssuedRefreshToken&gt; {
+    const current &#x3D; await this.resolveActive(rawToken);
+
+    if (!this.config.get&lt;boolean&gt;(&#x27;jwt.rotateRefreshToken&#x27;)) {
+      return {
+        userId: current.userId,
+        refreshToken: rawToken,
+        refreshTokenExpiresAt: current.expiresAt,
+      };
+    }
+
+    await this.refreshTokenRepository.revokeById(current.id, new Date());
+
+    return this.issueForUser(current.userId, meta);
+  }
+
+  /**
+   * Revoke a single refresh token (logout on the current device). Unknown
+   * or already-revoked tokens are treated as a no-op — logout is
+   * idempotent and must not leak whether a token existed.
+   */
+  async revoke(rawToken: string): Promise&lt;void&gt; {
+    const token &#x3D; await this.refreshTokenRepository.findActiveByTokenHash(this.hashToken(rawToken));
+    if (token) {
+      await this.refreshTokenRepository.revokeById(token.id, new Date());
+    }
+  }
+
+  /** Revoke every active refresh token for a user (logout everywhere). */
+  async revokeAllForUser(userId: string): Promise&lt;void&gt; {
+    await this.refreshTokenRepository.revokeAllByUserId(userId, new Date());
+  }
+
+  /**
+   * Resolve a raw token to its active, unexpired row. An expired (but not
+   * yet revoked) row is revoked on the spot before rejecting, so it can&#x27;t
+   * be retried.
+   */
+  private async resolveActive(rawToken: string): Promise&lt;RefreshTokenEntity&gt; {
+    const token &#x3D; await this.refreshTokenRepository.findActiveByTokenHash(this.hashToken(rawToken));
+
+    if (!token) {
+      throw new UnauthorizedException(&#x27;auth.invalid_refresh_token&#x27;);
+    }
+
+    if (token.expiresAt.getTime() &lt;&#x3D; Date.now()) {
+      await this.refreshTokenRepository.revokeById(token.id, new Date());
+      throw new UnauthorizedException(&#x27;auth.refresh_token_expired&#x27;);
+    }
+
+    return token;
+  }
+
+  /** Opaque, URL-safe random token. The &#x60;rt_&#x60; prefix aids log/debug triage. */
+  private generateRawToken(): string {
+    return &#x60;rt_${randomBytes(TOKEN_ENTROPY_BYTES).toString(&#x27;base64url&#x27;)}&#x60;;
+  }
+
+  /** Deterministic SHA-256 hash used as the DB lookup key. */
+  private hashToken(rawToken: string): string {
+    return createHash(&#x27;sha256&#x27;).update(rawToken).digest(&#x27;hex&#x27;);
+  }
+
+  /** Refresh-token TTL in ms, parsed from &#x60;jwt.rfExpireTime&#x60; (e.g. &quot;360000s&quot;). */
+  private getTtlMs(): number {
+    const configured &#x3D; this.config.get&lt;string&gt;(&#x27;jwt.rfExpireTime&#x27;);
+    if (!configured) {
+      return DEFAULT_TTL_MS;
+    }
+    const parsed &#x3D; ms(configured as ms.StringValue);
+    return typeof parsed &#x3D;&#x3D;&#x3D; &#x27;number&#x27; &amp;&amp; parsed &gt; 0 ? parsed : DEFAULT_TTL_MS;
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'RefreshTokenService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,887 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  LineVerifyResponse</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/modules/auth/service/social.service.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api"><section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-3">
+                    <h6><b>Properties</b></h6>
+                </td>
+                <td class="col-md-9">
+                    <ul class="index-list">
+                        <li>
+                                <a href="#aud" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">aud</span>
+                                </a>
+                        </li>
+                        <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#email" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">email</span>
+                                </a>
+                        </li>
+                        <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#error" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">error</span>
+                                </a>
+                        </li>
+                        <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#error_description" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">error_description</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#exp" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">exp</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#iss" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">iss</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#sub" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">sub</span>
+                                </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="aud"></a>
+                                <span class="name "><b>aud</b>
+                                    <a href="#aud">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>aud:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/modules/auth/service/social.service.ts:49</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="email"></a>
+                                <span class="name "><b>email</b>
+                                    <a href="#email">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>email:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Optional</i>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/modules/auth/service/social.service.ts:51</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="error"></a>
+                                <span class="name "><b>error</b>
+                                    <a href="#error">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>error:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Optional</i>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/modules/auth/service/social.service.ts:52</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="error_description"></a>
+                                <span class="name "><b>error_description</b>
+                                    <a href="#error_description">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>error_description:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Optional</i>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/modules/auth/service/social.service.ts:53</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="exp"></a>
+                                <span class="name "><b>exp</b>
+                                    <a href="#exp">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>exp:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/modules/auth/service/social.service.ts:50</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="iss"></a>
+                                <span class="name "><b>iss</b>
+                                    <a href="#iss">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>iss:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/modules/auth/service/social.service.ts:47</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="sub"></a>
+                                <span class="name "><b>sub</b>
+                                    <a href="#sub">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>sub:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/modules/auth/service/social.service.ts:48</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+    </section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger, UnauthorizedException } from &#x27;@nestjs/common&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
+import { HttpClientService } from &#x27;@infrastructure/http-client&#x27;;
+import { SocialProvider } from &#x27;@modules/user/social-account.entity&#x27;;
+
+const APPLE_ISSUER &#x3D; &#x27;https://appleid.apple.com&#x27;;
+const APPLE_JWKS_URL &#x3D; &#x27;https://appleid.apple.com/auth/keys&#x27;;
+const LINE_VERIFY_URL &#x3D; &#x27;https://api.line.me/oauth2/v2.1/verify&#x27;;
+
+/** i18n key surfaced to the client on any verification failure. */
+const SOCIAL_LOGIN_FAILED &#x3D; &#x27;auth.social_login_failed&#x27;;
+
+/** Apple ID tokens are signed with RS256. */
+const APPLE_SIGNING_ALG &#x3D; &#x27;RS256&#x27;;
+
+/** Cache JWKS for an hour so we are not refetching on every login. */
+const JWKS_CACHE_TTL_MS &#x3D; 60 * 60 * 1000;
+
+const JWT_PARTS &#x3D; 3;
+const MS_PER_SECOND &#x3D; 1000;
+
+/** Normalized identity extracted from a verified social ID token. */
+export interface SocialIdentity {
+  /** Stable, provider-scoped user id (the JWT &#x60;sub&#x60;). */
+  providerUserId: string;
+  /** Email claim, when the provider exposes it. */
+  email?: string;
+}
+
+interface JwtHeader {
+  alg: string;
+  kid?: string;
+}
+
+/** A JWK as published in a JWKS, carrying the key id we match on. */
+type JwkWithKid &#x3D; JsonWebKey &amp; { kid?: string };
+
+interface ApplePayload {
+  iss: string;
+  sub: string;
+  aud: string | string[];
+  exp: number;
+  email?: string;
+}
+
+interface LineVerifyResponse {
+  iss: string;
+  sub: string;
+  aud: string;
+  exp: number;
+  email?: string;
+  error?: string;
+  error_description?: string;
+}
+
+/**
+ * SocialService — verifies third-party ID tokens (Apple, LINE) and
+ * resolves them to a stable {@link SocialIdentity}.
+ *
+ * Apple tokens are RS256 JWTs verified locally against Apple&#x27;s published
+ * JWKS using WebCrypto. LINE tokens are verified through LINE&#x27;s
+ * &#x60;/oauth2/v2.1/verify&#x60; endpoint, which validates the signature, expiry
+ * and audience server-side.
+ */
+@Injectable()
+export class SocialService {
+  private readonly logger &#x3D; new Logger(SocialService.name);
+  private appleJwksCache?: { keys: JwkWithKid[]; fetchedAt: number };
+
+  constructor(
+    private readonly config: ConfigService,
+    private readonly http: HttpClientService,
+  ) {}
+
+  /** Verify an ID token for the given provider and return the identity. */
+  async verifyIdToken(provider: SocialProvider, idToken: string): Promise&lt;SocialIdentity&gt; {
+    switch (provider) {
+      case SocialProvider.APPLE:
+        return this.verifyApple(idToken);
+      case SocialProvider.LINE:
+        return this.verifyLine(idToken);
+      // return this.getDumpSocialProfile(idToken);
+      default:
+        this.fail(&#x60;unsupported provider&#x3D;${provider}&#x60;);
+    }
+  }
+
+  async getDumpSocialProfile(jwtTokenDump: string) {
+    const parts &#x3D; jwtTokenDump?.split(&#x27;.&#x27;);
+    if (parts.length !&#x3D;&#x3D; JWT_PARTS) {
+      this.fail(&#x60;malformed JWT: expected ${JWT_PARTS} parts, got ${parts.length}&#x60;);
+    }
+    const payload &#x3D; JSON.parse(Buffer.from(parts[1], &#x27;base64&#x27;).toString(&#x27;utf-8&#x27;));
+    const providerUserId &#x3D; payload.uid;
+    return { providerUserId };
+  }
+
+  /**
+   * Log the real reason (for ops/debugging) but never leak it to the client —
+   * every failure surfaces the same generic {@link SOCIAL_LOGIN_FAILED} key.
+   */
+  private fail(reason: string): never {
+    this.logger.warn(&#x60;Social token rejected: ${reason}&#x60;);
+    throw new UnauthorizedException(SOCIAL_LOGIN_FAILED);
+  }
+
+  // --------------------------------------------------------------------------
+  // Apple
+  // --------------------------------------------------------------------------
+
+  private async verifyApple(idToken: string): Promise&lt;SocialIdentity&gt; {
+    const { header, payload, signedData, signature } &#x3D; this.decodeJwt&lt;ApplePayload&gt;(idToken);
+
+    if (header.alg !&#x3D;&#x3D; APPLE_SIGNING_ALG || !header.kid) {
+      this.fail(&#x60;unexpected Apple header alg&#x3D;${header.alg} kid&#x3D;${header.kid ?? &#x27;none&#x27;}&#x60;);
+    }
+
+    const jwk &#x3D; await this.getAppleJwk(header.kid);
+    const isVerified &#x3D; await this.verifyRs256(jwk, signedData, signature);
+    if (!isVerified) {
+      this.fail(&#x60;Apple signature verification failed kid&#x3D;${header.kid}&#x60;);
+    }
+
+    this.assertAppleClaims(payload);
+
+    return { providerUserId: payload.sub, email: payload.email };
+  }
+
+  /** Validate the issuer, audience and expiry claims of an Apple ID token. */
+  private assertAppleClaims(payload: ApplePayload): void {
+    if (payload.iss !&#x3D;&#x3D; APPLE_ISSUER) {
+      this.fail(&#x60;unexpected Apple issuer&#x3D;${payload.iss}&#x60;);
+    }
+
+    const allowedAudiences &#x3D; this.config.get&lt;string[]&gt;(&#x27;social.apple.clientIds&#x27;) ?? [];
+    const audiences &#x3D; Array.isArray(payload.aud) ? payload.aud : [payload.aud];
+    const hasAudienceMatch &#x3D; audiences.some((aud) &#x3D;&gt; allowedAudiences.includes(aud));
+    if (allowedAudiences.length &gt; 0 &amp;&amp; !hasAudienceMatch) {
+      this.fail(&#x60;Apple audience mismatch aud&#x3D;${audiences.join(&#x27;,&#x27;)}&#x60;);
+    }
+
+    if (this.isExpired(payload.exp)) {
+      this.fail(&#x60;Apple token expired exp&#x3D;${payload.exp}&#x60;);
+    }
+  }
+
+  /** Resolve the Apple signing key matching &#x60;kid&#x60;, refreshing JWKS on miss. */
+  private async getAppleJwk(kid: string): Promise&lt;JwkWithKid&gt; {
+    const fromCache &#x3D; this.appleJwksCache?.keys.find((key) &#x3D;&gt; key.kid &#x3D;&#x3D;&#x3D; kid);
+    if (fromCache &amp;&amp; !this.isJwksStale()) {
+      return fromCache;
+    }
+
+    const keys &#x3D; await this.fetchAppleJwks();
+    const jwk &#x3D; keys.find((key) &#x3D;&gt; key.kid &#x3D;&#x3D;&#x3D; kid);
+    if (!jwk) {
+      this.fail(&#x60;no Apple JWK matches kid&#x3D;${kid}&#x60;);
+    }
+    return jwk;
+  }
+
+  private isJwksStale(): boolean {
+    if (!this.appleJwksCache) {
+      return true;
+    }
+    return Date.now() - this.appleJwksCache.fetchedAt &gt; JWKS_CACHE_TTL_MS;
+  }
+
+  private async fetchAppleJwks(): Promise&lt;JwkWithKid[]&gt; {
+    try {
+      const { data } &#x3D; await this.http.get&lt;{ keys: JwkWithKid[] }&gt;(APPLE_JWKS_URL);
+      this.appleJwksCache &#x3D; { keys: data.keys, fetchedAt: Date.now() };
+      return data.keys;
+    } catch (error) {
+      const message &#x3D; error instanceof Error ? error.message : &#x27;Unknown&#x27;;
+      this.logger.error(&#x60;Failed to fetch Apple JWKS from ${APPLE_JWKS_URL}: ${message}&#x60;);
+      this.fail(&#x27;Apple JWKS unavailable&#x27;);
+    }
+  }
+
+  /** Verify an RS256 signature over &#x60;signedData&#x60; using a JWK public key. */
+  private async verifyRs256(
+    jwk: JsonWebKey,
+    signedData: Uint8Array,
+    signature: Uint8Array,
+  ): Promise&lt;boolean&gt; {
+    const key &#x3D; await crypto.subtle.importKey(
+      &#x27;jwk&#x27;,
+      jwk,
+      { name: &#x27;RSASSA-PKCS1-v1_5&#x27;, hash: &#x27;SHA-256&#x27; },
+      false,
+      [&#x27;verify&#x27;],
+    );
+    return crypto.subtle.verify(&#x27;RSASSA-PKCS1-v1_5&#x27;, key, signature, signedData);
+  }
+
+  // --------------------------------------------------------------------------
+  // LINE
+  // --------------------------------------------------------------------------
+
+  private async verifyLine(idToken: string): Promise&lt;SocialIdentity&gt; {
+    const channelId &#x3D; this.config.get&lt;string&gt;(&#x27;social.line.channelId&#x27;);
+    if (!channelId) {
+      this.logger.error(&#x27;LINE_CHANNEL_ID is not configured&#x27;);
+      this.fail(&#x27;LINE channel id missing&#x27;);
+    }
+
+    const payload &#x3D; await this.requestLineVerify(idToken, channelId);
+    return { providerUserId: payload.sub, email: payload.email };
+  }
+
+  /** Call LINE&#x27;s verify endpoint and return the validated payload. */
+  private async requestLineVerify(idToken: string, channelId: string): Promise&lt;LineVerifyResponse&gt; {
+    let response: { data: LineVerifyResponse; ok: boolean };
+    try {
+      // throwOnError: false so we can inspect LINE&#x27;s error payload on a 4xx.
+      response &#x3D; await this.http.post&lt;LineVerifyResponse&gt;(
+        LINE_VERIFY_URL,
+        new URLSearchParams({ id_token: idToken, client_id: channelId }),
+        { throwOnError: false },
+      );
+    } catch (error) {
+      const message &#x3D; error instanceof Error ? error.message : &#x27;Unknown&#x27;;
+      this.logger.error(&#x60;Failed to reach LINE verify endpoint: ${message}&#x60;);
+      this.fail(&#x27;LINE verify unavailable&#x27;);
+    }
+
+    const payload &#x3D; response.data;
+    if (!response.ok || payload.error) {
+      this.fail(&#x60;LINE verify rejected token: ${payload.error_description ?? payload.error}&#x60;);
+    }
+    return payload;
+  }
+
+  // --------------------------------------------------------------------------
+  // Shared helpers
+  // --------------------------------------------------------------------------
+
+  /** Split and decode a compact JWS, returning header, payload and raw bytes. */
+  private decodeJwt&lt;T&gt;(token: string): {
+    header: JwtHeader;
+    payload: T;
+    signedData: Uint8Array;
+    signature: Uint8Array;
+  } {
+    const parts &#x3D; token.split(&#x27;.&#x27;);
+    if (parts.length !&#x3D;&#x3D; JWT_PARTS) {
+      this.fail(&#x60;malformed JWT: expected ${JWT_PARTS} parts, got ${parts.length}&#x60;);
+    }
+    const [encodedHeader, encodedPayload, encodedSignature] &#x3D; parts;
+    try {
+      const header &#x3D; JSON.parse(this.base64UrlDecode(encodedHeader).toString(&#x27;utf8&#x27;)) as JwtHeader;
+      const payload &#x3D; JSON.parse(this.base64UrlDecode(encodedPayload).toString(&#x27;utf8&#x27;)) as T;
+      return {
+        header,
+        payload,
+        signedData: new TextEncoder().encode(&#x60;${encodedHeader}.${encodedPayload}&#x60;),
+        signature: new Uint8Array(this.base64UrlDecode(encodedSignature)),
+      };
+    } catch (error) {
+      if (error instanceof UnauthorizedException) {
+        throw error;
+      }
+      this.fail(&#x60;JWT decode failed: ${(error as Error).message}&#x60;);
+    }
+  }
+
+  private base64UrlDecode(value: string): Buffer {
+    return Buffer.from(value, &#x27;base64url&#x27;);
+  }
+
+  private isExpired(exp: number): boolean {
+    return Number.isFinite(exp) ? Date.now() &gt;&#x3D; exp * MS_PER_SECOND : true;
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'LineVerifyResponse.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

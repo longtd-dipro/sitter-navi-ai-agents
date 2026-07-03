@@ -1,0 +1,649 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  LockManagerConfig</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>libs/infrastructure/lock/lock-manager.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api"><section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-3">
+                    <h6><b>Properties</b></h6>
+                </td>
+                <td class="col-md-9">
+                    <ul class="index-list">
+                        <li>
+                                <a href="#adapters" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">adapters</span>
+                                </a>
+                        </li>
+                        <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#defaultOnFail" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">defaultOnFail</span>
+                                </a>
+                        </li>
+                        <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#defaultTtlMs" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">defaultTtlMs</span>
+                                </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="adapters"></a>
+                                <span class="name "><b>adapters</b>
+                                    <a href="#adapters">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>adapters:         <code><a href="../interfaces/LockAdapter.html" target="_self" >LockAdapter[]</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="../interfaces/LockAdapter.html" target="_self" >LockAdapter[]</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">libs/infrastructure/lock/lock-manager.ts:10</a></div>
+                                </td>
+                            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Ordered list of adapters. The first healthy adapter wins.
+If the primary fails, it falls back to the next one.</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="defaultOnFail"></a>
+                                <span class="name "><b>defaultOnFail</b>
+                                    <a href="#defaultOnFail">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>defaultOnFail:     <code>&quot;skip&quot; | &quot;throw&quot;</code>
+</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>&#39;skip&#39;
+</code>
+                            </td>
+                        </tr>
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>    <code>&quot;skip&quot; | &quot;throw&quot;</code>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Optional</i>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">libs/infrastructure/lock/lock-manager.ts:22</a></div>
+                                </td>
+                            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Default behavior when lock cannot be acquired.
+&#39;skip&#39;</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="defaultTtlMs"></a>
+                                <span class="name "><b>defaultTtlMs</b>
+                                    <a href="#defaultTtlMs">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>defaultTtlMs:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>30000
+</code>
+                            </td>
+                        </tr>
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Optional</i>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">libs/infrastructure/lock/lock-manager.ts:16</a></div>
+                                </td>
+                            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Default TTL for locks in milliseconds.
+30000</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Logger } from &#x27;@nestjs/common&#x27;;
+import { LockAdapter, LockOptions } from &#x27;./interfaces&#x27;;
+import { LockNotAcquiredError } from &#x27;./errors&#x27;;
+
+export interface LockManagerConfig {
+  /**
+   * Ordered list of adapters. The first healthy adapter wins.
+   * If the primary fails, it falls back to the next one.
+   */
+  adapters: LockAdapter[];
+
+  /**
+   * Default TTL for locks in milliseconds.
+   * @default 30000
+   */
+  defaultTtlMs?: number;
+
+  /**
+   * Default behavior when lock cannot be acquired.
+   * @default &#x27;skip&#x27;
+   */
+  defaultOnFail?: &#x27;skip&#x27; | &#x27;throw&#x27;;
+}
+
+/**
+ * LockManager orchestrates distributed lock acquisition across multiple
+ * adapters with automatic fallback.
+ *
+ * Usage:
+ *   const manager &#x3D; new LockManager({
+ *     adapters: [redisAdapter, postgresAdapter],
+ *   });
+ *
+ *   // The manager tries Redis first; if Redis is down, falls back to PG.
+ *   const released &#x3D; await manager.withLock(&#x27;my-job&#x27;, async () &#x3D;&gt; {
+ *     // critical section
+ *   });
+ */
+export class LockManager {
+  private readonly logger &#x3D; new Logger(&#x27;LockManager&#x27;);
+  private readonly adapters: LockAdapter[];
+  private readonly defaultTtlMs: number;
+  private readonly defaultOnFail: &#x27;skip&#x27; | &#x27;throw&#x27;;
+
+  /** Track which adapter holds which lock for correct release */
+  private lockOwnership &#x3D; new Map&lt;string, LockAdapter&gt;();
+
+  constructor(config: LockManagerConfig) {
+    this.adapters &#x3D; config.adapters;
+    this.defaultTtlMs &#x3D; config.defaultTtlMs ?? 30000;
+    this.defaultOnFail &#x3D; config.defaultOnFail ?? &#x27;skip&#x27;;
+
+    if (this.adapters.length &#x3D;&#x3D;&#x3D; 0) {
+      throw new Error(&#x27;LockManager requires at least one adapter&#x27;);
+    }
+  }
+
+  /**
+   * Acquire a lock, execute the callback, then release.
+   * Returns the callback result, or undefined if lock was not acquired (onFail: &#x27;skip&#x27;).
+   */
+  async withLock&lt;T&gt;(
+    key: string,
+    fn: () &#x3D;&gt; Promise&lt;T&gt;,
+    options?: Partial&lt;LockOptions&gt;,
+  ): Promise&lt;T | undefined&gt; {
+    const opts &#x3D; this.resolveOptions(key, options);
+    const acquired &#x3D; await this.acquire(opts);
+
+    if (!acquired) {
+      if (opts.onFail &#x3D;&#x3D;&#x3D; &#x27;throw&#x27;) {
+        throw new LockNotAcquiredError(opts.key);
+      }
+      this.logger.warn(&#x60;Lock not acquired, skipping: ${opts.key}&#x60;);
+      return undefined;
+    }
+
+    try {
+      return await fn();
+    } finally {
+      await this.release(opts.key);
+    }
+  }
+
+  /**
+   * Acquire a lock using the first healthy adapter.
+   * Falls back to subsequent adapters if the primary is unavailable.
+   */
+  async acquire(options: LockOptions): Promise&lt;boolean&gt; {
+    const { key, ttlMs, waitMs, retryIntervalMs } &#x3D; options;
+
+    // Non-blocking mode (default)
+    if (!waitMs || waitMs &lt;&#x3D; 0) {
+      return this.tryAcquireOnce(key, ttlMs);
+    }
+
+    // Blocking mode with retry
+    const deadline &#x3D; Date.now() + waitMs;
+    const interval &#x3D; retryIntervalMs ?? 100;
+
+    while (Date.now() &lt; deadline) {
+      const acquired &#x3D; await this.tryAcquireOnce(key, ttlMs);
+      if (acquired) return true;
+      await this.sleep(Math.min(interval, deadline - Date.now()));
+    }
+
+    return false;
+  }
+
+  /**
+   * Release a previously acquired lock.
+   */
+  async release(key: string): Promise&lt;boolean&gt; {
+    const adapter &#x3D; this.lockOwnership.get(key);
+    if (!adapter) {
+      this.logger.warn(&#x60;No lock ownership found for key: ${key}&#x60;);
+      return false;
+    }
+
+    const released &#x3D; await adapter.release(key);
+    this.lockOwnership.delete(key);
+    return released;
+  }
+
+  /**
+   * Gracefully shut down all adapters.
+   */
+  async shutdown(): Promise&lt;void&gt; {
+    for (const adapter of this.adapters) {
+      await adapter.shutdown().catch((err) &#x3D;&gt; {
+        this.logger.error(&#x60;Error shutting down adapter ${adapter.name}&#x60;, (err as Error).stack);
+      });
+    }
+    this.lockOwnership.clear();
+  }
+
+  // ---------------------------------------------------------------------------
+  // Private
+  // ---------------------------------------------------------------------------
+
+  private async tryAcquireOnce(key: string, ttlMs?: number): Promise&lt;boolean&gt; {
+    for (const adapter of this.adapters) {
+      const healthy &#x3D; await adapter.isHealthy().catch(() &#x3D;&gt; false);
+      if (!healthy) {
+        this.logger.debug(&#x60;Adapter &quot;${adapter.name}&quot; unhealthy, trying next...&#x60;);
+        continue;
+      }
+
+      const acquired &#x3D; await adapter.acquire(key, ttlMs).catch((err) &#x3D;&gt; {
+        this.logger.error(
+          &#x60;Adapter &quot;${adapter.name}&quot; acquire error for key &quot;${key}&quot;&#x60;,
+          (err as Error).stack,
+        );
+        return false;
+      });
+
+      if (acquired) {
+        this.lockOwnership.set(key, adapter);
+        this.logger.debug(&#x60;Lock acquired via &quot;${adapter.name}&quot;: ${key}&#x60;);
+        return true;
+      }
+
+      // Lock is held by someone else on this adapter — don&#x27;t fallback
+      // (the resource is genuinely locked, not an adapter failure)
+      return false;
+    }
+
+    // All adapters unhealthy
+    this.logger.error(&#x60;All lock adapters unavailable for key: ${key}&#x60;);
+    return false;
+  }
+
+  private resolveOptions(key: string, partial?: Partial&lt;LockOptions&gt;): LockOptions {
+    return {
+      key,
+      ttlMs: partial?.ttlMs ?? this.defaultTtlMs,
+      waitMs: partial?.waitMs ?? 0,
+      retryIntervalMs: partial?.retryIntervalMs ?? 100,
+      onFail: partial?.onFail ?? this.defaultOnFail,
+    };
+  }
+
+  private sleep(ms: number): Promise&lt;void&gt; {
+    return new Promise((resolve) &#x3D;&gt; setTimeout(resolve, ms));
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'LockManagerConfig.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

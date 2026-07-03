@@ -1,0 +1,253 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content architecture">
+                   <div class="content-data">
+
+
+
+
+
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Architecture</li>
+</ol>
+
+    <div class="architecture-legend">
+        <button type="button" class="architecture-legend-item" data-architecture-filter="component" aria-pressed="true">
+            <span class="architecture-legend-color architecture-component"></span>Component
+        </button>
+        <button type="button" class="architecture-legend-item" data-architecture-filter="directive" aria-pressed="true">
+            <span class="architecture-legend-color architecture-directive"></span>Directive
+        </button>
+        <button type="button" class="architecture-legend-item" data-architecture-filter="pipe" aria-pressed="true">
+            <span class="architecture-legend-color architecture-pipe"></span>Pipe
+        </button>
+        <button type="button" class="architecture-legend-item" data-architecture-filter="module" aria-pressed="true">
+            <span class="architecture-legend-color architecture-module"></span>Module
+        </button>
+        <button type="button" class="architecture-legend-item" data-architecture-filter="injectable" aria-pressed="true">
+            <span class="architecture-legend-color architecture-injectable"></span>Injectable
+        </button>
+    </div>
+
+    <div class="text-center module-graph-container architecture-graph-wrapper">
+        <div id="architecture-graph"></div>
+        <div class="btn-group size-buttons">
+            <button id="architecture-zoom-in" class="btn btn-default btn-sm">Zoom in</button>
+            <button id="architecture-reset" class="btn btn-default btn-sm">Reset</button>
+            <button id="architecture-zoom-out" class="btn btn-default btn-sm">Zoom out</button>
+        </div>
+    </div>
+
+    <script>
+        var ARCHITECTURE_DEP_GRAPH = {"nodes":[{"id":"module:ApiKeyModule","name":"ApiKeyModule","type":"module","url":"./modules/ApiKeyModule.html"},{"id":"injectable:ApiKeyService","name":"ApiKeyService","type":"injectable","url":"./injectables/ApiKeyService.html"},{"id":"module:AppModule","name":"AppModule","type":"module","url":"./modules/AppModule.html"},{"id":"module:AttendanceLogModule","name":"AttendanceLogModule","type":"module","url":"./modules/AttendanceLogModule.html"},{"id":"module:AuthModule","name":"AuthModule","type":"module","url":"./modules/AuthModule.html"},{"id":"module:BookingModule","name":"BookingModule","type":"module","url":"./modules/BookingModule.html"},{"id":"module:CacheModule","name":"CacheModule","type":"module","url":"./modules/CacheModule.html"},{"id":"module:CareServiceModule","name":"CareServiceModule","type":"module","url":"./modules/CareServiceModule.html"},{"id":"module:CategoryModule","name":"CategoryModule","type":"module","url":"./modules/CategoryModule.html"},{"id":"module:ChildrenModule","name":"ChildrenModule","type":"module","url":"./modules/ChildrenModule.html"},{"id":"module:ConversationModule","name":"ConversationModule","type":"module","url":"./modules/ConversationModule.html"},{"id":"module:EmailModule","name":"EmailModule","type":"module","url":"./modules/EmailModule.html"},{"id":"module:EmergencyContactModule","name":"EmergencyContactModule","type":"module","url":"./modules/EmergencyContactModule.html"},{"id":"module:FaqCategoryModule","name":"FaqCategoryModule","type":"module","url":"./modules/FaqCategoryModule.html"},{"id":"module:FaqItemModule","name":"FaqItemModule","type":"module","url":"./modules/FaqItemModule.html"},{"id":"module:FaqSubCategoryModule","name":"FaqSubCategoryModule","type":"module","url":"./modules/FaqSubCategoryModule.html"},{"id":"module:HealthModule","name":"HealthModule","type":"module","url":"./modules/HealthModule.html"},{"id":"module:HttpClientModule","name":"HttpClientModule","type":"module","url":"./modules/HttpClientModule.html"},{"id":"module:JapanAddressModule","name":"JapanAddressModule","type":"module","url":"./modules/JapanAddressModule.html"},{"id":"module:LockModule","name":"LockModule","type":"module","url":"./modules/LockModule.html"},{"id":"module:LoggingModule","name":"LoggingModule","type":"module","url":"./modules/LoggingModule.html"},{"id":"module:MembershipPlanModule","name":"MembershipPlanModule","type":"module","url":"./modules/MembershipPlanModule.html"},{"id":"module:ParentMembershipModule","name":"ParentMembershipModule","type":"module","url":"./modules/ParentMembershipModule.html"},{"id":"module:ParentProfileModule","name":"ParentProfileModule","type":"module","url":"./modules/ParentProfileModule.html"},{"id":"module:PaymentModule","name":"PaymentModule","type":"module","url":"./modules/PaymentModule.html"},{"id":"module:PayoutModule","name":"PayoutModule","type":"module","url":"./modules/PayoutModule.html"},{"id":"module:PermissionModule","name":"PermissionModule","type":"module","url":"./modules/PermissionModule.html"},{"id":"module:ProductModule","name":"ProductModule","type":"module","url":"./modules/ProductModule.html"},{"id":"module:PushNotificationModule","name":"PushNotificationModule","type":"module","url":"./modules/PushNotificationModule.html"},{"id":"module:ReviewModule","name":"ReviewModule","type":"module","url":"./modules/ReviewModule.html"},{"id":"module:ServicePriceModule","name":"ServicePriceModule","type":"module","url":"./modules/ServicePriceModule.html"},{"id":"module:SharedModule","name":"SharedModule","type":"module","url":"./modules/SharedModule.html"},{"id":"module:SitterAvailabilityModule","name":"SitterAvailabilityModule","type":"module","url":"./modules/SitterAvailabilityModule.html"},{"id":"module:SitterCertificationModule","name":"SitterCertificationModule","type":"module","url":"./modules/SitterCertificationModule.html"},{"id":"module:SitterProfileModule","name":"SitterProfileModule","type":"module","url":"./modules/SitterProfileModule.html"},{"id":"module:SitterServiceModule","name":"SitterServiceModule","type":"module","url":"./modules/SitterServiceModule.html"},{"id":"module:SitterTrainingSessionModule","name":"SitterTrainingSessionModule","type":"module","url":"./modules/SitterTrainingSessionModule.html"},{"id":"module:StorageModule","name":"StorageModule","type":"module","url":"./modules/StorageModule.html"},{"id":"module:TrainingCourseModule","name":"TrainingCourseModule","type":"module","url":"./modules/TrainingCourseModule.html"},{"id":"module:TrainingSessionModule","name":"TrainingSessionModule","type":"module","url":"./modules/TrainingSessionModule.html"},{"id":"module:UploadModule","name":"UploadModule","type":"module","url":"./modules/UploadModule.html"},{"id":"module:UserModule","name":"UserModule","type":"module","url":"./modules/UserModule.html"},{"id":"injectable:AttendanceLogService","name":"AttendanceLogService","type":"injectable","url":"./injectables/AttendanceLogService.html"},{"id":"injectable:AdminAuthService","name":"AdminAuthService","type":"injectable","url":"./injectables/AdminAuthService.html"},{"id":"injectable:AuthService","name":"AuthService","type":"injectable","url":"./injectables/AuthService.html"},{"id":"injectable:OtpService","name":"OtpService","type":"injectable","url":"./injectables/OtpService.html"},{"id":"injectable:RefreshTokenService","name":"RefreshTokenService","type":"injectable","url":"./injectables/RefreshTokenService.html"},{"id":"injectable:SocialService","name":"SocialService","type":"injectable","url":"./injectables/SocialService.html"},{"id":"injectable:AuthRepository","name":"AuthRepository","type":"injectable","url":"./injectables/AuthRepository.html"},{"id":"injectable:JwtStrategy","name":"JwtStrategy","type":"injectable","url":"./injectables/JwtStrategy.html"},{"id":"injectable:RefreshJwtStrategy","name":"RefreshJwtStrategy","type":"injectable","url":"./injectables/RefreshJwtStrategy.html"},{"id":"injectable:RefreshTokenRepository","name":"RefreshTokenRepository","type":"injectable","url":"./injectables/RefreshTokenRepository.html"},{"id":"injectable:BookingService","name":"BookingService","type":"injectable","url":"./injectables/BookingService.html"},{"id":"injectable:RedisCacheService","name":"RedisCacheService","type":"injectable","url":"./injectables/RedisCacheService.html"},{"id":"injectable:CareServiceService","name":"CareServiceService","type":"injectable","url":"./injectables/CareServiceService.html"},{"id":"injectable:CategoryService","name":"CategoryService","type":"injectable","url":"./injectables/CategoryService.html"},{"id":"injectable:ChildrenService","name":"ChildrenService","type":"injectable","url":"./injectables/ChildrenService.html"},{"id":"injectable:ConversationService","name":"ConversationService","type":"injectable","url":"./injectables/ConversationService.html"},{"id":"injectable:TypeOrmConversationRepository","name":"TypeOrmConversationRepository","type":"injectable","url":"./injectables/TypeOrmConversationRepository.html"},{"id":"injectable:TypeOrmMessageAttachmentRepository","name":"TypeOrmMessageAttachmentRepository","type":"injectable","url":"./injectables/TypeOrmMessageAttachmentRepository.html"},{"id":"injectable:TypeOrmMessageRepository","name":"TypeOrmMessageRepository","type":"injectable","url":"./injectables/TypeOrmMessageRepository.html"},{"id":"injectable:TypeOrmParticipantRepository","name":"TypeOrmParticipantRepository","type":"injectable","url":"./injectables/TypeOrmParticipantRepository.html"},{"id":"injectable:MailService","name":"MailService","type":"injectable","url":"./injectables/MailService.html"},{"id":"injectable:EmailRendererService","name":"EmailRendererService","type":"injectable","url":"./injectables/EmailRendererService.html"},{"id":"injectable:EmailTemplateService","name":"EmailTemplateService","type":"injectable","url":"./injectables/EmailTemplateService.html"},{"id":"injectable:MailScheduler","name":"MailScheduler","type":"injectable","url":"./injectables/MailScheduler.html"},{"id":"injectable:OutboxEmailService","name":"OutboxEmailService","type":"injectable","url":"./injectables/OutboxEmailService.html"},{"id":"injectable:SmtpEmailDispatcher","name":"SmtpEmailDispatcher","type":"injectable","url":"./injectables/SmtpEmailDispatcher.html"},{"id":"injectable:EmergencyContactService","name":"EmergencyContactService","type":"injectable","url":"./injectables/EmergencyContactService.html"},{"id":"injectable:FaqCategoryService","name":"FaqCategoryService","type":"injectable","url":"./injectables/FaqCategoryService.html"},{"id":"injectable:FaqItemService","name":"FaqItemService","type":"injectable","url":"./injectables/FaqItemService.html"},{"id":"injectable:FaqSubCategoryService","name":"FaqSubCategoryService","type":"injectable","url":"./injectables/FaqSubCategoryService.html"},{"id":"injectable:CacheHealthIndicator","name":"CacheHealthIndicator","type":"injectable","url":"./injectables/CacheHealthIndicator.html"},{"id":"injectable:DatabaseHealthIndicator","name":"DatabaseHealthIndicator","type":"injectable","url":"./injectables/DatabaseHealthIndicator.html"},{"id":"injectable:DiskHealthIndicator","name":"DiskHealthIndicator","type":"injectable","url":"./injectables/DiskHealthIndicator.html"},{"id":"injectable:HealthService","name":"HealthService","type":"injectable","url":"./injectables/HealthService.html"},{"id":"injectable:LockHealthIndicator","name":"LockHealthIndicator","type":"injectable","url":"./injectables/LockHealthIndicator.html"},{"id":"injectable:MemoryHealthIndicator","name":"MemoryHealthIndicator","type":"injectable","url":"./injectables/MemoryHealthIndicator.html"},{"id":"injectable:MemoryMonitorService","name":"MemoryMonitorService","type":"injectable","url":"./injectables/MemoryMonitorService.html"},{"id":"injectable:RedisHealthIndicator","name":"RedisHealthIndicator","type":"injectable","url":"./injectables/RedisHealthIndicator.html"},{"id":"injectable:MunicipalityService","name":"MunicipalityService","type":"injectable","url":"./injectables/MunicipalityService.html"},{"id":"injectable:PostalCodeService","name":"PostalCodeService","type":"injectable","url":"./injectables/PostalCodeService.html"},{"id":"injectable:PrefectureService","name":"PrefectureService","type":"injectable","url":"./injectables/PrefectureService.html"},{"id":"injectable:LoggingService","name":"LoggingService","type":"injectable","url":"./injectables/LoggingService.html"},{"id":"injectable:NestLoggerAdapter","name":"NestLoggerAdapter","type":"injectable","url":"./injectables/NestLoggerAdapter.html"},{"id":"injectable:SensitiveFieldRedactor","name":"SensitiveFieldRedactor","type":"injectable","url":"./injectables/SensitiveFieldRedactor.html"},{"id":"injectable:MembershipPlanService","name":"MembershipPlanService","type":"injectable","url":"./injectables/MembershipPlanService.html"},{"id":"injectable:ParentMembershipService","name":"ParentMembershipService","type":"injectable","url":"./injectables/ParentMembershipService.html"},{"id":"injectable:ParentProfileService","name":"ParentProfileService","type":"injectable","url":"./injectables/ParentProfileService.html"},{"id":"injectable:PaymentService","name":"PaymentService","type":"injectable","url":"./injectables/PaymentService.html"},{"id":"injectable:PayoutService","name":"PayoutService","type":"injectable","url":"./injectables/PayoutService.html"},{"id":"injectable:PermissionCacheService","name":"PermissionCacheService","type":"injectable","url":"./injectables/PermissionCacheService.html"},{"id":"injectable:PermissionRegistryService","name":"PermissionRegistryService","type":"injectable","url":"./injectables/PermissionRegistryService.html"},{"id":"injectable:PermissionService","name":"PermissionService","type":"injectable","url":"./injectables/PermissionService.html"},{"id":"injectable:ProductService","name":"ProductService","type":"injectable","url":"./injectables/ProductService.html"},{"id":"injectable:PushService","name":"PushService","type":"injectable","url":"./injectables/PushService.html"},{"id":"injectable:UserDeviceService","name":"UserDeviceService","type":"injectable","url":"./injectables/UserDeviceService.html"},{"id":"injectable:FcmDispatcher","name":"FcmDispatcher","type":"injectable","url":"./injectables/FcmDispatcher.html"},{"id":"injectable:OutboxPushService","name":"OutboxPushService","type":"injectable","url":"./injectables/OutboxPushService.html"},{"id":"injectable:PushRendererService","name":"PushRendererService","type":"injectable","url":"./injectables/PushRendererService.html"},{"id":"injectable:PushScheduler","name":"PushScheduler","type":"injectable","url":"./injectables/PushScheduler.html"},{"id":"injectable:PushTemplateService","name":"PushTemplateService","type":"injectable","url":"./injectables/PushTemplateService.html"},{"id":"injectable:ReviewService","name":"ReviewService","type":"injectable","url":"./injectables/ReviewService.html"},{"id":"injectable:ServicePriceService","name":"ServicePriceService","type":"injectable","url":"./injectables/ServicePriceService.html"},{"id":"injectable:GeneratorService","name":"GeneratorService","type":"injectable","url":"./injectables/GeneratorService.html"},{"id":"injectable:SnowflakeAllocatorService","name":"SnowflakeAllocatorService","type":"injectable","url":"./injectables/SnowflakeAllocatorService.html"},{"id":"injectable:SitterAvailabilityService","name":"SitterAvailabilityService","type":"injectable","url":"./injectables/SitterAvailabilityService.html"},{"id":"injectable:SitterCertificationService","name":"SitterCertificationService","type":"injectable","url":"./injectables/SitterCertificationService.html"},{"id":"injectable:SitterProfileService","name":"SitterProfileService","type":"injectable","url":"./injectables/SitterProfileService.html"},{"id":"injectable:SitterServiceService","name":"SitterServiceService","type":"injectable","url":"./injectables/SitterServiceService.html"},{"id":"injectable:SitterTrainingSessionService","name":"SitterTrainingSessionService","type":"injectable","url":"./injectables/SitterTrainingSessionService.html"},{"id":"injectable:StorageService","name":"StorageService","type":"injectable","url":"./injectables/StorageService.html"},{"id":"injectable:StorageScheduler","name":"StorageScheduler","type":"injectable","url":"./injectables/StorageScheduler.html"},{"id":"injectable:TrainingCourseService","name":"TrainingCourseService","type":"injectable","url":"./injectables/TrainingCourseService.html"},{"id":"injectable:TrainingSessionService","name":"TrainingSessionService","type":"injectable","url":"./injectables/TrainingSessionService.html"},{"id":"injectable:UserRepository","name":"UserRepository","type":"injectable","url":"./injectables/UserRepository.html"},{"id":"injectable:UserService","name":"UserService","type":"injectable","url":"./injectables/UserService.html"}],"edges":[{"source":"module:ApiKeyModule","target":"injectable:ApiKeyService"},{"source":"module:AppModule","target":"module:ApiKeyModule"},{"source":"module:AppModule","target":"module:AttendanceLogModule"},{"source":"module:AppModule","target":"module:AuthModule"},{"source":"module:AppModule","target":"module:BookingModule"},{"source":"module:AppModule","target":"module:CacheModule"},{"source":"module:AppModule","target":"module:CareServiceModule"},{"source":"module:AppModule","target":"module:CategoryModule"},{"source":"module:AppModule","target":"module:ChildrenModule"},{"source":"module:AppModule","target":"module:ConversationModule"},{"source":"module:AppModule","target":"module:EmailModule"},{"source":"module:AppModule","target":"module:EmergencyContactModule"},{"source":"module:AppModule","target":"module:FaqCategoryModule"},{"source":"module:AppModule","target":"module:FaqItemModule"},{"source":"module:AppModule","target":"module:FaqSubCategoryModule"},{"source":"module:AppModule","target":"module:HealthModule"},{"source":"module:AppModule","target":"module:HttpClientModule"},{"source":"module:AppModule","target":"module:JapanAddressModule"},{"source":"module:AppModule","target":"module:LockModule"},{"source":"module:AppModule","target":"module:LoggingModule"},{"source":"module:AppModule","target":"module:MembershipPlanModule"},{"source":"module:AppModule","target":"module:ParentMembershipModule"},{"source":"module:AppModule","target":"module:ParentProfileModule"},{"source":"module:AppModule","target":"module:PaymentModule"},{"source":"module:AppModule","target":"module:PayoutModule"},{"source":"module:AppModule","target":"module:PermissionModule"},{"source":"module:AppModule","target":"module:ProductModule"},{"source":"module:AppModule","target":"module:PushNotificationModule"},{"source":"module:AppModule","target":"module:ReviewModule"},{"source":"module:AppModule","target":"module:ServicePriceModule"},{"source":"module:AppModule","target":"module:SharedModule"},{"source":"module:AppModule","target":"module:SitterAvailabilityModule"},{"source":"module:AppModule","target":"module:SitterCertificationModule"},{"source":"module:AppModule","target":"module:SitterProfileModule"},{"source":"module:AppModule","target":"module:SitterServiceModule"},{"source":"module:AppModule","target":"module:SitterTrainingSessionModule"},{"source":"module:AppModule","target":"module:StorageModule"},{"source":"module:AppModule","target":"module:TrainingCourseModule"},{"source":"module:AppModule","target":"module:TrainingSessionModule"},{"source":"module:AppModule","target":"module:UploadModule"},{"source":"module:AppModule","target":"module:UserModule"},{"source":"module:AttendanceLogModule","target":"injectable:AttendanceLogService"},{"source":"module:AuthModule","target":"module:ParentProfileModule"},{"source":"module:AuthModule","target":"module:UserModule"},{"source":"module:AuthModule","target":"injectable:AdminAuthService"},{"source":"module:AuthModule","target":"injectable:AuthService"},{"source":"module:AuthModule","target":"injectable:OtpService"},{"source":"module:AuthModule","target":"injectable:RefreshTokenService"},{"source":"module:AuthModule","target":"injectable:SocialService"},{"source":"module:AuthModule","target":"injectable:AuthRepository"},{"source":"module:AuthModule","target":"injectable:JwtStrategy"},{"source":"module:AuthModule","target":"injectable:RefreshJwtStrategy"},{"source":"module:AuthModule","target":"injectable:RefreshTokenRepository"},{"source":"module:BookingModule","target":"injectable:BookingService"},{"source":"module:CacheModule","target":"injectable:RedisCacheService"},{"source":"module:CareServiceModule","target":"injectable:CareServiceService"},{"source":"module:CategoryModule","target":"injectable:CategoryService"},{"source":"module:ChildrenModule","target":"injectable:ChildrenService"},{"source":"module:ConversationModule","target":"module:CacheModule"},{"source":"module:ConversationModule","target":"module:StorageModule"},{"source":"module:ConversationModule","target":"injectable:ConversationService"},{"source":"module:ConversationModule","target":"injectable:TypeOrmConversationRepository"},{"source":"module:ConversationModule","target":"injectable:TypeOrmMessageAttachmentRepository"},{"source":"module:ConversationModule","target":"injectable:TypeOrmMessageRepository"},{"source":"module:ConversationModule","target":"injectable:TypeOrmParticipantRepository"},{"source":"module:EmailModule","target":"injectable:MailService"},{"source":"module:EmailModule","target":"injectable:EmailRendererService"},{"source":"module:EmailModule","target":"injectable:EmailTemplateService"},{"source":"module:EmailModule","target":"injectable:MailScheduler"},{"source":"module:EmailModule","target":"injectable:OutboxEmailService"},{"source":"module:EmailModule","target":"injectable:SmtpEmailDispatcher"},{"source":"module:EmergencyContactModule","target":"injectable:EmergencyContactService"},{"source":"module:FaqCategoryModule","target":"injectable:FaqCategoryService"},{"source":"module:FaqItemModule","target":"module:FaqSubCategoryModule"},{"source":"module:FaqItemModule","target":"injectable:FaqItemService"},{"source":"module:FaqSubCategoryModule","target":"module:FaqCategoryModule"},{"source":"module:FaqSubCategoryModule","target":"injectable:FaqSubCategoryService"},{"source":"module:HealthModule","target":"injectable:CacheHealthIndicator"},{"source":"module:HealthModule","target":"injectable:DatabaseHealthIndicator"},{"source":"module:HealthModule","target":"injectable:DiskHealthIndicator"},{"source":"module:HealthModule","target":"injectable:HealthService"},{"source":"module:HealthModule","target":"injectable:LockHealthIndicator"},{"source":"module:HealthModule","target":"injectable:MemoryHealthIndicator"},{"source":"module:HealthModule","target":"injectable:MemoryMonitorService"},{"source":"module:HealthModule","target":"injectable:RedisHealthIndicator"},{"source":"module:JapanAddressModule","target":"injectable:MunicipalityService"},{"source":"module:JapanAddressModule","target":"injectable:PostalCodeService"},{"source":"module:JapanAddressModule","target":"injectable:PrefectureService"},{"source":"module:LoggingModule","target":"injectable:LoggingService"},{"source":"module:LoggingModule","target":"injectable:NestLoggerAdapter"},{"source":"module:LoggingModule","target":"injectable:SensitiveFieldRedactor"},{"source":"module:MembershipPlanModule","target":"injectable:MembershipPlanService"},{"source":"module:ParentMembershipModule","target":"injectable:ParentMembershipService"},{"source":"module:ParentProfileModule","target":"injectable:ParentProfileService"},{"source":"module:PaymentModule","target":"injectable:PaymentService"},{"source":"module:PayoutModule","target":"injectable:PayoutService"},{"source":"module:PermissionModule","target":"injectable:PermissionCacheService"},{"source":"module:PermissionModule","target":"injectable:PermissionRegistryService"},{"source":"module:PermissionModule","target":"injectable:PermissionService"},{"source":"module:ProductModule","target":"injectable:ProductService"},{"source":"module:PushNotificationModule","target":"injectable:PushService"},{"source":"module:PushNotificationModule","target":"injectable:UserDeviceService"},{"source":"module:PushNotificationModule","target":"injectable:FcmDispatcher"},{"source":"module:PushNotificationModule","target":"injectable:OutboxPushService"},{"source":"module:PushNotificationModule","target":"injectable:PushRendererService"},{"source":"module:PushNotificationModule","target":"injectable:PushScheduler"},{"source":"module:PushNotificationModule","target":"injectable:PushTemplateService"},{"source":"module:ReviewModule","target":"injectable:ReviewService"},{"source":"module:ServicePriceModule","target":"injectable:ServicePriceService"},{"source":"module:SharedModule","target":"injectable:GeneratorService"},{"source":"module:SharedModule","target":"injectable:SnowflakeAllocatorService"},{"source":"module:SitterAvailabilityModule","target":"injectable:SitterAvailabilityService"},{"source":"module:SitterCertificationModule","target":"injectable:SitterCertificationService"},{"source":"module:SitterProfileModule","target":"injectable:SitterProfileService"},{"source":"module:SitterServiceModule","target":"injectable:SitterServiceService"},{"source":"module:SitterTrainingSessionModule","target":"injectable:SitterTrainingSessionService"},{"source":"module:StorageModule","target":"injectable:StorageService"},{"source":"module:StorageModule","target":"injectable:StorageScheduler"},{"source":"module:TrainingCourseModule","target":"injectable:TrainingCourseService"},{"source":"module:TrainingSessionModule","target":"injectable:TrainingSessionService"},{"source":"module:UserModule","target":"injectable:UserRepository"},{"source":"module:UserModule","target":"injectable:UserService"}]};
+    </script>
+    <script src="./js/libs/vis-network.min.js"></script>
+    <script src="./js/architecture-graph.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'architecture';
+            var COMPODOC_CURRENT_PAGE_URL = 'architecture.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

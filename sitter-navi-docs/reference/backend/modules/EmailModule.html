@@ -1,0 +1,537 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content module">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Modules</li>
+    <li class="breadcrumb-item" >EmailModule</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/modules/email/email.module.ts</code>
+</div>
+
+<div class="text-center module-graph-container">
+    <div id="module-graph-svg">
+        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.47.0 (20210316.0004)
+ -->
+<!-- Title: dependencies Pages: 1 -->
+<svg width="1169pt" height="284pt"
+ viewBox="0.00 0.00 1169.00 284.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 280)">
+<title>dependencies</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-280 1165,-280 1165,4 -4,4"/>
+<text text-anchor="start" x="559.51" y="-42.4" font-family="Times-12" font-weight="bold" font-size="14.00">Legend</text>
+<polygon fill="#ffffb3" stroke="transparent" points="346.5,-10 346.5,-30 366.5,-30 366.5,-10 346.5,-10"/>
+<text text-anchor="start" x="370.13" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Declarations</text>
+<polygon fill="#8dd3c7" stroke="transparent" points="459.5,-10 459.5,-30 479.5,-30 479.5,-10 459.5,-10"/>
+<text text-anchor="start" x="483.23" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Module</text>
+<polygon fill="#80b1d3" stroke="transparent" points="545.5,-10 545.5,-30 565.5,-30 565.5,-10 545.5,-10"/>
+<text text-anchor="start" x="569.28" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Bootstrap</text>
+<polygon fill="#fdb462" stroke="transparent" points="642.5,-10 642.5,-30 662.5,-30 662.5,-10 642.5,-10"/>
+<text text-anchor="start" x="666.17" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Providers</text>
+<polygon fill="#fb8072" stroke="transparent" points="738.5,-10 738.5,-30 758.5,-30 758.5,-10 738.5,-10"/>
+<text text-anchor="start" x="762.23" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
+<g id="clust1" class="cluster">
+<title>cluster_EmailModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1153,-268 1153,-70 8,-70"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_EmailModule_exports</title>
+<polygon fill="none" stroke="black" points="442,-208 442,-260 546,-260 546,-208 442,-208"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_EmailModule_providers</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 1145,-130 1145,-78 16,-78"/>
+</g>
+<!-- MailService  -->
+<g id="node1" class="node"><a xlink:href="../injectables/MailService.html" href="../injectables/MailService.html" target="_top">
+<title>MailService </title>
+<polygon fill="#fb8072" stroke="black" points="537.92,-252 450.08,-252 450.08,-216 537.92,-216 537.92,-252"/>
+<text text-anchor="middle" x="494" y="-229.8" font-family="Times,serif" font-size="14.00">MailService </text>
+</a></g>
+<!-- EmailModule -->
+<g id="node2" class="node"><a xlink:href="../modules/EmailModule.html" href="../modules/EmailModule.html" target="_top">
+<title>EmailModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="540.49,-187 537.49,-191 516.49,-191 513.49,-187 447.51,-187 447.51,-151 540.49,-151 540.49,-187"/>
+<text text-anchor="middle" x="494" y="-164.8" font-family="Times,serif" font-size="14.00">EmailModule</text>
+</a></g>
+<!-- EmailModule&#45;&gt;MailService  -->
+<g id="edge1" class="edge">
+<title>EmailModule&#45;&gt;MailService </title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M494,-187.11C494,-187.11 494,-205.99 494,-205.99"/>
+<polygon fill="black" stroke="black" points="490.5,-205.99 494,-215.99 497.5,-205.99 490.5,-205.99"/>
+</g>
+<!-- EmailRendererService -->
+<g id="node3" class="node"><a xlink:href="../injectables/EmailRendererService.html" href="../injectables/EmailRendererService.html" target="_top">
+<title>EmailRendererService</title>
+<ellipse fill="#fdb462" stroke="black" cx="1039" cy="-104" rx="98.39" ry="18"/>
+<text text-anchor="middle" x="1039" y="-99.8" font-family="Times,serif" font-size="14.00">EmailRendererService</text>
+</a></g>
+<!-- EmailRendererService&#45;&gt;EmailModule -->
+<g id="edge2" class="edge">
+<title>EmailRendererService&#45;&gt;EmailModule</title>
+<path fill="none" stroke="black" d="M1039,-122.29C1039,-144.21 1039,-178 1039,-178 1039,-178 550.94,-178 550.94,-178"/>
+<polygon fill="black" stroke="black" points="550.94,-174.5 540.94,-178 550.94,-181.5 550.94,-174.5"/>
+</g>
+<!-- EmailTemplateService -->
+<g id="node4" class="node"><a xlink:href="../injectables/EmailTemplateService.html" href="../injectables/EmailTemplateService.html" target="_top">
+<title>EmailTemplateService</title>
+<ellipse fill="#fdb462" stroke="black" cx="823" cy="-104" rx="99.55" ry="18"/>
+<text text-anchor="middle" x="823" y="-99.8" font-family="Times,serif" font-size="14.00">EmailTemplateService</text>
+</a></g>
+<!-- EmailTemplateService&#45;&gt;EmailModule -->
+<g id="edge3" class="edge">
+<title>EmailTemplateService&#45;&gt;EmailModule</title>
+<path fill="none" stroke="black" d="M823,-122.11C823,-141.34 823,-169 823,-169 823,-169 550.79,-169 550.79,-169"/>
+<polygon fill="black" stroke="black" points="550.79,-165.5 540.79,-169 550.79,-172.5 550.79,-165.5"/>
+</g>
+<!-- MailScheduler -->
+<g id="node5" class="node"><a xlink:href="../injectables/MailScheduler.html" href="../injectables/MailScheduler.html" target="_top">
+<title>MailScheduler</title>
+<ellipse fill="#fdb462" stroke="black" cx="638" cy="-104" rx="67.77" ry="18"/>
+<text text-anchor="middle" x="638" y="-99.8" font-family="Times,serif" font-size="14.00">MailScheduler</text>
+</a></g>
+<!-- MailScheduler&#45;&gt;EmailModule -->
+<g id="edge4" class="edge">
+<title>MailScheduler&#45;&gt;EmailModule</title>
+<path fill="none" stroke="black" d="M638,-122.03C638,-138.4 638,-160 638,-160 638,-160 550.75,-160 550.75,-160"/>
+<polygon fill="black" stroke="black" points="550.75,-156.5 540.75,-160 550.75,-163.5 550.75,-156.5"/>
+</g>
+<!-- MailService -->
+<g id="node6" class="node"><a xlink:href="../injectables/MailService.html" href="../injectables/MailService.html" target="_top">
+<title>MailService</title>
+<ellipse fill="#fdb462" stroke="black" cx="494" cy="-104" rx="58.46" ry="18"/>
+<text text-anchor="middle" x="494" y="-99.8" font-family="Times,serif" font-size="14.00">MailService</text>
+</a></g>
+<!-- MailService&#45;&gt;EmailModule -->
+<g id="edge5" class="edge">
+<title>MailService&#45;&gt;EmailModule</title>
+<path fill="none" stroke="black" d="M494,-122.11C494,-122.11 494,-140.99 494,-140.99"/>
+<polygon fill="black" stroke="black" points="490.5,-140.99 494,-150.99 497.5,-140.99 490.5,-140.99"/>
+</g>
+<!-- OutboxEmailService -->
+<g id="node7" class="node"><a xlink:href="../injectables/OutboxEmailService.html" href="../injectables/OutboxEmailService.html" target="_top">
+<title>OutboxEmailService</title>
+<ellipse fill="#fdb462" stroke="black" cx="326" cy="-104" rx="92.05" ry="18"/>
+<text text-anchor="middle" x="326" y="-99.8" font-family="Times,serif" font-size="14.00">OutboxEmailService</text>
+</a></g>
+<!-- OutboxEmailService&#45;&gt;EmailModule -->
+<g id="edge6" class="edge">
+<title>OutboxEmailService&#45;&gt;EmailModule</title>
+<path fill="none" stroke="black" d="M326,-122.03C326,-138.4 326,-160 326,-160 326,-160 437.2,-160 437.2,-160"/>
+<polygon fill="black" stroke="black" points="437.2,-163.5 447.2,-160 437.2,-156.5 437.2,-163.5"/>
+</g>
+<!-- SmtpEmailDispatcher -->
+<g id="node8" class="node"><a xlink:href="../injectables/SmtpEmailDispatcher.html" href="../injectables/SmtpEmailDispatcher.html" target="_top">
+<title>SmtpEmailDispatcher</title>
+<ellipse fill="#fdb462" stroke="black" cx="120" cy="-104" rx="96.14" ry="18"/>
+<text text-anchor="middle" x="120" y="-99.8" font-family="Times,serif" font-size="14.00">SmtpEmailDispatcher</text>
+</a></g>
+<!-- SmtpEmailDispatcher&#45;&gt;EmailModule -->
+<g id="edge7" class="edge">
+<title>SmtpEmailDispatcher&#45;&gt;EmailModule</title>
+<path fill="none" stroke="black" d="M87.89,-121.16C87.89,-143.02 87.89,-178 87.89,-178 87.89,-178 437.41,-178 437.41,-178"/>
+<polygon fill="black" stroke="black" points="437.41,-181.5 447.41,-178 437.41,-174.5 437.41,-181.5"/>
+</g>
+<!-- SmtpEmailDispatcher&#45;&gt;EmailModule -->
+<g id="edge8" class="edge">
+<title>SmtpEmailDispatcher&#45;&gt;EmailModule</title>
+<path fill="none" stroke="black" d="M152.11,-121.08C152.11,-140.34 152.11,-169 152.11,-169 152.11,-169 437.18,-169 437.18,-169"/>
+<polygon fill="black" stroke="black" points="437.18,-172.5 447.18,-169 437.18,-165.5 437.18,-172.5"/>
+</g>
+</g>
+</svg>
+
+    </div>
+    <i id="fullscreen" class="icon ion-ios-resize module-graph-fullscreen-btn" aria-hidden="true"></i>
+    <div class="btn-group size-buttons">
+        <button id="zoom-in" class="btn btn-default btn-sm">Zoom in</button>
+        <button id="reset" class="btn btn-default btn-sm">Reset</button>
+        <button id="zoom-out" class="btn btn-default btn-sm">Zoom out</button>
+    </div>
+</div>
+<script src="../js/libs/svg-pan-zoom.min.js"></script>
+<script src="../js/svg-pan-zoom.controls.js"></script>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a href="#info" 
+            class="nav-link"
+            class="nav-link active"
+            role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+    </li>
+    <li class="nav-item">
+        <a href="#source" 
+            class="nav-link"
+            
+            role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+
+
+        <div class="container-fluid module">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Providers<a href="https://angular.io/api/core/NgModule#providers" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module providers"><span class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../injectables/EmailRendererService.html">EmailRendererService</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/EmailTemplateService.html">EmailTemplateService</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/MailScheduler.html">MailScheduler</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/MailService.html">MailService</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/OutboxEmailService.html">OutboxEmailService</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/SmtpEmailDispatcher.html">SmtpEmailDispatcher</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/SmtpEmailDispatcher.html">SmtpEmailDispatcher</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Controllers<a href="https://docs.nestjs.com/controllers" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module controllers"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../controllers/AdminEmailTemplateController.html">AdminEmailTemplateController</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Exports<a href="https://angular.io/api/core/NgModule#exports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module exports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../injectables/MailService.html">MailService</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+                <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../modules/AppModule.html" target="_self" >AppModule</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../injectables/MailService.html" target="_self" >MailService</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../controllers/AdminEmailTemplateController.html" target="_self" >AdminEmailTemplateController</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/EmailRendererService.html" target="_self" >EmailRendererService</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/EmailTemplateService.html" target="_self" >EmailTemplateService</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/MailScheduler.html" target="_self" >MailScheduler</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/OutboxEmailService.html" target="_self" >OutboxEmailService</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/SmtpEmailDispatcher.html" target="_self" >SmtpEmailDispatcher</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
+import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
+
+import { EmailTemplate } from &#x27;./email-template.entity&#x27;;
+import { OutboxEmail } from &#x27;./outbox-email.entity&#x27;;
+import { EmailTemplateService } from &#x27;./email-template.service&#x27;;
+import { EmailRendererService } from &#x27;./email-renderer.service&#x27;;
+import { OutboxEmailService } from &#x27;./outbox-email.service&#x27;;
+import { SmtpEmailDispatcher } from &#x27;./smtp-email-dispatcher.service&#x27;;
+import { EMAIL_DISPATCHER } from &#x27;./email-dispatcher.interface&#x27;;
+import { MailService } from &#x27;./mail.service&#x27;;
+import { MailScheduler } from &#x27;./mail.scheduler&#x27;;
+import { AdminEmailTemplateController } from &#x27;./email-template.controller.admin&#x27;;
+
+@Module({
+  imports: [TypeOrmModule.forFeature([EmailTemplate, OutboxEmail])],
+  providers: [
+    EmailTemplateService,
+    EmailRendererService,
+    OutboxEmailService,
+    SmtpEmailDispatcher,
+    /**
+     * Token-based injection for IEmailDispatcher.
+     *
+     * To swap to BullMQ later:
+     *   Change useClass to BullMqEmailDispatcher.
+     *   No other code changes needed.
+     */
+    { provide: EMAIL_DISPATCHER, useClass: SmtpEmailDispatcher },
+    MailService,
+    MailScheduler,
+  ],
+  controllers: [AdminEmailTemplateController],
+  /**
+   * Export MailService so other modules can inject it for direct
+   * email sending (sendByTemplate, sendCustomEmail).
+   */
+  exports: [MailService, EMAIL_DISPATCHER],
+})
+export class EmailModule {}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
+            var COMPODOC_CURRENT_PAGE_URL = 'EmailModule.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

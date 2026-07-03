@@ -1,0 +1,3507 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >ConversationGateway</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/modules/conversation/conversation.gateway.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                        <code>OnGatewayConnection</code>
+                        <code>OnGatewayDisconnect</code>
+            </p>
+
+
+                <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../modules/ConversationModule.html" target="_self" >ConversationModule</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                        <code>OnGatewayConnection</code>
+                                </li>
+                                <li>
+                                        <code>OnGatewayDisconnect</code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="tab-pane fade " id="api">
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#logger" >logger</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#MAX_CONNECTIONS_PER_USER" >MAX_CONNECTIONS_PER_USER</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#MAX_INITIAL_ROOMS" >MAX_INITIAL_ROOMS</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                <a href="#server" >server</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#emitToGroup" >emitToGroup</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#emitToUser" >emitToUser</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#enforceConnectionLimit" >enforceConnectionLimit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getConnectionsMap" >getConnectionsMap</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleConnection" >handleConnection</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleConversationOpened" >handleConversationOpened</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleDisconnect" >handleDisconnect</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleGroupCreated" >handleGroupCreated</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleGroupDissolved" >handleGroupDissolved</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleGroupUpdated" >handleGroupUpdated</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleMemberAdded" >handleMemberAdded</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleMemberLeft" >handleMemberLeft</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleMemberRemoved" >handleMemberRemoved</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleMessageDelivered" >handleMessageDelivered</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleMessageDeliveredEvent" >handleMessageDeliveredEvent</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleMessageRead" >handleMessageRead</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleMessageReadEvent" >handleMessageReadEvent</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleMessageSent" >handleMessageSent</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleNewMessage" >handleNewMessage</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#joinUserToRoom" >joinUserToRoom</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#redisHDel" >redisHDel</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#redisHGetAll" >redisHGetAll</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#redisHSet" >redisHSet</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeUserFromRoom" >removeUserFromRoom</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(jwtService: JwtService, participantRepo: <a href="../interfaces/ParticipantRepository.html" target="_self">ParticipantRepository</a>, redisCacheService: <a href="../injectables/RedisCacheService.html" target="_self">RedisCacheService</a>, ConversationService: <a href="../injectables/ConversationService.html" target="_self">ConversationService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/modules/conversation/conversation.gateway.ts:43</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>jwtService</td>
+                                                  
+                                                        <td>
+                                                                    <code>JwtService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>participantRepo</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/ParticipantRepository.html" target="_self" >ParticipantRepository</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>redisCacheService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RedisCacheService.html" target="_self" >RedisCacheService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ConversationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ConversationService.html" target="_self" >ConversationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logger"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>logger</b></span>
+                        <a href="#logger"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Logger(ConversationGateway.name)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/modules/conversation/conversation.gateway.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MAX_CONNECTIONS_PER_USER"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>MAX_CONNECTIONS_PER_USER</b></span>
+                        <a href="#MAX_CONNECTIONS_PER_USER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>5</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/modules/conversation/conversation.gateway.ts:40</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Maximum concurrent connections per user</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MAX_INITIAL_ROOMS"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>MAX_INITIAL_ROOMS</b></span>
+                        <a href="#MAX_INITIAL_ROOMS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>100</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/modules/conversation/conversation.gateway.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Maximum number of group rooms to join on initial connection</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="server"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>server</b></span>
+                        <a href="#server"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Server</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @WebSocketServer()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/modules/conversation/conversation.gateway.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emitToGroup"></a>
+                    <span class="name">
+                        <span ><b>emitToGroup</b></span>
+                        <a href="#emitToGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>emitToGroup(groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, event: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, payload: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="173"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:173</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Emit an event to all sockets in a group room.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>groupId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>payload</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emitToUser"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>emitToUser</b></span>
+                        <a href="#emitToUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>emitToUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, event: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, payload: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="180"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:180</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Emit an event to all sockets of a specific user.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>payload</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="enforceConnectionLimit"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>enforceConnectionLimit</b></span>
+                        <a href="#enforceConnectionLimit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>enforceConnectionLimit(client: Socket, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, redisKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="636"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:636</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Enforce the max connection limit per user.
+If the user already has MAX_CONNECTIONS_PER_USER connections,
+disconnect the oldest one (earliest timestamp).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>client</td>
+                                            <td>
+                                                        <code>Socket</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>redisKey</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getConnectionsMap"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>getConnectionsMap</b></span>
+                        <a href="#getConnectionsMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getConnectionsMap(key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="724"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:724</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get the connections map from Redis (JSON-encoded).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;Record&lt;string, string&gt;&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleConnection"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>handleConnection</b></span>
+                        <a href="#handleConnection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleConnection(client: Socket)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle new WebSocket connection.</p>
+<ol>
+<li>Validate JWT from auth handshake</li>
+<li>Check connection count (max 5, disconnect oldest if exceeded)</li>
+<li>Store connection in Redis hash</li>
+<li>Join all group rooms where user is an active participant</li>
+</ol>
+<p>Requirements: 8.1, 8.2, 8.3, 8.4, 8.5</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>client</td>
+                                            <td>
+                                                        <code>Socket</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleConversationOpened"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>handleConversationOpened</b></span>
+                        <a href="#handleConversationOpened"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleConversationOpened(client: Socket, payload: { groupId: string })</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@SubscribeMessage(&#x27;group:conversation-opened&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="251"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:251</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle conversation-opened event from client.
+Resets the unread count for the user in the specified group.</p>
+<p>Requirements: 9.6</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>client</td>
+                                            <td>
+                                                        <code>Socket</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>payload</td>
+                                            <td>
+                                                        <code>{ groupId: string }</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleDisconnect"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>handleDisconnect</b></span>
+                        <a href="#handleDisconnect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleDisconnect(client: Socket)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="148"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:148</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle WebSocket disconnection.</p>
+<p>Remove the connection from Redis hash.
+Socket.IO automatically handles leaving all rooms.</p>
+<p>Requirements: 8.4, 8.5</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>client</td>
+                                            <td>
+                                                        <code>Socket</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleGroupCreated"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>handleGroupCreated</b></span>
+                        <a href="#handleGroupCreated"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleGroupCreated(event: <a href="../classes/GroupCreatedEvent.html" target="_self">GroupCreatedEvent</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@OnEvent(GroupCreatedEvent.eventName, {async: true})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="338"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:338</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle GroupCreatedEvent.
+Emit group:created to all participants and join their sockets to the new room.</p>
+<p>Requirements: 1.5</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../classes/GroupCreatedEvent.html" target="_self" >GroupCreatedEvent</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleGroupDissolved"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>handleGroupDissolved</b></span>
+                        <a href="#handleGroupDissolved"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleGroupDissolved(event: <a href="../classes/GroupDissolvedEvent.html" target="_self">GroupDissolvedEvent</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@OnEvent(GroupDissolvedEvent.eventName, {async: true})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="480"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:480</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle GroupDissolvedEvent.
+Emit group:dissolved to all participants.</p>
+<p>Requirements: 7.5</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../classes/GroupDissolvedEvent.html" target="_self" >GroupDissolvedEvent</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleGroupUpdated"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>handleGroupUpdated</b></span>
+                        <a href="#handleGroupUpdated"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleGroupUpdated(event: <a href="../classes/GroupUpdatedEvent.html" target="_self">GroupUpdatedEvent</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@OnEvent(GroupUpdatedEvent.eventName, {async: true})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="458"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:458</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle GroupUpdatedEvent.
+Emit group:updated to the room.</p>
+<p>Requirements: 6.1, 6.2</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../classes/GroupUpdatedEvent.html" target="_self" >GroupUpdatedEvent</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleMemberAdded"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>handleMemberAdded</b></span>
+                        <a href="#handleMemberAdded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleMemberAdded(event: <a href="../classes/MemberAddedEvent.html" target="_self">MemberAddedEvent</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@OnEvent(MemberAddedEvent.eventName, {async: true})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="363"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:363</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle MemberAddedEvent.
+Emit group:member-added to the room and join the new member&#39;s sockets.</p>
+<p>Requirements: 2.4, 2.5</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../classes/MemberAddedEvent.html" target="_self" >MemberAddedEvent</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleMemberLeft"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>handleMemberLeft</b></span>
+                        <a href="#handleMemberLeft"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleMemberLeft(event: <a href="../classes/MemberLeftEvent.html" target="_self">MemberLeftEvent</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@OnEvent(MemberLeftEvent.eventName, {async: true})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="427"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:427</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle MemberLeftEvent.
+Emit group:member-left to the room and remove the member&#39;s sockets from the room.</p>
+<p>Requirements: 7.2</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../classes/MemberLeftEvent.html" target="_self" >MemberLeftEvent</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleMemberRemoved"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>handleMemberRemoved</b></span>
+                        <a href="#handleMemberRemoved"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleMemberRemoved(event: <a href="../classes/MemberRemovedEvent.html" target="_self">MemberRemovedEvent</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@OnEvent(MemberRemovedEvent.eventName, {async: true})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="392"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:392</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle MemberRemovedEvent.
+Emit group:member-removed to the room and remove the member&#39;s sockets from the room.</p>
+<p>Requirements: 2.4</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../classes/MemberRemovedEvent.html" target="_self" >MemberRemovedEvent</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleMessageDelivered"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>handleMessageDelivered</b></span>
+                        <a href="#handleMessageDelivered"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleMessageDelivered(client: Socket, payload: { messageId: string; groupId: string })</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@SubscribeMessage(&#x27;message:delivered&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="284"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:284</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle message:delivered event from client.
+Called when a recipient&#39;s device acknowledges receiving a message.</p>
+<p>Requirements: real-time delivery acknowledgment</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>client</td>
+                                            <td>
+                                                        <code>Socket</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>payload</td>
+                                            <td>
+                                                        <code>{ messageId: string; groupId: string }</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleMessageDeliveredEvent"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>handleMessageDeliveredEvent</b></span>
+                        <a href="#handleMessageDeliveredEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleMessageDeliveredEvent(event: <a href="../classes/MessageDeliveredEvent.html" target="_self">MessageDeliveredEvent</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@OnEvent(MessageDeliveredEvent.eventName, {async: true})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="592"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:592</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle MessageDeliveredEvent.
+Send message:delivered to the sender to notify that a recipient received the message.</p>
+<p>Requirements: real-time delivery acknowledgment</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../classes/MessageDeliveredEvent.html" target="_self" >MessageDeliveredEvent</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleMessageRead"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>handleMessageRead</b></span>
+                        <a href="#handleMessageRead"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleMessageRead(client: Socket, payload: { groupId: string; messageIds?: string[] })</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@SubscribeMessage(&#x27;message:read&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="309"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:309</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle message:read event from client.
+Called when a user reads one or more messages in a conversation.</p>
+<p>Requirements: real-time read acknowledgment</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>client</td>
+                                            <td>
+                                                        <code>Socket</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>payload</td>
+                                            <td>
+                                                        <code>{ groupId: string; messageIds?: string[] }</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleMessageReadEvent"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>handleMessageReadEvent</b></span>
+                        <a href="#handleMessageReadEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleMessageReadEvent(event: <a href="../classes/MessageReadEvent.html" target="_self">MessageReadEvent</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@OnEvent(MessageReadEvent.eventName, {async: true})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="613"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:613</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle MessageReadEvent.
+Send message:read to the sender to notify that a recipient read the message.</p>
+<p>Requirements: real-time read acknowledgment</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../classes/MessageReadEvent.html" target="_self" >MessageReadEvent</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleMessageSent"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>handleMessageSent</b></span>
+                        <a href="#handleMessageSent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleMessageSent(event: <a href="../classes/MessageSentEvent.html" target="_self">MessageSentEvent</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@OnEvent(MessageSentEvent.eventName, {async: true})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="571"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:571</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle MessageSentEvent.
+Send message:sent acknowledgment back to the sender only.
+This confirms the message was saved on the server and provides the server-generated ID.</p>
+<p>Requirements: real-time sent acknowledgment</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../classes/MessageSentEvent.html" target="_self" >MessageSentEvent</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleNewMessage"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>handleNewMessage</b></span>
+                        <a href="#handleNewMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleNewMessage(event: <a href="../classes/NewMessageEvent.html" target="_self">NewMessageEvent</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@OnEvent(NewMessageEvent.eventName, {async: true})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="500"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:500</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handle NewMessageEvent.
+Broadcast group:new-message to the room and emit group:conversation-list-updated.</p>
+<p>Requirements: 3.4, 9.7</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../classes/NewMessageEvent.html" target="_self" >NewMessageEvent</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="joinUserToRoom"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>joinUserToRoom</b></span>
+                        <a href="#joinUserToRoom"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>joinUserToRoom(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="200"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:200</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Join a specific user&#39;s sockets to a group room.
+Used when a user is added to a group while already connected.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>groupId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="redisHDel"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>redisHDel</b></span>
+                        <a href="#redisHDel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>redisHDel(key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="703"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:703</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Delete a field from a Redis hash (stored as JSON).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="redisHGetAll"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>redisHGetAll</b></span>
+                        <a href="#redisHGetAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>redisHGetAll(key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="716"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:716</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Get all fields from a Redis hash (stored as JSON).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;Record | null&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="redisHSet"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>redisHSet</b></span>
+                        <a href="#redisHSet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>redisHSet(key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="694"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:694</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Set a field in a Redis hash.
+Uses the underlying Redis instance via eval-like approach with setValue.
+Since RedisCacheService doesn&#39;t expose hash commands directly,
+we store as a JSON-encoded value under the key.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeUserFromRoom"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>removeUserFromRoom</b></span>
+                        <a href="#removeUserFromRoom"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeUserFromRoom(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">src/modules/conversation/conversation.gateway.ts:222</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Remove a specific user&#39;s sockets from a group room.
+Used when a user is removed from or leaves a group.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>groupId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  WebSocketGateway,
+  WebSocketServer,
+  OnGatewayConnection,
+  OnGatewayDisconnect,
+  SubscribeMessage,
+  MessageBody,
+  ConnectedSocket,
+} from &#x27;@nestjs/websockets&#x27;;
+import { Inject, Logger } from &#x27;@nestjs/common&#x27;;
+import { JwtService } from &#x27;@nestjs/jwt&#x27;;
+import { OnEvent } from &#x27;@nestjs/event-emitter&#x27;;
+import { Server, Socket } from &#x27;socket.io&#x27;;
+
+import { RedisCacheService } from &#x27;@infrastructure/cache&#x27;;
+
+import { ConversationService } from &#x27;./conversation.service&#x27;;
+import {
+  GroupCreatedEvent,
+  GroupDissolvedEvent,
+  GroupUpdatedEvent,
+  MemberAddedEvent,
+  MemberLeftEvent,
+  MemberRemovedEvent,
+  MessageDeliveredEvent,
+  MessageReadEvent,
+  MessageSentEvent,
+  NewMessageEvent,
+} from &#x27;./events/conversation.events&#x27;;
+import { PARTICIPANT_REPOSITORY, ParticipantRepository } from &#x27;./repositories&#x27;;
+
+@WebSocketGateway({ namespace: &#x27;/conversations&#x27;, cors: true })
+export class ConversationGateway implements OnGatewayConnection, OnGatewayDisconnect {
+  @WebSocketServer()
+  server: Server;
+
+  private readonly logger &#x3D; new Logger(ConversationGateway.name);
+
+  /** Maximum concurrent connections per user */
+  private static readonly MAX_CONNECTIONS_PER_USER &#x3D; 5;
+
+  /** Maximum number of group rooms to join on initial connection */
+  private static readonly MAX_INITIAL_ROOMS &#x3D; 100;
+
+  constructor(
+    private readonly jwtService: JwtService,
+    @Inject(PARTICIPANT_REPOSITORY)
+    private readonly participantRepo: ParticipantRepository,
+    private readonly redisCacheService: RedisCacheService,
+    private readonly ConversationService: ConversationService,
+  ) {}
+
+  /**
+   * Handle new WebSocket connection.
+   *
+   * 1. Validate JWT from auth handshake
+   * 2. Check connection count (max 5, disconnect oldest if exceeded)
+   * 3. Store connection in Redis hash
+   * 4. Join all group rooms where user is an active participant
+   *
+   * Requirements: 8.1, 8.2, 8.3, 8.4, 8.5
+   */
+  async handleConnection(client: Socket): Promise&lt;void&gt; {
+    try {
+      // 1. Extract and validate JWT token from handshake
+      const token &#x3D; client.handshake?.auth?.token;
+      if (!token) {
+        this.logger.warn(&#x60;Connection rejected: no token provided (socket: ${client.id})&#x60;);
+        client.emit(&#x27;group:error&#x27;, {
+          code: &#x27;UNAUTHORIZED&#x27;,
+          message: &#x27;Authentication token is required&#x27;,
+        });
+        client.disconnect(true);
+        return;
+      }
+
+      let payload: any;
+      try {
+        payload &#x3D; this.jwtService.verify(token);
+      } catch (error) {
+        this.logger.warn(&#x60;Connection rejected: invalid/expired token (socket: ${client.id})&#x60;);
+        client.emit(&#x27;group:error&#x27;, {
+          code: &#x27;UNAUTHORIZED&#x27;,
+          message: &#x27;Invalid or expired authentication token&#x27;,
+        });
+        client.disconnect(true);
+        return;
+      }
+
+      const userId &#x3D; payload.id;
+      if (!userId) {
+        this.logger.warn(&#x60;Connection rejected: token missing user ID (socket: ${client.id})&#x60;);
+        client.emit(&#x27;group:error&#x27;, {
+          code: &#x27;UNAUTHORIZED&#x27;,
+          message: &#x27;Invalid token payload&#x27;,
+        });
+        client.disconnect(true);
+        return;
+      }
+
+      // Attach userId to socket data for later use
+      client.data.userId &#x3D; userId;
+
+      // 2. Check connection count and enforce max 5 limit
+      const redisKey &#x3D; &#x60;user:${userId}:connections&#x60;;
+      await this.enforceConnectionLimit(client, userId, redisKey);
+
+      // 3. Store this connection in Redis hash (field: socketId, value: timestamp)
+      const now &#x3D; Date.now().toString();
+      try {
+        await this.redisHSet(redisKey, client.id, now);
+      } catch (error) {
+        this.logger.warn(
+          &#x60;Failed to store connection in Redis for user ${userId}: ${(error as Error).message}&#x60;,
+        );
+      }
+
+      // 4. Join group rooms where user is an active participant (limit to most recent)
+      const participantRecords &#x3D; await this.participantRepo.findActiveByUser(userId);
+      const roomsToJoin &#x3D; participantRecords.slice(0, ConversationGateway.MAX_INITIAL_ROOMS);
+
+      await Promise.all(roomsToJoin.map((record) &#x3D;&gt; client.join(&#x60;group:${record.conversationId}&#x60;)));
+
+      this.logger.log(
+        &#x60;User ${userId} connected (socket: ${client.id}, totalGroups: ${participantRecords.length}, roomsJoined: ${roomsToJoin.length})&#x60;,
+      );
+    } catch (error) {
+      this.logger.error(
+        &#x60;Unexpected error during connection: ${(error as Error).message}&#x60;,
+        (error as Error).stack,
+      );
+      client.emit(&#x27;group:error&#x27;, {
+        code: &#x27;INTERNAL_ERROR&#x27;,
+        message: &#x27;Connection failed due to an internal error&#x27;,
+      });
+      client.disconnect(true);
+    }
+  }
+
+  /**
+   * Handle WebSocket disconnection.
+   *
+   * Remove the connection from Redis hash.
+   * Socket.IO automatically handles leaving all rooms.
+   *
+   * Requirements: 8.4, 8.5
+   */
+  async handleDisconnect(client: Socket): Promise&lt;void&gt; {
+    const userId &#x3D; client.data.userId;
+    if (!userId) {
+      return;
+    }
+
+    const redisKey &#x3D; &#x60;user:${userId}:connections&#x60;;
+    try {
+      await this.redisHDel(redisKey, client.id);
+    } catch (error) {
+      this.logger.warn(
+        &#x60;Failed to remove connection from Redis for user ${userId}: ${(error as Error).message}&#x60;,
+      );
+    }
+
+    this.logger.log(&#x60;User ${userId} disconnected (socket: ${client.id})&#x60;);
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Server-side emit methods (called from service/event handlers)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /**
+   * Emit an event to all sockets in a group room.
+   */
+  emitToGroup(groupId: string, event: string, payload: any): void {
+    this.server.to(&#x60;group:${groupId}&#x60;).emit(event, payload);
+  }
+
+  /**
+   * Emit an event to all sockets of a specific user.
+   */
+  async emitToUser(userId: string, event: string, payload: any): Promise&lt;void&gt; {
+    const redisKey &#x3D; &#x60;user:${userId}:connections&#x60;;
+    try {
+      const connections &#x3D; await this.redisHGetAll(redisKey);
+      if (connections) {
+        const socketIds &#x3D; Object.keys(connections);
+        for (const socketId of socketIds) {
+          this.server.to(socketId).emit(event, payload);
+        }
+      }
+    } catch {
+      // Fallback: if Redis is unavailable, we can&#x27;t target specific user sockets
+      this.logger.warn(&#x60;Failed to emit to user ${userId}: Redis unavailable&#x60;);
+    }
+  }
+
+  /**
+   * Join a specific user&#x27;s sockets to a group room.
+   * Used when a user is added to a group while already connected.
+   */
+  async joinUserToRoom(userId: string, groupId: string): Promise&lt;void&gt; {
+    const redisKey &#x3D; &#x60;user:${userId}:connections&#x60;;
+    try {
+      const connections &#x3D; await this.redisHGetAll(redisKey);
+      if (connections) {
+        const socketIds &#x3D; Object.keys(connections);
+        for (const socketId of socketIds) {
+          const sockets &#x3D; await this.server.in(socketId).fetchSockets();
+          for (const socket of sockets) {
+            await socket.join(&#x60;group:${groupId}&#x60;);
+          }
+        }
+      }
+    } catch {
+      this.logger.warn(&#x60;Failed to join user ${userId} to room group:${groupId}&#x60;);
+    }
+  }
+
+  /**
+   * Remove a specific user&#x27;s sockets from a group room.
+   * Used when a user is removed from or leaves a group.
+   */
+  async removeUserFromRoom(userId: string, groupId: string): Promise&lt;void&gt; {
+    const redisKey &#x3D; &#x60;user:${userId}:connections&#x60;;
+    try {
+      const connections &#x3D; await this.redisHGetAll(redisKey);
+      if (connections) {
+        const socketIds &#x3D; Object.keys(connections);
+        for (const socketId of socketIds) {
+          const sockets &#x3D; await this.server.in(socketId).fetchSockets();
+          for (const socket of sockets) {
+            socket.leave(&#x60;group:${groupId}&#x60;);
+          }
+        }
+      }
+    } catch {
+      this.logger.warn(&#x60;Failed to remove user ${userId} from room group:${groupId}&#x60;);
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Socket.IO event handlers (Client → Server)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /**
+   * Handle conversation-opened event from client.
+   * Resets the unread count for the user in the specified group.
+   *
+   * Requirements: 9.6
+   */
+  @SubscribeMessage(&#x27;group:conversation-opened&#x27;)
+  async handleConversationOpened(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() payload: { groupId: string },
+  ): Promise&lt;void&gt; {
+    const userId &#x3D; client.data.userId;
+    if (!userId || !payload?.groupId) {
+      return;
+    }
+
+    try {
+      await this.ConversationService.resetUnreadCount(userId, payload.groupId);
+      // Also mark all unread messages in this conversation as read
+      await this.ConversationService.markRead(userId, payload.groupId);
+
+      // Emit updated total unread count to this user
+      const { totalUnreadCount } &#x3D; await this.ConversationService.getTotalUnreadCount(userId);
+      await this.emitToUser(userId, &#x27;message:total-unread-updated&#x27;, {
+        totalUnreadCount,
+      });
+    } catch (error) {
+      this.logger.warn(
+        &#x60;Failed to reset unread count for user ${userId} in group ${payload.groupId}: ${(error as Error).message}&#x60;,
+      );
+    }
+  }
+
+  /**
+   * Handle message:delivered event from client.
+   * Called when a recipient&#x27;s device acknowledges receiving a message.
+   *
+   * Requirements: real-time delivery acknowledgment
+   */
+  @SubscribeMessage(&#x27;message:delivered&#x27;)
+  async handleMessageDelivered(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() payload: { messageId: string; groupId: string },
+  ): Promise&lt;void&gt; {
+    const userId &#x3D; client.data.userId;
+    if (!userId || !payload?.messageId || !payload?.groupId) {
+      return;
+    }
+
+    try {
+      await this.ConversationService.markDelivered(payload.messageId, userId, payload.groupId);
+    } catch (error) {
+      this.logger.warn(
+        &#x60;Failed to mark message ${payload.messageId} as delivered for user ${userId}: ${(error as Error).message}&#x60;,
+      );
+    }
+  }
+
+  /**
+   * Handle message:read event from client.
+   * Called when a user reads one or more messages in a conversation.
+   *
+   * Requirements: real-time read acknowledgment
+   */
+  @SubscribeMessage(&#x27;message:read&#x27;)
+  async handleMessageRead(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() payload: { groupId: string; messageIds?: string[] },
+  ): Promise&lt;void&gt; {
+    const userId &#x3D; client.data.userId;
+    if (!userId || !payload?.groupId) {
+      return;
+    }
+
+    try {
+      await this.ConversationService.markRead(userId, payload.groupId, payload.messageIds);
+    } catch (error) {
+      this.logger.warn(
+        &#x60;Failed to mark messages as read for user ${userId} in group ${payload.groupId}: ${(error as Error).message}&#x60;,
+      );
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Domain event listeners (Service → Gateway via EventEmitter)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /**
+   * Handle GroupCreatedEvent.
+   * Emit group:created to all participants and join their sockets to the new room.
+   *
+   * Requirements: 1.5
+   */
+  @OnEvent(GroupCreatedEvent.eventName, { async: true })
+  async handleGroupCreated(event: GroupCreatedEvent): Promise&lt;void&gt; {
+    this.logger.debug(&#x60;Handling GroupCreatedEvent for group ${event.groupId}&#x60;);
+
+    // Join all participants&#x27; sockets to the new room (parallel)
+    await Promise.all(event.participants.map((p) &#x3D;&gt; this.joinUserToRoom(p.userId, event.groupId)));
+
+    // Emit group:created to all participants (parallel)
+    await Promise.all(
+      event.participants.map((participant) &#x3D;&gt;
+        this.emitToUser(participant.userId, &#x27;group:created&#x27;, {
+          groupId: event.groupId,
+          groupName: event.groupName,
+          participants: event.participants,
+        }),
+      ),
+    );
+  }
+
+  /**
+   * Handle MemberAddedEvent.
+   * Emit group:member-added to the room and join the new member&#x27;s sockets.
+   *
+   * Requirements: 2.4, 2.5
+   */
+  @OnEvent(MemberAddedEvent.eventName, { async: true })
+  async handleMemberAdded(event: MemberAddedEvent): Promise&lt;void&gt; {
+    this.logger.debug(
+      &#x60;Handling MemberAddedEvent: user ${event.userId} added to group ${event.groupId}&#x60;,
+    );
+
+    // Join the new member&#x27;s sockets to the room
+    await this.joinUserToRoom(event.userId, event.groupId);
+
+    // Emit group:member-added to the room (including the new member)
+    this.emitToGroup(event.groupId, &#x27;group:member-added&#x27;, {
+      groupId: event.groupId,
+      userId: event.userId,
+      displayName: event.displayName,
+      addedBy: event.addedBy,
+    });
+
+    // Emit group:conversation-list-updated to all participants
+    this.emitToGroup(event.groupId, &#x27;group:conversation-list-updated&#x27;, {
+      groupId: event.groupId,
+    });
+  }
+
+  /**
+   * Handle MemberRemovedEvent.
+   * Emit group:member-removed to the room and remove the member&#x27;s sockets from the room.
+   *
+   * Requirements: 2.4
+   */
+  @OnEvent(MemberRemovedEvent.eventName, { async: true })
+  async handleMemberRemoved(event: MemberRemovedEvent): Promise&lt;void&gt; {
+    this.logger.debug(
+      &#x60;Handling MemberRemovedEvent: user ${event.userId} removed from group ${event.groupId}&#x60;,
+    );
+
+    // Emit group:member-removed to the room (including the removed member, before leaving)
+    this.emitToGroup(event.groupId, &#x27;group:member-removed&#x27;, {
+      groupId: event.groupId,
+      userId: event.userId,
+      removedBy: event.removedBy,
+    });
+
+    // Also notify the removed user directly (in case they&#x27;re not in the room anymore)
+    await this.emitToUser(event.userId, &#x27;group:member-removed&#x27;, {
+      groupId: event.groupId,
+      userId: event.userId,
+      removedBy: event.removedBy,
+    });
+
+    // Remove the member&#x27;s sockets from the room
+    await this.removeUserFromRoom(event.userId, event.groupId);
+
+    // Emit group:conversation-list-updated to remaining participants
+    this.emitToGroup(event.groupId, &#x27;group:conversation-list-updated&#x27;, {
+      groupId: event.groupId,
+    });
+  }
+
+  /**
+   * Handle MemberLeftEvent.
+   * Emit group:member-left to the room and remove the member&#x27;s sockets from the room.
+   *
+   * Requirements: 7.2
+   */
+  @OnEvent(MemberLeftEvent.eventName, { async: true })
+  async handleMemberLeft(event: MemberLeftEvent): Promise&lt;void&gt; {
+    this.logger.debug(&#x60;Handling MemberLeftEvent: user ${event.userId} left group ${event.groupId}&#x60;);
+
+    // Emit group:member-left to the room (before removing the member)
+    this.emitToGroup(event.groupId, &#x27;group:member-left&#x27;, {
+      groupId: event.groupId,
+      userId: event.userId,
+    });
+
+    // Also notify the leaving user directly
+    await this.emitToUser(event.userId, &#x27;group:member-left&#x27;, {
+      groupId: event.groupId,
+      userId: event.userId,
+    });
+
+    // Remove the member&#x27;s sockets from the room
+    await this.removeUserFromRoom(event.userId, event.groupId);
+
+    // Emit group:conversation-list-updated to remaining participants
+    this.emitToGroup(event.groupId, &#x27;group:conversation-list-updated&#x27;, {
+      groupId: event.groupId,
+    });
+  }
+
+  /**
+   * Handle GroupUpdatedEvent.
+   * Emit group:updated to the room.
+   *
+   * Requirements: 6.1, 6.2
+   */
+  @OnEvent(GroupUpdatedEvent.eventName, { async: true })
+  async handleGroupUpdated(event: GroupUpdatedEvent): Promise&lt;void&gt; {
+    this.logger.debug(&#x60;Handling GroupUpdatedEvent for group ${event.groupId}&#x60;);
+
+    this.emitToGroup(event.groupId, &#x27;group:updated&#x27;, {
+      groupId: event.groupId,
+      name: event.name,
+      avatarFileKey: event.avatarFileKey,
+    });
+
+    // Emit group:conversation-list-updated to all participants
+    this.emitToGroup(event.groupId, &#x27;group:conversation-list-updated&#x27;, {
+      groupId: event.groupId,
+    });
+  }
+
+  /**
+   * Handle GroupDissolvedEvent.
+   * Emit group:dissolved to all participants.
+   *
+   * Requirements: 7.5
+   */
+  @OnEvent(GroupDissolvedEvent.eventName, { async: true })
+  async handleGroupDissolved(event: GroupDissolvedEvent): Promise&lt;void&gt; {
+    this.logger.debug(&#x60;Handling GroupDissolvedEvent for group ${event.groupId}&#x60;);
+
+    // Emit group:dissolved to all participants (parallel)
+    await Promise.all(
+      event.participantIds.map((participantId) &#x3D;&gt;
+        this.emitToUser(participantId, &#x27;group:dissolved&#x27;, {
+          groupId: event.groupId,
+        }),
+      ),
+    );
+  }
+
+  /**
+   * Handle NewMessageEvent.
+   * Broadcast group:new-message to the room and emit group:conversation-list-updated.
+   *
+   * Requirements: 3.4, 9.7
+   */
+  @OnEvent(NewMessageEvent.eventName, { async: true })
+  async handleNewMessage(event: NewMessageEvent): Promise&lt;void&gt; {
+    this.logger.debug(
+      &#x60;Handling NewMessageEvent: message ${event.messageId} in group ${event.groupId}&#x60;,
+    );
+
+    // Broadcast group:new-message to the room
+    this.emitToGroup(event.groupId, &#x27;group:new-message&#x27;, {
+      messageId: event.messageId,
+      groupId: event.groupId,
+      senderId: event.senderId,
+      senderName: event.senderName,
+      content: event.content,
+      messageType: event.messageType,
+      attachments: event.attachments,
+      timestamp: event.timestamp,
+    });
+
+    // Emit group:conversation-list-updated to all participants in the group
+    // This notifies clients to refresh their conversation list (new unread count, preview)
+    const lastMessagePreview &#x3D; event.content
+      ? event.content.length &gt; 100
+        ? event.content.substring(0, 100)
+        : event.content
+      : null;
+
+    this.emitToGroup(event.groupId, &#x27;group:conversation-list-updated&#x27;, {
+      groupId: event.groupId,
+      lastMessagePreview,
+      senderId: event.senderId,
+      senderName: event.senderName,
+      messageType: event.messageType,
+      timestamp: event.timestamp,
+    });
+
+    // Emit message:total-unread-updated to all recipients (not sender)
+    // Uses single batch query instead of N individual queries
+    try {
+      const participants &#x3D; await this.participantRepo.findActiveByGroup(event.groupId);
+      const recipientIds &#x3D; participants
+        .filter((p) &#x3D;&gt; p.userId !&#x3D;&#x3D; event.senderId)
+        .map((p) &#x3D;&gt; p.userId);
+
+      if (recipientIds.length &gt; 0) {
+        // Batch calculate total unread for all recipients in one query via service
+        const unreadMap &#x3D; await this.ConversationService.getBatchTotalUnreadCounts(recipientIds);
+
+        // Emit in parallel
+        await Promise.all(
+          recipientIds.map(async (userId) &#x3D;&gt; {
+            const totalUnreadCount &#x3D; unreadMap.get(userId) ?? 0;
+            await this.emitToUser(userId, &#x27;message:total-unread-updated&#x27;, {
+              totalUnreadCount,
+            });
+          }),
+        );
+      }
+    } catch (error) {
+      this.logger.warn(
+        &#x60;Failed to emit total-unread-updated for group ${event.groupId}: ${(error as Error).message}&#x60;,
+      );
+    }
+  }
+
+  /**
+   * Handle MessageSentEvent.
+   * Send message:sent acknowledgment back to the sender only.
+   * This confirms the message was saved on the server and provides the server-generated ID.
+   *
+   * Requirements: real-time sent acknowledgment
+   */
+  @OnEvent(MessageSentEvent.eventName, { async: true })
+  async handleMessageSent(event: MessageSentEvent): Promise&lt;void&gt; {
+    this.logger.debug(
+      &#x60;Handling MessageSentEvent: message ${event.messageId} in group ${event.groupId}&#x60;,
+    );
+
+    // Send acknowledgment to sender only
+    await this.emitToUser(event.senderId, &#x27;message:sent&#x27;, {
+      groupId: event.groupId,
+      messageId: event.messageId,
+      clientMessageId: event.clientMessageId,
+      timestamp: event.timestamp,
+    });
+  }
+
+  /**
+   * Handle MessageDeliveredEvent.
+   * Send message:delivered to the sender to notify that a recipient received the message.
+   *
+   * Requirements: real-time delivery acknowledgment
+   */
+  @OnEvent(MessageDeliveredEvent.eventName, { async: true })
+  async handleMessageDeliveredEvent(event: MessageDeliveredEvent): Promise&lt;void&gt; {
+    this.logger.debug(
+      &#x60;Handling MessageDeliveredEvent: message ${event.messageId} delivered to ${event.recipientId}&#x60;,
+    );
+
+    // Notify the sender that the recipient received the message
+    await this.emitToUser(event.senderId, &#x27;message:delivered&#x27;, {
+      groupId: event.groupId,
+      messageId: event.messageId,
+      recipientId: event.recipientId,
+      deliveredAt: event.deliveredAt,
+    });
+  }
+
+  /**
+   * Handle MessageReadEvent.
+   * Send message:read to the sender to notify that a recipient read the message.
+   *
+   * Requirements: real-time read acknowledgment
+   */
+  @OnEvent(MessageReadEvent.eventName, { async: true })
+  async handleMessageReadEvent(event: MessageReadEvent): Promise&lt;void&gt; {
+    this.logger.debug(
+      &#x60;Handling MessageReadEvent: message ${event.messageId} read by ${event.readerId}&#x60;,
+    );
+
+    // Notify the sender that the recipient read the message
+    await this.emitToUser(event.senderId, &#x27;message:read&#x27;, {
+      groupId: event.groupId,
+      messageId: event.messageId,
+      readerId: event.readerId,
+      readAt: event.readAt,
+    });
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Private helpers
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /**
+   * Enforce the max connection limit per user.
+   * If the user already has MAX_CONNECTIONS_PER_USER connections,
+   * disconnect the oldest one (earliest timestamp).
+   */
+  private async enforceConnectionLimit(
+    client: Socket,
+    userId: string,
+    redisKey: string,
+  ): Promise&lt;void&gt; {
+    try {
+      const connections &#x3D; await this.redisHGetAll(redisKey);
+      if (!connections) return;
+
+      const entries &#x3D; Object.entries(connections);
+      if (entries.length &lt; ConversationGateway.MAX_CONNECTIONS_PER_USER) {
+        return;
+      }
+
+      // Sort by timestamp ascending (oldest first)
+      entries.sort((a, b) &#x3D;&gt; parseInt(a[1], 10) - parseInt(b[1], 10));
+
+      // Disconnect oldest connections until we&#x27;re under the limit
+      const toDisconnect &#x3D; entries.slice(
+        0,
+        entries.length - ConversationGateway.MAX_CONNECTIONS_PER_USER + 1,
+      );
+
+      for (const [socketId] of toDisconnect) {
+        // Remove from Redis
+        await this.redisHDel(redisKey, socketId);
+
+        // Disconnect the socket
+        const sockets &#x3D; await this.server.in(socketId).fetchSockets();
+        for (const oldSocket of sockets) {
+          oldSocket.emit(&#x27;group:error&#x27;, {
+            code: &#x27;CONNECTION_REPLACED&#x27;,
+            message: &#x27;Connection replaced by a newer connection&#x27;,
+          });
+          oldSocket.disconnect(true);
+        }
+
+        this.logger.log(
+          &#x60;Disconnected oldest socket ${socketId} for user ${userId} (connection limit exceeded)&#x60;,
+        );
+      }
+    } catch (error) {
+      this.logger.warn(
+        &#x60;Failed to enforce connection limit for user ${userId}: ${(error as Error).message}&#x60;,
+      );
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Redis Hash helpers (wrapping RedisCacheService for hash operations)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /**
+   * Set a field in a Redis hash.
+   * Uses the underlying Redis instance via eval-like approach with setValue.
+   * Since RedisCacheService doesn&#x27;t expose hash commands directly,
+   * we store as a JSON-encoded value under the key.
+   */
+  private async redisHSet(key: string, field: string, value: string): Promise&lt;void&gt; {
+    const existing &#x3D; await this.getConnectionsMap(key);
+    existing[field] &#x3D; value;
+    await this.redisCacheService.setValue(key, JSON.stringify(existing));
+  }
+
+  /**
+   * Delete a field from a Redis hash (stored as JSON).
+   */
+  private async redisHDel(key: string, field: string): Promise&lt;void&gt; {
+    const existing &#x3D; await this.getConnectionsMap(key);
+    delete existing[field];
+    if (Object.keys(existing).length &#x3D;&#x3D;&#x3D; 0) {
+      await this.redisCacheService.clearCacheByKey(key);
+    } else {
+      await this.redisCacheService.setValue(key, JSON.stringify(existing));
+    }
+  }
+
+  /**
+   * Get all fields from a Redis hash (stored as JSON).
+   */
+  private async redisHGetAll(key: string): Promise&lt;Record&lt;string, string&gt; | null&gt; {
+    const data &#x3D; await this.getConnectionsMap(key);
+    return Object.keys(data).length &gt; 0 ? data : null;
+  }
+
+  /**
+   * Get the connections map from Redis (JSON-encoded).
+   */
+  private async getConnectionsMap(key: string): Promise&lt;Record&lt;string, string&gt;&gt; {
+    try {
+      const raw &#x3D; await this.redisCacheService.getValue(key);
+      if (raw) {
+        return JSON.parse(raw);
+      }
+    } catch {
+      // If parsing fails or Redis is unavailable, return empty
+    }
+    return {};
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'ConversationGateway.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

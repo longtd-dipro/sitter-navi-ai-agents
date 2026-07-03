@@ -1,0 +1,492 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  RedisIoAdapterOptions</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>libs/infrastructure/redis/redis-io.adapter.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api"><section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-3">
+                    <h6><b>Properties</b></h6>
+                </td>
+                <td class="col-md-9">
+                    <ul class="index-list">
+                        <li>
+                                <a href="#nodeEnv" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">nodeEnv</span>
+                                </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="nodeEnv"></a>
+                                <span class="name "><b>nodeEnv</b>
+                                    <a href="#nodeEnv">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>nodeEnv:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">libs/infrastructure/redis/redis-io.adapter.ts:11</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+    </section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IoAdapter } from &#x27;@nestjs/platform-socket.io&#x27;;
+import { INestApplication, Logger } from &#x27;@nestjs/common&#x27;;
+import { createAdapter as createRedisAdapter } from &#x27;@socket.io/redis-adapter&#x27;;
+import { createAdapter as createPostgresAdapter } from &#x27;@socket.io/postgres-adapter&#x27;;
+import { Redis } from &#x27;ioredis&#x27;;
+import { Pool } from &#x27;pg&#x27;;
+import { ServerOptions } from &#x27;socket.io&#x27;;
+import { getRedisKeyPrefix } from &#x27;./redis.config&#x27;;
+
+interface RedisIoAdapterOptions {
+  nodeEnv: string;
+}
+
+interface RedisConfig {
+  host: string;
+  port: number;
+  username?: string;
+  password?: string;
+  tls?: boolean;
+}
+
+interface WebSocketAdapterConfig {
+  redis: RedisConfig;
+  databaseUrl?: string;
+}
+
+export class RedisIoAdapter extends IoAdapter {
+  private adapterConstructor:
+    | ReturnType&lt;typeof createRedisAdapter&gt;
+    | ReturnType&lt;typeof createPostgresAdapter&gt;
+    | undefined;
+  private readonly logger &#x3D; new Logger(&#x27;RedisIoAdapter&#x27;);
+  private _activeAdapter: &#x27;redis&#x27; | &#x27;postgres&#x27; | &#x27;in-memory&#x27; &#x3D; &#x27;in-memory&#x27;;
+
+  constructor(
+    app: INestApplication,
+    private options: RedisIoAdapterOptions,
+  ) {
+    super(app);
+  }
+
+  /**
+   * Returns which adapter backend is currently active.
+   */
+  get activeAdapter(): string {
+    return this._activeAdapter;
+  }
+
+  /**
+   * Connect to Redis for Socket.IO pub/sub.
+   * If Redis is unavailable, falls back to PostgreSQL LISTEN/NOTIFY.
+   * If both are unavailable, uses the default in-memory adapter (single-node only).
+   */
+  async connectToRedis(config: WebSocketAdapterConfig): Promise&lt;void&gt; {
+    // Try Redis first
+    const redisConnected &#x3D; await this.tryRedisAdapter(config.redis);
+    if (redisConnected) return;
+
+    // Fallback to PostgreSQL
+    if (config.databaseUrl) {
+      const pgConnected &#x3D; await this.tryPostgresAdapter(config.databaseUrl);
+      if (pgConnected) return;
+    }
+
+    // Final fallback: in-memory (default IoAdapter behavior)
+    this._activeAdapter &#x3D; &#x27;in-memory&#x27;;
+    this.logger.warn(
+      &#x27;Both Redis and PostgreSQL adapters unavailable. WebSocket will use in-memory adapter (single-node only).&#x27;,
+    );
+  }
+
+  createIOServer(port: number, options?: Partial&lt;ServerOptions&gt;) {
+    const server &#x3D; super.createIOServer(port, options);
+
+    if (this.adapterConstructor) {
+      server.adapter(this.adapterConstructor);
+    }
+
+    return server;
+  }
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // Private
+  // ───────────────────────────────────────────────────────────────────────────
+
+  private async tryRedisAdapter(redisConfig: RedisConfig): Promise&lt;boolean&gt; {
+    try {
+      const redisOptions &#x3D; {
+        host: redisConfig.host,
+        port: redisConfig.port,
+        ...(redisConfig.username &amp;&amp; { username: redisConfig.username }),
+        ...(redisConfig.password &amp;&amp; { password: redisConfig.password }),
+        ...(redisConfig.tls &amp;&amp; { tls: {} }),
+        keyPrefix: getRedisKeyPrefix(),
+        connectTimeout: 5000,
+        retryStrategy: () &#x3D;&gt; null, // Don&#x27;t auto-retry on initial connect
+        lazyConnect: true,
+      };
+
+      const pubClient &#x3D; new Redis(redisOptions);
+      const subClient &#x3D; new Redis(redisOptions);
+
+      // Suppress unhandled error events
+      pubClient.on(&#x27;error&#x27;, () &#x3D;&gt; {});
+      subClient.on(&#x27;error&#x27;, () &#x3D;&gt; {});
+
+      await pubClient.connect();
+      await subClient.connect();
+
+      // Re-enable retry after successful initial connection
+      // so transient disconnects are handled gracefully
+      pubClient.options.retryStrategy &#x3D; (times) &#x3D;&gt; Math.min(times * 200, 5000);
+      subClient.options.retryStrategy &#x3D; (times) &#x3D;&gt; Math.min(times * 200, 5000);
+
+      this.adapterConstructor &#x3D; createRedisAdapter(pubClient, subClient);
+      this._activeAdapter &#x3D; &#x27;redis&#x27;;
+      this.logger.log(&#x27;WebSocket adapter: Redis&#x27;);
+      return true;
+    } catch {
+      this.logger.warn(&#x27;Redis unavailable for WebSocket adapter, trying PostgreSQL fallback...&#x27;);
+      return false;
+    }
+  }
+
+  private async tryPostgresAdapter(databaseUrl: string): Promise&lt;boolean&gt; {
+    try {
+      const pool &#x3D; new Pool({
+        connectionString: databaseUrl,
+        // Minimal pool for the LISTEN/NOTIFY adapter
+        max: 5,
+        connectionTimeoutMillis: 5000,
+        application_name: &#x27;nestjs-base-v2:socket-io-adapter&#x27;,
+      });
+
+      // Suppress pool error events
+      pool.on(&#x27;error&#x27;, (err) &#x3D;&gt; {
+        this.logger.warn(&#x60;WebSocket PG pool error: ${err.message}&#x60;);
+      });
+
+      // Verify connectivity
+      const client &#x3D; await pool.connect();
+      client.release();
+
+      // Create the attachments table if it doesn&#x27;t exist
+      await pool.query(&#x60;
+        CREATE TABLE IF NOT EXISTS socket_io_attachments (
+          id          bigserial UNIQUE,
+          created_at  timestamptz DEFAULT NOW(),
+          payload     bytea
+        );
+      &#x60;);
+
+      this.adapterConstructor &#x3D; createPostgresAdapter(pool);
+      this._activeAdapter &#x3D; &#x27;postgres&#x27;;
+      this.logger.log(&#x27;WebSocket adapter: PostgreSQL (fallback)&#x27;);
+      return true;
+    } catch (err) {
+      this.logger.warn(&#x60;PostgreSQL adapter also unavailable: ${(err as Error).message}&#x60;);
+      return false;
+    }
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'RedisIoAdapterOptions.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

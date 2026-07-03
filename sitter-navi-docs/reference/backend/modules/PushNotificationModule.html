@@ -1,0 +1,585 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Sitter Navi BE — Reference</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Sitter Navi BE — Reference</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content module">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Modules</li>
+    <li class="breadcrumb-item" >PushNotificationModule</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/modules/push-notification/push-notification.module.ts</code>
+</div>
+
+<div class="text-center module-graph-container">
+    <div id="module-graph-svg">
+        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.47.0 (20210316.0004)
+ -->
+<!-- Title: dependencies Pages: 1 -->
+<svg width="1285pt" height="284pt"
+ viewBox="0.00 0.00 1285.00 284.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 280)">
+<title>dependencies</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-280 1281,-280 1281,4 -4,4"/>
+<text text-anchor="start" x="617.51" y="-42.4" font-family="Times-12" font-weight="bold" font-size="14.00">Legend</text>
+<polygon fill="#ffffb3" stroke="transparent" points="404.5,-10 404.5,-30 424.5,-30 424.5,-10 404.5,-10"/>
+<text text-anchor="start" x="428.13" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Declarations</text>
+<polygon fill="#8dd3c7" stroke="transparent" points="517.5,-10 517.5,-30 537.5,-30 537.5,-10 517.5,-10"/>
+<text text-anchor="start" x="541.23" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Module</text>
+<polygon fill="#80b1d3" stroke="transparent" points="603.5,-10 603.5,-30 623.5,-30 623.5,-10 603.5,-10"/>
+<text text-anchor="start" x="627.28" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Bootstrap</text>
+<polygon fill="#fdb462" stroke="transparent" points="700.5,-10 700.5,-30 720.5,-30 720.5,-10 700.5,-10"/>
+<text text-anchor="start" x="724.17" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Providers</text>
+<polygon fill="#fb8072" stroke="transparent" points="796.5,-10 796.5,-30 816.5,-30 816.5,-10 796.5,-10"/>
+<text text-anchor="start" x="820.23" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
+<g id="clust1" class="cluster">
+<title>cluster_PushNotificationModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1269,-268 1269,-70 8,-70"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_PushNotificationModule_providers</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 1261,-130 1261,-78 16,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_PushNotificationModule_exports</title>
+<polygon fill="none" stroke="black" points="581,-208 581,-260 831,-260 831,-208 581,-208"/>
+</g>
+<!-- PushService  -->
+<g id="node1" class="node"><a xlink:href="../injectables/PushService.html" href="../injectables/PushService.html" target="_top">
+<title>PushService </title>
+<polygon fill="#fb8072" stroke="black" points="823.21,-252 734.79,-252 734.79,-216 823.21,-216 823.21,-252"/>
+<text text-anchor="middle" x="779" y="-229.8" font-family="Times,serif" font-size="14.00">PushService </text>
+</a></g>
+<!-- UserDeviceService  -->
+<g id="node2" class="node"><a xlink:href="../injectables/UserDeviceService.html" href="../injectables/UserDeviceService.html" target="_top">
+<title>UserDeviceService </title>
+<polygon fill="#fb8072" stroke="black" points="716.55,-252 589.45,-252 589.45,-216 716.55,-216 716.55,-252"/>
+<text text-anchor="middle" x="653" y="-229.8" font-family="Times,serif" font-size="14.00">UserDeviceService </text>
+</a></g>
+<!-- PushNotificationModule -->
+<g id="node3" class="node"><a xlink:href="../modules/PushNotificationModule.html" href="../modules/PushNotificationModule.html" target="_top">
+<title>PushNotificationModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="793.43,-187 790.43,-191 769.43,-191 766.43,-187 638.57,-187 638.57,-151 793.43,-151 793.43,-187"/>
+<text text-anchor="middle" x="716" y="-164.8" font-family="Times,serif" font-size="14.00">PushNotificationModule</text>
+</a></g>
+<!-- PushNotificationModule&#45;&gt;PushService  -->
+<g id="edge1" class="edge">
+<title>PushNotificationModule&#45;&gt;PushService </title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M763.93,-187.11C763.93,-187.11 763.93,-205.99 763.93,-205.99"/>
+<polygon fill="black" stroke="black" points="760.43,-205.99 763.93,-215.99 767.43,-205.99 760.43,-205.99"/>
+</g>
+<!-- PushNotificationModule&#45;&gt;UserDeviceService  -->
+<g id="edge2" class="edge">
+<title>PushNotificationModule&#45;&gt;UserDeviceService </title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M677.78,-187.11C677.78,-187.11 677.78,-205.99 677.78,-205.99"/>
+<polygon fill="black" stroke="black" points="674.28,-205.99 677.78,-215.99 681.28,-205.99 674.28,-205.99"/>
+</g>
+<!-- FcmDispatcher -->
+<g id="node4" class="node"><a xlink:href="../injectables/FcmDispatcher.html" href="../injectables/FcmDispatcher.html" target="_top">
+<title>FcmDispatcher</title>
+<ellipse fill="#fdb462" stroke="black" cx="1183" cy="-104" rx="70.06" ry="18"/>
+<text text-anchor="middle" x="1183" y="-99.8" font-family="Times,serif" font-size="14.00">FcmDispatcher</text>
+</a></g>
+<!-- FcmDispatcher&#45;&gt;PushNotificationModule -->
+<g id="edge3" class="edge">
+<title>FcmDispatcher&#45;&gt;PushNotificationModule</title>
+<path fill="none" stroke="black" d="M1206.34,-121.16C1206.34,-143.02 1206.34,-178 1206.34,-178 1206.34,-178 803.43,-178 803.43,-178"/>
+<polygon fill="black" stroke="black" points="803.43,-174.5 793.43,-178 803.43,-181.5 803.43,-174.5"/>
+</g>
+<!-- FcmDispatcher&#45;&gt;PushNotificationModule -->
+<g id="edge4" class="edge">
+<title>FcmDispatcher&#45;&gt;PushNotificationModule</title>
+<path fill="none" stroke="black" d="M1159.66,-121.08C1159.66,-140.34 1159.66,-169 1159.66,-169 1159.66,-169 803.28,-169 803.28,-169"/>
+<polygon fill="black" stroke="black" points="803.28,-165.5 793.28,-169 803.28,-172.5 803.28,-165.5"/>
+</g>
+<!-- OutboxPushService -->
+<g id="node5" class="node"><a xlink:href="../injectables/OutboxPushService.html" href="../injectables/OutboxPushService.html" target="_top">
+<title>OutboxPushService</title>
+<ellipse fill="#fdb462" stroke="black" cx="1007" cy="-104" rx="87.98" ry="18"/>
+<text text-anchor="middle" x="1007" y="-99.8" font-family="Times,serif" font-size="14.00">OutboxPushService</text>
+</a></g>
+<!-- OutboxPushService&#45;&gt;PushNotificationModule -->
+<g id="edge5" class="edge">
+<title>OutboxPushService&#45;&gt;PushNotificationModule</title>
+<path fill="none" stroke="black" d="M1007,-122.03C1007,-138.4 1007,-160 1007,-160 1007,-160 803.22,-160 803.22,-160"/>
+<polygon fill="black" stroke="black" points="803.22,-156.5 793.22,-160 803.22,-163.5 803.22,-156.5"/>
+</g>
+<!-- PushRendererService -->
+<g id="node6" class="node"><a xlink:href="../injectables/PushRendererService.html" href="../injectables/PushRendererService.html" target="_top">
+<title>PushRendererService</title>
+<ellipse fill="#fdb462" stroke="black" cx="807" cy="-104" rx="94.32" ry="18"/>
+<text text-anchor="middle" x="807" y="-99.8" font-family="Times,serif" font-size="14.00">PushRendererService</text>
+</a></g>
+<!-- PushRendererService&#45;&gt;PushNotificationModule -->
+<g id="edge6" class="edge">
+<title>PushRendererService&#45;&gt;PushNotificationModule</title>
+<path fill="none" stroke="black" d="M753.03,-118.75C753.03,-118.75 753.03,-140.59 753.03,-140.59"/>
+<polygon fill="black" stroke="black" points="749.53,-140.59 753.03,-150.59 756.53,-140.59 749.53,-140.59"/>
+</g>
+<!-- PushScheduler -->
+<g id="node7" class="node"><a xlink:href="../injectables/PushScheduler.html" href="../injectables/PushScheduler.html" target="_top">
+<title>PushScheduler</title>
+<ellipse fill="#fdb462" stroke="black" cx="626" cy="-104" rx="68.36" ry="18"/>
+<text text-anchor="middle" x="626" y="-99.8" font-family="Times,serif" font-size="14.00">PushScheduler</text>
+</a></g>
+<!-- PushScheduler&#45;&gt;PushNotificationModule -->
+<g id="edge7" class="edge">
+<title>PushScheduler&#45;&gt;PushNotificationModule</title>
+<path fill="none" stroke="black" d="M666.61,-118.75C666.61,-118.75 666.61,-140.59 666.61,-140.59"/>
+<polygon fill="black" stroke="black" points="663.11,-140.59 666.61,-150.59 670.11,-140.59 663.11,-140.59"/>
+</g>
+<!-- PushService -->
+<g id="node8" class="node"><a xlink:href="../injectables/PushService.html" href="../injectables/PushService.html" target="_top">
+<title>PushService</title>
+<ellipse fill="#fdb462" stroke="black" cx="481" cy="-104" rx="58.55" ry="18"/>
+<text text-anchor="middle" x="481" y="-99.8" font-family="Times,serif" font-size="14.00">PushService</text>
+</a></g>
+<!-- PushService&#45;&gt;PushNotificationModule -->
+<g id="edge8" class="edge">
+<title>PushService&#45;&gt;PushNotificationModule</title>
+<path fill="none" stroke="black" d="M481,-122.03C481,-138.4 481,-160 481,-160 481,-160 628.73,-160 628.73,-160"/>
+<polygon fill="black" stroke="black" points="628.73,-163.5 638.73,-160 628.73,-156.5 628.73,-163.5"/>
+</g>
+<!-- PushTemplateService -->
+<g id="node9" class="node"><a xlink:href="../injectables/PushTemplateService.html" href="../injectables/PushTemplateService.html" target="_top">
+<title>PushTemplateService</title>
+<ellipse fill="#fdb462" stroke="black" cx="309" cy="-104" rx="95.48" ry="18"/>
+<text text-anchor="middle" x="309" y="-99.8" font-family="Times,serif" font-size="14.00">PushTemplateService</text>
+</a></g>
+<!-- PushTemplateService&#45;&gt;PushNotificationModule -->
+<g id="edge9" class="edge">
+<title>PushTemplateService&#45;&gt;PushNotificationModule</title>
+<path fill="none" stroke="black" d="M309,-122.11C309,-141.34 309,-169 309,-169 309,-169 628.49,-169 628.49,-169"/>
+<polygon fill="black" stroke="black" points="628.49,-172.5 638.49,-169 628.49,-165.5 628.49,-172.5"/>
+</g>
+<!-- UserDeviceService -->
+<g id="node10" class="node"><a xlink:href="../injectables/UserDeviceService.html" href="../injectables/UserDeviceService.html" target="_top">
+<title>UserDeviceService</title>
+<ellipse fill="#fdb462" stroke="black" cx="110" cy="-104" rx="85.63" ry="18"/>
+<text text-anchor="middle" x="110" y="-99.8" font-family="Times,serif" font-size="14.00">UserDeviceService</text>
+</a></g>
+<!-- UserDeviceService&#45;&gt;PushNotificationModule -->
+<g id="edge10" class="edge">
+<title>UserDeviceService&#45;&gt;PushNotificationModule</title>
+<path fill="none" stroke="black" d="M110,-122.29C110,-144.21 110,-178 110,-178 110,-178 628.63,-178 628.63,-178"/>
+<polygon fill="black" stroke="black" points="628.63,-181.5 638.63,-178 628.63,-174.5 628.63,-181.5"/>
+</g>
+</g>
+</svg>
+
+    </div>
+    <i id="fullscreen" class="icon ion-ios-resize module-graph-fullscreen-btn" aria-hidden="true"></i>
+    <div class="btn-group size-buttons">
+        <button id="zoom-in" class="btn btn-default btn-sm">Zoom in</button>
+        <button id="reset" class="btn btn-default btn-sm">Reset</button>
+        <button id="zoom-out" class="btn btn-default btn-sm">Zoom out</button>
+    </div>
+</div>
+<script src="../js/libs/svg-pan-zoom.min.js"></script>
+<script src="../js/svg-pan-zoom.controls.js"></script>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a href="#info" 
+            class="nav-link"
+            class="nav-link active"
+            role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+    </li>
+    <li class="nav-item">
+        <a href="#source" 
+            class="nav-link"
+            
+            role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+
+
+        <div class="container-fluid module">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Providers<a href="https://angular.io/api/core/NgModule#providers" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module providers"><span class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../injectables/FcmDispatcher.html">FcmDispatcher</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/FcmDispatcher.html">FcmDispatcher</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/OutboxPushService.html">OutboxPushService</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/PushRendererService.html">PushRendererService</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/PushScheduler.html">PushScheduler</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/PushService.html">PushService</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/PushTemplateService.html">PushTemplateService</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/UserDeviceService.html">UserDeviceService</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Controllers<a href="https://docs.nestjs.com/controllers" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module controllers"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../controllers/AdminPushTemplateController.html">AdminPushTemplateController</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../controllers/ClientDeviceController.html">ClientDeviceController</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../controllers/PushTestController.html">PushTestController</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Exports<a href="https://angular.io/api/core/NgModule#exports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module exports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../injectables/PushService.html">PushService</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../injectables/UserDeviceService.html">UserDeviceService</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+                <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../modules/AppModule.html" target="_self" >AppModule</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../injectables/PushService.html" target="_self" >PushService</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/UserDeviceService.html" target="_self" >UserDeviceService</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../controllers/AdminPushTemplateController.html" target="_self" >AdminPushTemplateController</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../controllers/ClientDeviceController.html" target="_self" >ClientDeviceController</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../controllers/PushTestController.html" target="_self" >PushTestController</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/FcmDispatcher.html" target="_self" >FcmDispatcher</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/OutboxPushService.html" target="_self" >OutboxPushService</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/PushRendererService.html" target="_self" >PushRendererService</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/PushScheduler.html" target="_self" >PushScheduler</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../injectables/PushTemplateService.html" target="_self" >PushTemplateService</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
+import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
+
+import { PushTemplate } from &#x27;./push-template.entity&#x27;;
+import { OutboxPush } from &#x27;./outbox-push.entity&#x27;;
+import { UserDevice } from &#x27;./user-device.entity&#x27;;
+import { PushTemplateService } from &#x27;./push-template.service&#x27;;
+import { PushRendererService } from &#x27;./push-renderer.service&#x27;;
+import { OutboxPushService } from &#x27;./outbox-push.service&#x27;;
+import { UserDeviceService } from &#x27;./user-device.service&#x27;;
+import { FcmDispatcher } from &#x27;./fcm-dispatcher.service&#x27;;
+import { PUSH_DISPATCHER } from &#x27;./push-dispatcher.interface&#x27;;
+import { PushService } from &#x27;./push.service&#x27;;
+import { PushScheduler } from &#x27;./push.scheduler&#x27;;
+import { AdminPushTemplateController } from &#x27;./push-template.controller.admin&#x27;;
+import { ClientDeviceController } from &#x27;./client-device.controller&#x27;;
+import { PushTestController } from &#x27;./push-test.controller&#x27;;
+
+@Module({
+  imports: [TypeOrmModule.forFeature([PushTemplate, OutboxPush, UserDevice])],
+  providers: [
+    PushTemplateService,
+    PushRendererService,
+    OutboxPushService,
+    UserDeviceService,
+    FcmDispatcher,
+    /**
+     * Token-based injection for IPushDispatcher.
+     *
+     * To swap to BullMQ later:
+     *   Change useClass to BullMqPushDispatcher.
+     */
+    { provide: PUSH_DISPATCHER, useClass: FcmDispatcher },
+    PushService,
+    PushScheduler,
+  ],
+  controllers: [AdminPushTemplateController, ClientDeviceController, PushTestController],
+  /**
+   * Export PushService and UserDeviceService so other modules can use them.
+   */
+  exports: [PushService, PUSH_DISPATCHER, UserDeviceService],
+})
+export class PushNotificationModule {}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
+            var COMPODOC_CURRENT_PAGE_URL = 'PushNotificationModule.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
