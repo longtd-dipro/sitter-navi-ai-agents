@@ -106,8 +106,8 @@ Source code tại repo có vai trò `backend` — xem đường dẫn thực t�
 
 ## DB Access (khi cần verify migration hoặc debug data)
 
-- DEV — kết nối trực tiếp qua DBeaver: `.claude/workflows/db-connect-dev.md`
-- Staging — kết nối qua AWS SSM tunnel: `.claude/workflows/db-connect-staging.md`
+- Hỏi Lead/DevOps để lấy hướng dẫn kết nối DB DEV/Staging của dự án (host, credentials, tunnel nếu có).
+- Không hard-code credentials trong bất kỳ file `.md` nào — chỉ ghi note tham chiếu.
 
 ## Output
 
