@@ -1,0 +1,45 @@
+# ── OS ──────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+
+# ── Editor / IDE ────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── Thư mục tạo nhầm bởi tool ───────────────────
+~/
+.claude-work/
+
+# ── Secrets / env (KHÔNG commit — AWS Parameter Store) ─
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ── Python (mkdocs docs) ────────────────────────
+.venv/
+__pycache__/
+*.py[cod]
+
+# ── MkDocs build output ─────────────────────────
+sitter-navi-docs/site/
+
+# ── Node (nếu chạy tooling ở root) ──────────────
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+yarn-error.log*
+
+# ── Logs / tạm ──────────────────────────────────
+*.log
+tmp/
+temp/
